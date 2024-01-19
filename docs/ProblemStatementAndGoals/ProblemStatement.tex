@@ -3,11 +3,11 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 
-\title{Problem Statement and Goals\\\progname}
+\title{Problem Statement and Goals\\Artificial Neural Network}
 
-\author{\authname}
+\author{Tanya Djavaherpour}
 
-\date{}
+\date{January 19, 2024}
 
 \input{../Comments}
 \input{../Common}
@@ -22,35 +22,75 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+January 19, 2024 & Tanya Djavaherpour & Initial Draft\\
+% Date2 & Name(s) & Description of changes\\
+% ... & ... & ...\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \section{Problem Statement}
 
-\wss{You should check your problem statement with the
-\href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
-{problem statement checklist}.}
-\wss{You can change the section headings, as long as you include the required information.}
+In the rapidly evolving field of artificial intelligence and machine learning, image classification 
+stands as a cornerstone application, enabling machines to interpret and analyze visual data with 
+increasing accuracy. This project addresses the specific challenge of image classification using 
+Artificial Neural Networks (ANN) on the CIFAR-10 dataset, a well-known benchmark in the machine learning community.
 
 \subsection{Problem}
 
+CIFAR-10 is divided into five training batches and one test batch, 
+each with 10000 images. The test batch contains exactly 1000 randomly-selected 
+images from each class. The training batches contain the remaining images in random order, 
+but some training batches may contain more images from one class than another. Between them, 
+the training batches contain exactly 5000 images from each class.
+
+In a preceding project, available on \href{https://github.com/tanya-jp/CIFAR-Classification/tree/main}{GitHub}, an ANN-based model was developed to classify images 
+from a reduced subset of the CIFAR-10 dataset, encompassing only 4 out of the 10 available classes. 
+This reduction was primarily to manage computational complexity. However, the model achieved a modest 
+accuracy of less than 50\%, indicating substantial room for improvement.
+
+The current project aims to extend this prior work by incorporating all 10 classes of the 
+CIFAR-10 dataset, thus significantly increasing the scope and challenge of the classification task. 
+The primary objective is to improve the accuracy of the image classification model by modifying the 
+ANN architecture. This involves experimenting with various configurations, such as adjusting the number 
+of neurons and layers, to find an optimal structure that enhances performance.
+
+Additionally, a novel feature is planned for this project: the ability to accept an image input 
+(via directory input) from the user, process it through the trained model, and output the classified category. 
+
+
 \subsection{Inputs and Outputs}
 
-\wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
-Use abstraction so that you can avoid details.}
+Inputs: The complete CIFAR-10 dataset, encompassing 10 categories of images, each representing different 
+objects like animals and vehicles. User-provided images for classification.
 
-\subsection{Stakeholders}
+Outputs: Classification accuracy of the ANN model, measured against a benchmark. For user-provided images, 
+the output will be the category name into which the image is classified.
+
+% \subsection{Stakeholders}
 
 \subsection{Environment}
 
-\wss{Hardware and software}
+The development and execution of this project will take place in a Python-based environment. 
+
+% \wss{Hardware and software}
 
 \section{Goals}
 
+The primary aim of this project is an enhancement of the ANN model's performance in 
+classifying images from the CIFAR-10 dataset. The focus is on refining the neural network 
+architecture to achieve a balance between computational efficiency and increased classification accuracy. 
+A key aspect of this project is the implementation of a terminal-based interface, which will allow users 
+to input image paths and receive classification results directly through the command line. This approach 
+not only simplifies the user interaction but also aligns well with the project's emphasis on the core 
+functionality of image classification. Additionally, creating detailed and accessible documentation of 
+the entire development process is an essential goal.
+
 \section{Stretch Goals}
+
+A key stretch goal for this project is to implement a user interface that is easy for everyone to use, 
+both online and offline. This interface would enable users to upload images in any format. Additionally, 
+by utilizing a dataset like CIFAR-100 for training the model, we could classify a wider range of image classes. 
+However, it's important to note that using a larger dataset like this would significantly increase computational complexity.
 
 \end{document}
