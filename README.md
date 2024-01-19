@@ -1,8 +1,8 @@
 # Project Name
 
-Developer Names:
+Developer Names: Tanya Djavaherpour
 
-Date of project start:
+Date of project start: January 17, 2024
 
 This project is ...
 
