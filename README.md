@@ -1,4 +1,4 @@
-# Project Name
+# Artificial Neural Network
 
 Developer Names: Tanya Djavaherpour
 
