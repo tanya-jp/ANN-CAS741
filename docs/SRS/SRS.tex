@@ -579,12 +579,24 @@ and engagement with the system.
 
 \subsection{System Constraints}
 
-\plt{System constraints differ from other type of requirements because they
-  limit the developers' options in the system design and they identify how the
-  eventual system must fit into the world. This is the only place in the SRS
-  where design decisions can be specified.  That is, the quality requirement for
-  abstraction is relaxed here.  However, system constraints should only be
-  included if they are truly required.}
+% \plt{System constraints differ from other type of requirements because they
+%   limit the developers' options in the system design and they identify how the
+%   eventual system must fit into the world. This is the only place in the SRS
+%   where design decisions can be specified.  That is, the quality requirement for
+%   abstraction is relaxed here.  However, system constraints should only be
+%   included if they are truly required.}
+In this project, system constraints are critical as they shape the design space and specify how 
+the system must integrate into the real world.
+
+\begin{inparaitem}
+  \textbf{Technical Resource Limitations:} The system's design is bound by the available computational 
+  resources, such as processing power and memory capacity, which influence the complexity and 
+  efficiency of the neural network model.
+  
+  \textbf{Dataset Constraints:} The system is tailored specifically for the CIFAR-10 dataset. 
+  This specialization may limit its effectiveness with other types of image data.
+  Moreover, this system cannot classify any images that is not in the 10 classes.
+\end{inparaitem}
 
 \section{Specific System Description}
 
