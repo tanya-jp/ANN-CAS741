@@ -300,108 +300,142 @@ algorithms for calculating gradients.
 
 \pagenumbering{arabic}
 
-\plt{This SRS template is based on \citet{SmithAndLai2005, SmithEtAl2007,
-  SmithAndKoothoor2016}.  It will get you started.  You should not modify the
-  section headings, without first discussing the change with the course
-  instructor.  Modification means you are not following the template, which
-  loses some of the advantage of a template, especially standardization.
-  Although the bits shown below do not include type information, you may need to
-  add this information for your problem.  If you are unsure, please can ask the
-  instructor.}
+% \plt{This SRS template is based on \citet{SmithAndLai2005, SmithEtAl2007,
+%   SmithAndKoothoor2016}.  It will get you started.  You should not modify the
+%   section headings, without first discussing the change with the course
+%   instructor.  Modification means you are not following the template, which
+%   loses some of the advantage of a template, especially standardization.
+%   Although the bits shown below do not include type information, you may need to
+%   add this information for your problem.  If you are unsure, please can ask the
+%   instructor.}
 
-\plt{Feel free to change the appearance of the report by modifying the LaTeX
-  commands.}
+% \plt{Feel free to change the appearance of the report by modifying the LaTeX
+%   commands.}
 
-\plt{This template document assumes that a single program is being documented.
-  If you are documenting a family of models, you should start with a commonality
-  analysis.  A separate template is provided for this.  For program
-  families you should look at \cite{Smith2006, SmithMcCutchanAndCarette2017}.
-  Single family member programs are often programs based on a single physical
-  model.  General purpose tools are usually documented as a family.  Families of
-  physical models also come up.}
+% \plt{This template document assumes that a single program is being documented.
+%   If you are documenting a family of models, you should start with a commonality
+%   analysis.  A separate template is provided for this.  For program
+%   families you should look at \cite{Smith2006, SmithMcCutchanAndCarette2017}.
+%   Single family member programs are often programs based on a single physical
+%   model.  General purpose tools are usually documented as a family.  Families of
+%   physical models also come up.}
 
-\plt{The SRS is not generally written, or read, sequentially.  The SRS is a
-  reference document.  It is generally read in an ad hoc order, as the need
-  arises.  For writing an SRS, and for reading one for the first time, the
-  suggested order of sections is:
-\begin{itemize}
-\item Goal Statement
-\item Instance Models
-\item Requirements
-\item Introduction
-\item Specific System Description
-\end{itemize}
-}
+% \plt{The SRS is not generally written, or read, sequentially.  The SRS is a
+%   reference document.  It is generally read in an ad hoc order, as the need
+%   arises.  For writing an SRS, and for reading one for the first time, the
+%   suggested order of sections is:
+% \begin{itemize}
+% \item Goal Statement
+% \item Instance Models
+% \item Requirements
+% \item Introduction
+% \item Specific System Description
+% \end{itemize}
+% }
 
-\plt{Guiding principles for the SRS document:
-\begin{itemize}
-\item Do not repeat the same information at the same abstraction level.  If
-  information is repeated, the repetition should be at a different abstraction
-  level.  For instance, there will be overlap between the scope section and the
-  assumptions, but the scope section will not go into as much detail as the
-  assumptions section.
-\end{itemize}
-}
+% \plt{Guiding principles for the SRS document:
+% \begin{itemize}
+% \item Do not repeat the same information at the same abstraction level.  If
+%   information is repeated, the repetition should be at a different abstraction
+%   level.  For instance, there will be overlap between the scope section and the
+%   assumptions, but the scope section will not go into as much detail as the
+%   assumptions section.
+% \end{itemize}
+% }
 
-\plt{The template description comments should be disabled before submitting this
-  document for grading.}
+% \plt{The template description comments should be disabled before submitting this
+%   document for grading.}
 
-\plt{You can borrow any wording from the text given in the template.  It is part
-  of the template, and not considered an instance of academic integrity.  Of
-  course, you need to cite the source of the template.}
+% \plt{You can borrow any wording from the text given in the template.  It is part
+%   of the template, and not considered an instance of academic integrity.  Of
+%   course, you need to cite the source of the template.}
 
-\plt{When the documentation is done, it should be possible to trace back to the
-  source of every piece of information.  Some information will come from
-  external sources, like terminology.  Other information will be derived, like
-  General Definitions.}
+% \plt{When the documentation is done, it should be possible to trace back to the
+%   source of every piece of information.  Some information will come from
+%   external sources, like terminology.  Other information will be derived, like
+%   General Definitions.}
 
-\plt{An SRS document should have the following qualities: unambiguous,
-  consistent, complete, validatable, abstract and traceable.}
+% \plt{An SRS document should have the following qualities: unambiguous,
+%   consistent, complete, validatable, abstract and traceable.}
 
-\plt{The overall goal of the SRS is that someone that meets the Characteristics
-  of the Intended Reader (Section~\ref{sec_IntendedReader}) can learn,
-  understand and verify the captured domain knowledge.  They should not have to
-  trust the authors of the SRS on any statements.  They should be able to
-  independently verify/derive every statement made.}
+% \plt{The overall goal of the SRS is that someone that meets the Characteristics
+%   of the Intended Reader (Section~\ref{sec_IntendedReader}) can learn,
+%   understand and verify the captured domain knowledge.  They should not have to
+%   trust the authors of the SRS on any statements.  They should be able to
+%   independently verify/derive every statement made.}
 
 \section{Introduction}
 
-\plt{The introduction section is written to introduce the problem.  It starts
-  general and focuses on the problem domain. The general advice is to start with
-a paragraph or two that describes the problem, followed by a ``roadmap''
-paragraph.  A roadmap orients the reader by telling them what sub-sections to
-expect in the Introduction section.}
+% \plt{The introduction section is written to introduce the problem.  It starts
+%   general and focuses on the problem domain. The general advice is to start with
+% a paragraph or two that describes the problem, followed by a ``roadmap''
+% paragraph.  A roadmap orients the reader by telling them what sub-sections to
+% expect in the Introduction section.}
+The evolution of machine learning and its profound impact on various fields has led to remarkable advancements, 
+particularly in the area of image classification. This project delves into the exploration of enhancing an 
+Artificial Neural Network (ANN) to tackle the challenge of classifying images from the CIFAR-10 dataset. 
+This dataset, known for its diverse range of images, serves as a crucial benchmark in assessing the 
+capabilities of image recognition algorithms. Our goal is to not only improve the accuracy of the ANN but 
+also to make it robust enough to handle all ten categories of the dataset effectively.
 
 \subsection{Purpose of Document}
 
-\plt{This section summarizes the purpose of the SRS document.  It does not focus
-  on the problem itself.  The problem is described in the ``Problem
-  Description'' section (Section~\ref{Sec_pd}).  The purpose is for the document
-  in the context of the project itself, not in the context of this course.
-  Although the ``purpose'' of the document is to get a grade, you should not
-  mention this.  Instead, ``fake it'' as if this is a real project.  The purpose
-  section will be similar between projects.  The purpose of the document is the
-  purpose of the SRS, including communication, planning for the design stage,
-  etc.}
+% \plt{This section summarizes the purpose of the SRS document.  It does not focus
+%   on the problem itself.  The problem is described in the ``Problem
+%   Description'' section (Section~\ref{Sec_pd}).  The purpose is for the document
+%   in the context of the project itself, not in the context of this course.
+%   Although the ``purpose'' of the document is to get a grade, you should not
+%   mention this.  Instead, ``fake it'' as if this is a real project.  The purpose
+%   section will be similar between projects.  The purpose of the document is the
+%   purpose of the SRS, including communication, planning for the design stage,
+%   etc.}
+The primary purpose of this Software Requirements Specification (SRS) document is to clearly define the software 
+requirements for the development of an advanced neural network model for image classification using the CIFAR-10 
+dataset. This document aims to provide a comprehensive understanding of the system, addressing various aspects 
+such as the project's goals, theoretical underpinnings, and fundamental definitions. It maintains an abstract 
+perspective, focusing on identifying and specifying what needs to be solved rather than delving into the technicalities 
+of how these solutions will be implemented. The document will describe the system context and constraints, delineate 
+the specific problem definition, and outline the requirements and characteristics of the proposed solution. Additionally, 
+it will address potential changes and modifications that could impact the development of the neural network model.
 
 \subsection{Scope of Requirements} 
 
-\plt{Modelling the real world requires simplification.  The full complexity of
-  the actual physics, chemistry, biology is too much for existing models, and
-  for existing computational solution techniques.  Rather than say what is in
-  the scope, it is usually easier to say what is not.  You can think of it as
-  the scope is initially everything, and then it is constrained to create the
-  actual scope.  For instance, the problem can be restricted to 2 dimensions, or
-  it can ignore the effect of temperature (or pressure) on the material
-  properties, etc.}  
+% \plt{Modelling the real world requires simplification.  The full complexity of
+%   the actual physics, chemistry, biology is too much for existing models, and
+%   for existing computational solution techniques.  Rather than say what is in
+%   the scope, it is usually easier to say what is not.  You can think of it as
+%   the scope is initially everything, and then it is constrained to create the
+%   actual scope.  For instance, the problem can be restricted to 2 dimensions, or
+%   it can ignore the effect of temperature (or pressure) on the material
+%   properties, etc.}  
+The scope of this project is specifically tailored to developing an enhanced neural network model for image 
+classification using the CIFAR-10 dataset. This involves:
 
-\plt{The scope section is related to the assumptions section
-  (Section~\ref{sec_assumpt}).  However, the scope and the assumptions are not
-  at the same level of abstraction.  The scope is at a high level.  The focus is
-  on the ``big picture'' assumptions.  The assumptions section lists, and
-  describes, all of the assumptions.}
+\begin{inparaitem}
 
-\plt{The scope section is relevant for later determining typical values of inputs. The scope should make it clear what inputs are reasonable to expect. This is a distinction between scope and context (context is a later section).  Scope affects the inputs while context affects how the software will be used.}
+\item \textbf{Model Complexity:} The project will concentrate on enhancing an existing ANN architecture. 
+ It will not venture into developing entirely new models from scratch or exploring unrelated AI domains 
+ like natural language processing.
+
+\item \textbf{Operational Boundaries:} The tool will be designed for a general-purpose computing environment, 
+ without tailoring for specialized hardware like high-performance GPU clusters.
+
+\item \textbf{Functional Focus:} The primary function is to improve classification accuracy and efficiency. 
+Features outside the realm of image classification, such as real-time data processing or integration with external 
+APIs, are outside the project's scope.
+
+\end{inparaitem}
+
+For more details, you can also see the assumptions section (Section~\ref{sec_assumpt}).
+% \plt{The scope section is related to the assumptions section
+%   (Section~\ref{sec_assumpt}).  However, the scope and the assumptions are not
+%   at the same level of abstraction.  The scope is at a high level.  The focus is
+%   on the ``big picture'' assumptions.  The assumptions section lists, and
+%   describes, all of the assumptions.}
+
+% \plt{The scope section is relevant for later determining typical values of inputs. The scope should make it clear what 
+% inputs are reasonable to expect. This is a distinction between scope and context (context is a later section).  
+% Scope affects the inputs while context affects how the software will be used.}
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
 
