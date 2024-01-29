@@ -128,8 +128,8 @@
 
 \begin{document}
 
-\title{Software Requirements Specification for \progname: subtitle describing software} 
-\author{\authname}
+\title{Software Requirements Specification for ANN: Artificial Neural Network} 
+\author{Tanya Djavaherpour}
 \date{\today}
 	
 \maketitle
@@ -147,17 +147,17 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+February 2, 2024 & 1.0 & Initial Draft\\
+% Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
 
 ~\\
-\plt{This template is intended for use by CAS 741.  For CAS 741 the template
-should be used exactly as given, except the Reflection Appendix can be deleted.
-For the capstone course it is a source of ideas, but shouldn't be followed
-exactly.  The exception is the reflection appendix.  All capstone SRS documents
-should have a refelection appendix.}
+% \plt{This template is intended for use by CAS 741.  For CAS 741 the template
+% should be used exactly as given, except the Reflection Appendix can be deleted.
+% For the capstone course it is a source of ideas, but shouldn't be followed
+% exactly.  The exception is the reflection appendix.  All capstone SRS documents
+% should have a refelection appendix.}
 
 ~\newpage
 
@@ -167,46 +167,47 @@ This section records information for easy reference.
 
 \subsection{Table of Units}
 
-Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is employed
-as the unit system.  In addition to the basic units, several derived units are
-used as described below.  For each unit, the symbol is given followed by a
-description of the unit and the SI name.
+% Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is employed
+% as the unit system.  In addition to the basic units, several derived units are
+% used as described below.  For each unit, the symbol is given followed by a
+% description of the unit and the SI name.
+In this document, we do not use any specific unit.
 ~\newline
 
-\renewcommand{\arraystretch}{1.2}
-%\begin{table}[ht]
-  \noindent \begin{tabular}{l l l} 
-    \toprule		
-    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
-    \midrule 
-    \si{\metre} & length & metre\\
-    \si{\kilogram} & mass	& kilogram\\
-    \si{\second} & time & second\\
-    \si{\celsius} & temperature & centigrade\\
-    \si{\joule} & energy & joule\\
-    \si{\watt} & power & watt (W = \si{\joule\per\second})\\
-    \bottomrule
-  \end{tabular}
+% \renewcommand{\arraystretch}{1.2}
+% %\begin{table}[ht]
+%   \noindent \begin{tabular}{l l l} 
+%     \toprule		
+%     \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
+%     \midrule 
+%     \si{\metre} & length & metre\\
+%     \si{\kilogram} & mass	& kilogram\\
+%     \si{\second} & time & second\\
+%     \si{\celsius} & temperature & centigrade\\
+%     \si{\joule} & energy & joule\\
+%     \si{\watt} & power & watt (W = \si{\joule\per\second})\\
+%     \bottomrule
+%   \end{tabular}
   %	\caption{Provide a caption}
 %\end{table}
 
-\plt{Only include the units that your SRS actually uses.}
+% \plt{Only include the units that your SRS actually uses.}
 
-\plt{Derived units, like newtons, pascal, etc, should show their derivation
-    (the units they are derived from) if their constituent units are in the
-    table of units (that is, if the units they are derived from are used in the
-    document).  For instance, the derivation of pascals as
-    $\si{\pascal}=\si{\newton\per\square\meter}$ is shown if newtons and m are
-    both in the table.  The derivations of newtons would not be shown if kg and
-    s are not both in the table.}
+% \plt{Derived units, like newtons, pascal, etc, should show their derivation
+%     (the units they are derived from) if their constituent units are in the
+%     table of units (that is, if the units they are derived from are used in the
+%     document).  For instance, the derivation of pascals as
+%     $\si{\pascal}=\si{\newton\per\square\meter}$ is shown if newtons and m are
+%     both in the table.  The derivations of newtons would not be shown if kg and
+%     s are not both in the table.}
 
-\plt{The symbol for units named after people use capital letters, but the name
-  of the unit itself uses lower case.  For instance, pascals use the symbol Pa,
-  watts use the symbol W, teslas use the symbol T, newtons use the symbol N,
-  etc.  The one exception to this is degree Celsius.  Details on writing metric
-  units can be found on the 
-  \href{https://www.nist.gov/pml/weights-and-measures/writing-metric-units}
-  {NIST} web-page.}
+% \plt{The symbol for units named after people use capital letters, but the name
+%   of the unit itself uses lower case.  For instance, pascals use the symbol Pa,
+%   watts use the symbol W, teslas use the symbol T, newtons use the symbol N,
+%   etc.  The one exception to this is degree Celsius.  Details on writing metric
+%   units can be found on the 
+%   \href{https://www.nist.gov/pml/weights-and-measures/writing-metric-units}
+%   {NIST} web-page.}
 
 \subsection{Table of Symbols}
 
@@ -220,15 +221,24 @@ systems.  The symbols are listed in alphabetical order.
 \noindent \begin{longtable*}{l l p{12cm}} \toprule
 \textbf{symbol} & \textbf{unit} & \textbf{description}\\
 \midrule 
-$A_C$ & \si[per-mode=symbol] {\square\metre} & coil surface area
+$a^L$ & \si[per-mode=symbol] {-} & Weighted input to neurons of layer L
+\\ 
+$W^L$ & \si[per-mode=symbol] {-} & Weight matrix of layer L in neural networks
+\\ 
+$b^L$ & \si[per-mode=symbol] {-} & Bias vector of layer L in neural networks
+\\ 
+$\sigma$ & \si[per-mode=symbol] {-} & Activation function
+\\ 
+$\alpha$ & \si[per-mode=symbol] {-} & Learning rate in gradient descent
 \\
-$A_\text{in}$ & \si[per-mode=symbol] {\square\metre} & surface area over 
-which heat is transferred in
+$\nabla$ & \si[per-mode=symbol] {-} & Gradient operator
+\\
+$y_j$ & \si[per-mode=symbol] {-} & Target output for neuron j 
 \\ 
 \bottomrule
 \end{longtable*}
-\plt{Use your problems actual symbols.  The si package is a good idea to use for
-  units.}
+% \plt{Use your problems actual symbols.  The si package is a good idea to use for
+%   units.}
 
 \subsection{Abbreviations and Acronyms}
 
