@@ -439,27 +439,40 @@ For more details, you can also see the assumptions section (Section~\ref{sec_ass
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
 
-\plt{This section summarizes the skills and knowledge of the readers of the
-  SRS.  It does NOT have the same purpose as the ``User Characteristics''
-  section (Section~\ref{SecUserCharacteristics}).  The intended readers are the
-  people that will read, review and maintain the SRS.  They are the people that
-  will conceivably design the software that is intended to meet the
-  requirements.  The user, on the other hand, is the person that uses the
-  software that is built.  They may never read this SRS document.  Of course,
-  the same person could be a ``user'' and an ``intended reader.''}
+% \plt{This section summarizes the skills and knowledge of the readers of the
+%   SRS.  It does NOT have the same purpose as the ``User Characteristics''
+%   section (Section~\ref{SecUserCharacteristics}).  The intended readers are the
+%   people that will read, review and maintain the SRS.  They are the people that
+%   will conceivably design the software that is intended to meet the
+%   requirements.  The user, on the other hand, is the person that uses the
+%   software that is built.  They may never read this SRS document.  Of course,
+%   the same person could be a ``user'' and an ``intended reader.''}
 
-\plt{The intended reader characteristics should be written as unambiguously and
-  as specifically as possible.  Rather than say, the user should have an
-  understanding of physics, say what kind of physics and at what level.  For
-  instance, is high school physics adequate, or should the reader have had a
-  graduate course on advanced quantum mechanics?}
+% \plt{The intended reader characteristics should be written as unambiguously and
+%   as specifically as possible.  Rather than say, the user should have an
+%   understanding of physics, say what kind of physics and at what level.  For
+%   instance, is high school physics adequate, or should the reader have had a
+%   graduate course on advanced quantum mechanics?}
+The intended readers for this project, which involves developing an enhanced neural network model for image 
+classification using the CIFAR-10 dataset, are likely to be individuals with a solid background in computer science, 
+specifically in the areas of machine learning and neural networks. However, , as explained in Section: 
+User Characteristics (Section~\ref{SecUserCharacteristics}), users of this project  are a broad audience 
+interested in image classification, without the necessity for a deep technical background in machine learning or 
+neural networks.
 
 \subsection{Organization of Document}
 
-\plt{This section provides a roadmap of the SRS document.  It will help the
-  reader orient themselves.  It will provide direction that will help them
-  select which sections they want to read, and in what order.  This section will
-  be similar between project.}
+% \plt{This section provides a roadmap of the SRS document.  It will help the
+%   reader orient themselves.  It will provide direction that will help them
+%   select which sections they want to read, and in what order.  This section will
+%   be similar between project.}
+The organization of this document is modeled on the SRS template for scientific computing software as outlined 
+by \citet{SmithandLai2005}. This approach systematically presents the system's objectives, theoretical underpinnings, 
+definitions, and foundational assumptions. To facilitate a top-down reading approach, the readers 
+can begin by reading the system's goal statements (Section~\ref{GoalStatements}). 
+Following this, the theoretical models are detailed, which build upon and clarify the goals. 
+The document concludes with instance models, providing readers with a comprehensive understanding of the 
+system's practical applications and functionalities.
 
 \section{General System Description}
 
@@ -624,7 +637,7 @@ includes the following elements:
 % \end{center}
 % \end{figure}
 
-\subsubsection{Goal Statements}
+\subsubsection{Goal Statements}\label{GoalStatements}
 
 \plt{The goal statements refine the ``Problem Description''
   (Section~\ref{Sec_pd}).  A goal is a functional objective the system under
