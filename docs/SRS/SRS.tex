@@ -539,7 +539,7 @@ This setup provides a clear visual framework of the system's interaction dynamic
 \item Upload images that are compatible with the system's specifications 
 and within the scope of the CIFAR-10 dataset classifications
 \end{itemize}
-\item \progname{ANN} Responsibilities:
+\item ANN Responsibilities:
 \begin{itemize}
 \item Detect data type mismatch, such as text file instead of an image
 \item Process image data, ensuring timely and accurate output
@@ -715,68 +715,68 @@ processing methods, user interface design, and performance metrics, rather than 
 
 \subsection{Solution Characteristics Specification}
 
-\plt{This section specifies the information in the solution domain of the system
-  to be developed. This section is intended to express what is required in
-  such a way that analysts and stakeholders get a clear picture, and the
-  latter will accept it. The purpose of this section is to reduce the problem
-  into one expressed in mathematical terms. Mathematical expertise is used to
-  extract the essentials from the underlying physical description of the
-  problem, and to collect and substantiate all physical data pertinent to the
-  problem.}
+% \plt{This section specifies the information in the solution domain of the system
+%   to be developed. This section is intended to express what is required in
+%   such a way that analysts and stakeholders get a clear picture, and the
+%   latter will accept it. The purpose of this section is to reduce the problem
+%   into one expressed in mathematical terms. Mathematical expertise is used to
+%   extract the essentials from the underlying physical description of the
+%   problem, and to collect and substantiate all physical data pertinent to the
+%   problem.}
 
-\plt{This section presents the solution characteristics by successively refining
-  models.  It starts with the abstract/general Theoretical Models (TMs) and
-  refines them to the concrete/specific Instance Models (IMs).  If necessary
-  there are intermediate refinements to General Definitions (GDs).  All of these
-  refinements can potentially use Assumptions (A) and Data Definitions (DD).
-  TMs are refined to create new models, that are called GMs or IMs. DDs are not
-  refined; they are just used. GDs and IMs are derived, or refined, from other
-  models. DDs are not derived; they are just given. TMs are also just given, but
-  they are refined, not used.  If a potential DD includes a derivation, then
-  that means it is refining other models, which would make it a GD or an IM.}
+% \plt{This section presents the solution characteristics by successively refining
+%   models.  It starts with the abstract/general Theoretical Models (TMs) and
+%   refines them to the concrete/specific Instance Models (IMs).  If necessary
+%   there are intermediate refinements to General Definitions (GDs).  All of these
+%   refinements can potentially use Assumptions (A) and Data Definitions (DD).
+%   TMs are refined to create new models, that are called GMs or IMs. DDs are not
+%   refined; they are just used. GDs and IMs are derived, or refined, from other
+%   models. DDs are not derived; they are just given. TMs are also just given, but
+%   they are refined, not used.  If a potential DD includes a derivation, then
+%   that means it is refining other models, which would make it a GD or an IM.}
 
-\plt{The above makes a distinction between ``refined'' and ``used.'' A model is
-  refined to another model if it is changed by the refinement. When we change a
-  general 3D equation to a 2D equation, we are making a refinement, by applying
-  the assumption that the third dimension does not matter. If we use a
-  definition, like the definition of density, we aren't refining, or changing
-  that definition, we are just using it.}
+% \plt{The above makes a distinction between ``refined'' and ``used.'' A model is
+%   refined to another model if it is changed by the refinement. When we change a
+%   general 3D equation to a 2D equation, we are making a refinement, by applying
+%   the assumption that the third dimension does not matter. If we use a
+%   definition, like the definition of density, we aren't refining, or changing
+%   that definition, we are just using it.}
 
-\plt{The same information can be a TM in one problem and a DD in another.  It is
-  about how the information is used.  In one problem the definition of
-  acceleration can be a TM, in another it would be a DD.}
+% \plt{The same information can be a TM in one problem and a DD in another.  It is
+%   about how the information is used.  In one problem the definition of
+%   acceleration can be a TM, in another it would be a DD.}
 
-\plt{There is repetition between the information given in the different chunks
-  (TM, GDs etc) with other information in the document.  For instance, the
-  meaning of the symbols, the units etc are repeated.  This is so that the
-  chunks can stand on their own when being read by a reviewer/user.  It also
-  facilitates reuse of the models in a different context.}
+% \plt{There is repetition between the information given in the different chunks
+%   (TM, GDs etc) with other information in the document.  For instance, the
+%   meaning of the symbols, the units etc are repeated.  This is so that the
+%   chunks can stand on their own when being read by a reviewer/user.  It also
+%   facilitates reuse of the models in a different context.}
 
-\noindent \plt{The relationships between the parts of the document are show in
-  the following figure.  In this diagram ``may ref'' has the same role as
-  ``uses'' above.  The figure adds ``Likely Changes,'' which are able to
-  reference (use) Assumptions.}
+% \noindent \plt{The relationships between the parts of the document are show in
+%   the following figure.  In this diagram ``may ref'' has the same role as
+%   ``uses'' above.  The figure adds ``Likely Changes,'' which are able to
+%   reference (use) Assumptions.}
 
-\begin{figure}[H]
-  \includegraphics[scale=0.9]{RelationsBetweenTM_GD_IM_DD_A.pdf}
-\end{figure}
+% \begin{figure}[H]
+%   \includegraphics[scale=0.9]{RelationsBetweenTM_GD_IM_DD_A.pdf}
+% \end{figure}
 
-The instance models that govern \progname{} are presented in
+The instance models that govern \progname{ANN} are presented in
 Subsection~\ref{sec_instance}.  The information to understand the meaning of the
 instance models and their derivation is also presented, so that the instance
 models can be verified.
 
-\subsubsection{Types}
+% \subsubsection{Types}
 
-\plt{This section is optional. Defining types can make the document easier to
-understand.}
+% \plt{This section is optional. Defining types can make the document easier to
+% understand.}
 
-\subsection{Scope Decisions}
+% \subsection{Scope Decisions}
 
-\plt{This section is optional.}
-\subsection{Modelling Decisions}
+% \plt{This section is optional.}
+% \subsection{Modelling Decisions}
 
-\plt{This section is optional.}
+% \plt{This section is optional.}
 
 \subsubsection{Assumptions} \label{sec_assumpt}
 
