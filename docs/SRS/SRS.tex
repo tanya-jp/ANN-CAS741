@@ -761,7 +761,7 @@ processing methods, user interface design, and performance metrics, rather than 
 %   \includegraphics[scale=0.9]{RelationsBetweenTM_GD_IM_DD_A.pdf}
 % \end{figure}
 
-The instance models that govern \progname{ANN} are presented in
+The instance models that govern ANN are presented in
 Subsection~\ref{sec_instance}.  The information to understand the meaning of the
 instance models and their derivation is also presented, so that the instance
 models can be verified.
@@ -780,14 +780,14 @@ models can be verified.
 
 \subsubsection{Assumptions} \label{sec_assumpt}
 
-\plt{The assumptions are a refinement of the scope.  The scope is general, where
-  the assumptions are specific.  All assumptions should be listed, even those
-  that domain experts know so well that they are rarely (if ever) written down.}
-\plt{The document should not take for granted that the reader knows which
-  assumptions have been made. In the case of unusual assumptions, it is
-  recommended that the documentation either include, or point to, an explanation
-  and justification for the assumption.}
-\plt{If it helps with the organization and understandability, the assumptions can be presented as sub sections.  The following sub-sections are options: background theory assumptions, helper theory assumptions, generic theory assumptions, problem specific assumptions, and rationale assumptions}
+% \plt{The assumptions are a refinement of the scope.  The scope is general, where
+%   the assumptions are specific.  All assumptions should be listed, even those
+%   that domain experts know so well that they are rarely (if ever) written down.}
+% \plt{The document should not take for granted that the reader knows which
+%   assumptions have been made. In the case of unusual assumptions, it is
+%   recommended that the documentation either include, or point to, an explanation
+%   and justification for the assumption.}
+% \plt{If it helps with the organization and understandability, the assumptions can be presented as sub sections.  The following sub-sections are options: background theory assumptions, helper theory assumptions, generic theory assumptions, problem specific assumptions, and rationale assumptions}
 
 This section simplifies the original problem and helps in developing the
 theoretical model by filling in the missing information for the physical system.
@@ -798,11 +798,16 @@ change [LC], in which the respective assumption is used.
 \begin{itemize}
 
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
-  \plt{Short description of each assumption.  Each assumption
-    should have a meaningful label.  Use cross-references to identify the
-    appropriate traceability to TM, GD, DD etc., using commands like dref, ddref
-    etc.  Each assumption should be atomic - that is, there should not be an
-    explicit (or implicit) ``and'' in the text of an assumption.}
+All images are of a size of 32x32
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
+ The input image contains only one object
+ \item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
+ Every uploaded image belongs to one of the 10 predefined classes in the CIFAR-10 datase
+  % \plt{Short description of each assumption.  Each assumption
+  %   should have a meaningful label.  Use cross-references to identify the
+  %   appropriate traceability to TM, GD, DD etc., using commands like dref, ddref
+  %   etc.  Each assumption should be atomic - that is, there should not be an
+  %   explicit (or implicit) ``and'' in the text of an assumption.}
 
 \end{itemize}
 
