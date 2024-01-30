@@ -592,7 +592,7 @@ the system must integrate into the real world.
   \textbf{Technical Resource Limitations:} The system's design is bound by the available computational 
   resources, such as processing power and memory capacity, which influence the complexity and 
   efficiency of the neural network model.
-  
+
   \textbf{Dataset Constraints:} The system is tailored specifically for the CIFAR-10 dataset. 
   This specialization may limit its effectiveness with other types of image data.
   Moreover, this system cannot classify any images that is not in the 10 classes.
@@ -603,59 +603,82 @@ the system must integrate into the real world.
 This section first presents the problem description, which gives a high-level
 view of the problem to be solved.  This is followed by the solution characteristics
 specification, which presents the assumptions, theories, definitions and finally
-the instance models.  \plt{Add any project specific details that are relevant
-  for the section overview.}
+% the instance models.  \plt{Add any project specific details that are relevant
+%   for the section overview.}
 
 \subsection{Problem Description} \label{Sec_pd}
 
-\progname{} is intended to solve ... \plt{What problem does your program solve?
-The description here should be in the problem space, not the solution space.}
+% \progname{ANN} is intended to solve ... \plt{What problem does your program solve?
+% The description here should be in the problem space, not the solution space.}
+The ANN in this project is intended to solve the complex challenge of image classification, 
+a task that involves correctly identifying the content of digital images. The problem arises 
+from the need for a highly accurate, efficient, and reliable classification model that can 
+navigate through the intricacies of image data, discerning subtle differences and patterns.  
 
 \subsubsection{Terminology and  Definitions}
 
-\plt{This section is expressed in words, not with equations.  It provide the
-  meaning of the different words and phrases used in the domain of the problem.
-The terminology is used to introduce concepts from the world outside of the
-mathematical model  The terminology provides a real world connection to give the
-mathematical model meaning.}
+% \plt{This section is expressed in words, not with equations.  It provide the
+%   meaning of the different words and phrases used in the domain of the problem.
+% The terminology is used to introduce concepts from the world outside of the
+% mathematical model  The terminology provides a real world connection to give the
+% mathematical model meaning.}
 
 This subsection provides a list of terms that are used in the subsequent
 sections and their meaning, with the purpose of reducing ambiguity and making it
 easier to correctly understand the requirements:
 
 \begin{itemize}
+\item \textbf{Artificial Neural Network (ANN):} A computational model inspired by the human brain's 
+network of neurons, used for tasks like image recognition and classification.
 
-\item 
+\item \textbf{Image Classification:} The process of identifying and categorizing elements in a 
+digital image into predefined classes.
 
+\item \textbf{CIFAR-10 Dataset:} A collection of images used for evaluating machine learning 
+models, consisting of 60,000 32x32 color images in 10 different classes.
+
+\item \textbf{Accuracy:} In the context of an ANN, the degree to which the model correctly 
+classifies test images.
+
+\item \textbf{Efficiency:} Refers to the computational performance of the ANN, including 
+processing speed and resource utilization.
+
+\item \textbf{Reliability:} The consistency of the ANN's performance across various datasets 
+and under different conditions.
 \end{itemize}
 
 \subsubsection{Physical System Description} \label{sec_phySystDescrip}
 
-\plt{The purpose of this section is to clearly and unambiguously state the
-  physical system that is to be modelled. Effective problem solving requires a
-  logical and organized approach. The statements on the physical system to be
-  studied should cover enough information to solve the problem. The physical
-  description involves element identification, where elements are defined as
-  independent and separable items of the physical system. Some example elements
-  include acceleration due to gravity, the mass of an object, and the size and
-  shape of an object. Each element should be identified and labelled, with their
-  interesting properties specified clearly. The physical description can also
-  include interactions of the elements, such as the following: i) the
-  interactions between the elements and their physical environment; ii) the
-  interactions between elements; and, iii) the initial or boundary conditions.}
+% \plt{The purpose of this section is to clearly and unambiguously state the
+%   physical system that is to be modelled. Effective problem solving requires a
+%   logical and organized approach. The statements on the physical system to be
+%   studied should cover enough information to solve the problem. The physical
+%   description involves element identification, where elements are defined as
+%   independent and separable items of the physical system. Some example elements
+%   include acceleration due to gravity, the mass of an object, and the size and
+%   shape of an object. Each element should be identified and labelled, with their
+%   interesting properties specified clearly. The physical description can also
+%   include interactions of the elements, such as the following: i) the
+%   interactions between the elements and their physical environment; ii) the
+%   interactions between elements; and, iii) the initial or boundary conditions.}
 
-The physical system of \progname{}, as shown in Figure~?,
-includes the following elements:
+% The physical system of \progname{}, as shown in Figure~?,
+% includes the following elements:
 
-\begin{itemize}
+This ANN system is primarily software-based, focusing on computational processes and 
+algorithms for image classification, and consequently, does not have a physical description in the 
+traditional sense. Therefore, its description revolves around software architecture, data 
+processing methods, user interface design, and performance metrics, rather than physical characteristics.
 
-\item[PS1:] 
+% \begin{itemize}
 
-\item[PS2:] ...
+% \item[PS1:] 
 
-\end{itemize}
+% \item[PS2:] ...
 
-\plt{A figure here makes sense for most SRS documents}
+% \end{itemize}
+
+% \plt{A figure here makes sense for most SRS documents}
 
 % \begin{figure}[h!]
 % \begin{center}
@@ -669,24 +692,25 @@ includes the following elements:
 
 \subsubsection{Goal Statements}\label{GoalStatements}
 
-\plt{The goal statements refine the ``Problem Description''
-  (Section~\ref{Sec_pd}).  A goal is a functional objective the system under
-  consideration should achieve. Goals provide criteria for sufficient
-  completeness of a requirements specification and for requirements
-  pertinence. Goals will be refined in Section “Instanced Models”
-  (Section~\ref{sec_instance}). Large and complex goals should be decomposed
-  into smaller sub-goals.  The goals are written abstractly, with a minimal
-  amount of technical language.  They should be understandable by non-domain
-  experts.}
+% \plt{The goal statements refine the ``Problem Description''
+%   (Section~\ref{Sec_pd}).  A goal is a functional objective the system under
+%   consideration should achieve. Goals provide criteria for sufficient
+%   completeness of a requirements specification and for requirements
+%   pertinence. Goals will be refined in Section “Instanced Models”
+%   (Section~\ref{sec_instance}). Large and complex goals should be decomposed
+%   into smaller sub-goals.  The goals are written abstractly, with a minimal
+%   amount of technical language.  They should be understandable by non-domain
+%   experts.}
 
-\noindent Given the \plt{inputs}, the goal statements are:
+\noindent Given the input image, the goal statements are:
 
 \begin{itemize}
 
-\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \plt{One
-    sentence description of the goal.  There may be more than one.  Each Goal
-    should have a meaningful label.}
-
+\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] 
+% ‍‍     \plt{One
+%     sentence description of the goal.  There may be more than one.  Each Goal
+%     should have a meaningful label.}
+    Predict the class of uploaded image
 \end{itemize}
 
 \subsection{Solution Characteristics Specification}
