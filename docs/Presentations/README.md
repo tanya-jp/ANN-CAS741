@@ -2,4 +2,4 @@
 
 The folders and files for this folder are as follows:
 
-- <fill in details>
+- [SRS](https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/Presentations/SRS/ANN.pptx)
