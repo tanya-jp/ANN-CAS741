@@ -797,11 +797,11 @@ change [LC], in which the respective assumption is used.
 
 \begin{itemize}
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{size}:]
 All images are of a size of 32x32
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{object}:]
  The input image contains only one object
- \item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
+ \item[A\refstepcounter{assumpnum}\theassumpnum \label{class}:]
  Every uploaded image belongs to one of the 10 predefined classes in the CIFAR-10 datase
   % \plt{Short description of each assumption.  Each assumption
   %   should have a meaningful label.  Use cross-references to identify the
@@ -1221,37 +1221,37 @@ uncertainty quantification exercise.
 % \end{longtable*}
 % \end{table}
 
-\subsubsection{Properties of a Correct Solution} \label{sec_CorrectSolution}
+% \subsubsection{Properties of a Correct Solution} \label{sec_CorrectSolution}
 
-\noindent
-A correct solution must exhibit \plt{fill in the details}.  \plt{These
-  properties are in addition to the stated requirements.  There is no need to
-  repeat the requirements here.  These additional properties may not exist for
-  every problem.  Examples include conservation laws (like conservation of
-  energy or mass) and known constraints on outputs, which are usually summarized
-  in tabular form.  A sample table is shown in Table~\ref{TblOutputVar}}
+% \noindent
+% A correct solution must exhibit \plt{fill in the details}.  \plt{These
+%   properties are in addition to the stated requirements.  There is no need to
+%   repeat the requirements here.  These additional properties may not exist for
+%   every problem.  Examples include conservation laws (like conservation of
+%   energy or mass) and known constraints on outputs, which are usually summarized
+%   in tabular form.  A sample table is shown in Table~\ref{TblOutputVar}}
 
-\begin{table}[!h]
-\caption{Output Variables} \label{TblOutputVar}
-\renewcommand{\arraystretch}{1.2}
-\noindent \begin{longtable*}{l l} 
-  \toprule
-  \textbf{Var} & \textbf{Physical Constraints} \\
-  \midrule 
-  $T_W$ & $T_\text{init} \leq T_W \leq T_C$ (by~\aref{A_charge})
-  \\
-  \bottomrule
-\end{longtable*}
-\end{table}
+% \begin{table}[!h]
+% \caption{Output Variables} \label{TblOutputVar}
+% \renewcommand{\arraystretch}{1.2}
+% \noindent \begin{longtable*}{l l} 
+%   \toprule
+%   \textbf{Var} & \textbf{Physical Constraints} \\
+%   \midrule 
+%   $T_W$ & $T_\text{init} \leq T_W \leq T_C$ (by~\aref{A_charge})
+%   \\
+%   \bottomrule
+% \end{longtable*}
+% \end{table}
 
-\plt{This section is not for test cases or techniques for verification and
-  validation.  Those topics will be addressed in the Verification and Validation
-  plan.}
+% \plt{This section is not for test cases or techniques for verification and
+%   validation.  Those topics will be addressed in the Verification and Validation
+%   plan.}
 
 \section{Requirements}
 
-\plt{The requirements refine the goal statement.  They will make heavy use of
-  references to the instance models.}
+% \plt{The requirements refine the goal statement.  They will make heavy use of
+%   references to the instance models.}
 
 This section provides the functional requirements, the business tasks that the
 software is expected to complete, and the nonfunctional requirements, the
@@ -1261,95 +1261,136 @@ qualities that the software is expected to exhibit.
 
 \noindent \begin{itemize}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] \plt{Requirements
-    for the inputs that are supplied by the user.  This information has to be
-    explicit.}
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] 
+The system requires user-uploaded images in a specified format and resolution. 
+    % \plt{Requirements
+    % for the inputs that are supplied by the user.  This information has to be
+    % explicit.}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:] \plt{It isn't
-    always required, but often echoing the inputs as part of the output is a
-    good idea.}
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:] 
+Verify the given inputs are in correct form and satify the required physical constraints
+given in the Table~\ref{TblInputVar}. 
+The system provides feedback by displaying the classification results for user confirmation.
+  % \plt{It isn't
+  %   always required, but often echoing the inputs as part of the output is a
+  %   good idea.}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] \plt{Calculation
-    related requirements.}
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] 
+Classify the uploaded image from \iref{Feedforward}.
+% \plt{Calculation
+%     related requirements.}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:]
-  \plt{Verification related requirements.}
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:] 
+The system will provide its classification results based on the trained model, 
+acknowledging that accuracy may not be 100\%. 
+To validate outputs, the system will incorporate a user feedback mechanism
+  % \plt{Verification related requirements.}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] \plt{Output related
-    requirements.}
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] 
+The system presents classification results in an understandable format, clearly indicating the 
+identified image categories.
+  % \plt{Output related
+  %   requirements.}
 
 \end{itemize}
 
-\plt{Every IM should map to at least one requirement, but not every requirement
-  has to map to a corresponding IM.}
+% \plt{Every IM should map to at least one requirement, but not every requirement
+%   has to map to a corresponding IM.}
 
 \subsection{Nonfunctional Requirements}
 
-\plt{List your nonfunctional requirements.  You may consider using a fit
-  criterion to make them verifiable.}
-\plt{The goal is for the nonfunctional requirements to be unambiguous, abstract
-  and verifiable.  This isn't easy to show succinctly, so a good strategy may be
-to give a ``high level'' view of the requirement, but allow for the details to
-be covered in the Verification and Validation document.}
-\plt{An absolute requirement on a quality of the system is rarely needed.  For
-  instance, an accuracy of 0.0101 \% is likely fine, even if the requirement is
-  for 0.01 \% accuracy.  Therefore, the emphasis will often be more on
-  describing now well the quality is achieved, through experimentation, and
-  possibly theory, rather than meeting some bar that was defined a priori.}
-\plt{You do not need an entry for correctness in your NFRs.  The purpose of the
-  SRS is to record the requirements that need to be satisfied for correctness.
-  Any statement of correctness would just be redundant. Rather than discuss
-  correctness, you can characterize how far away from the correct (true)
-  solution you are allowed to be.  This is discussed under accuracy.}
+% \plt{List your nonfunctional requirements.  You may consider using a fit
+%   criterion to make them verifiable.}
+% \plt{The goal is for the nonfunctional requirements to be unambiguous, abstract
+%   and verifiable.  This isn't easy to show succinctly, so a good strategy may be
+% to give a ``high level'' view of the requirement, but allow for the details to
+% be covered in the Verification and Validation document.}
+% \plt{An absolute requirement on a quality of the system is rarely needed.  For
+%   instance, an accuracy of 0.0101 \% is likely fine, even if the requirement is
+%   for 0.01 \% accuracy.  Therefore, the emphasis will often be more on
+%   describing now well the quality is achieved, through experimentation, and
+%   possibly theory, rather than meeting some bar that was defined a priori.}
+% \plt{You do not need an entry for correctness in your NFRs.  The purpose of the
+%   SRS is to record the requirements that need to be satisfied for correctness.
+%   Any statement of correctness would just be redundant. Rather than discuss
+%   correctness, you can characterize how far away from the correct (true)
+%   solution you are allowed to be.  This is discussed under accuracy.}
 
 \noindent \begin{itemize}
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:]
-  \textbf{Accuracy} \plt{Characterize the accuracy by giving the context/use for
-    the software.  Maybe something like, ``The accuracy of the computed
-    solutions should meet the level needed for $<$engineering or scientific
-    application$>$.  The level of accuracy achieved by \progname{} shall be
-    described following the procedure given in Section~X of the Verification and
-    Validation Plan.''  A link to the VnV plan would be a nice extra.}
+  \textbf{Accuracy} 
+  The system aims for higher classification accuracy than previous model, 
+  measurable through defined quantitative methods introduced in \ref{sec_theoretical}. 
+  % \plt{Characterize the accuracy by giving the context/use for
+  %   the software.  Maybe something like, ``The accuracy of the computed
+  %   solutions should meet the level needed for $<$engineering or scientific
+  %   application$>$.  The level of accuracy achieved by \progname{} shall be
+  %   described following the procedure given in Section~X of the Verification and
+  %   Validation Plan.''  A link to the VnV plan would be a nice extra.}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability}
-  \plt{Characterize the usability by giving the context/use for the software.
-    You should likely reference the user characteristics section.  The level of
-    usability achieved by the software shall be described following the
-    procedure given in Section~X of the Verification and Validation Plan.  A
-    link to the VnV plan would be a nice extra.}
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability} 
+The system should be user-friendly and easy to navigate for users with varying levels of technical expertise.
+  % \plt{Characterize the usability by giving the context/use for the software.
+  %   You should likely reference the user characteristics section.  The level of
+  %   usability achieved by the software shall be described following the
+  %   procedure given in Section~X of the Verification and Validation Plan.  A
+  %   link to the VnV plan would be a nice extra.}
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:]
-  \textbf{Maintainability} \plt{The effort required to make any of the likely
-    changes listed for \progname{} should be less than FRACTION of the original
-    development time.  FRACTION is then a symbolic constant that can be defined
-    at the end of the report.}
+  \textbf{Maintainability} 
+  The software should be easy to modify.
+  % \plt{The effort required to make any of the likely
+  %   changes listed for \progname{} should be less than FRACTION of the original
+  %   development time.  FRACTION is then a symbolic constant that can be defined
+  %   at the end of the report.}
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:]
-  \textbf{Portability} \plt{This NFR is easier to write than the others.  The
-    systems that \progname{} should run on should be listed here.  When possible
-    the specific versions of the potential operating environments should be
-    given.  To make the NFR verifiable a statement could be made that the tests
-    from a given section of the VnV plan can be successfully run on all of the
-    possible operating environments.}
+  \textbf{Portability} The system is compatible with multiple operating environment.
+  % \plt{This NFR is easier to write than the others.  The
+  %   systems that \progname{} should run on should be listed here.  When possible
+  %   the specific versions of the potential operating environments should be
+  %   given.  To make the NFR verifiable a statement could be made that the tests
+  %   from a given section of the VnV plan can be successfully run on all of the
+  %   possible operating environments.}
 
-\item Other NFRs that might be discussed include verifiability,
-  understandability and reusability.
+% \item Other NFRs that might be discussed include verifiability,
+%   understandability and reusability.
 
 \end{itemize}
 
 \subsection{Rationale}
 
-\plt{Provide a rationale for the decisions made in the documentation.  Rationale
-should be provided for scope decisions, modelling decisions, assumptions and
-typical values.}
+In this Section, we delve into the reasoning behind key decisions in our documentation. 
+The scope was specifically chosen to focus on the CIFAR-10 dataset, targeting a manageable 
+yet diverse range of image classifications to demonstrate the neural network's capabilities 
+effectively. Our modeling choices, including the neural network architecture and algorithms 
+like gradient descent, were selected for their proven effectiveness and relevance to the 
+image classification task at hand. Assumptions were made based on realistic scenarios and 
+limitations, ensuring that our model remains practical and applicable. The typical 
+values chosen, such as image dimensions and parameter settings, were guided by 
+standard practices in the field and the specifics of the CIFAR-10 dataset, aiming to 
+optimize the model's performance and accuracy. Each decision was made with careful 
+consideration of its impact on the project's objectives and feasibility.
+
+% \plt{Provide a rationale for the decisions made in the documentation.  Rationale
+% should be provided for scope decisions, modelling decisions, assumptions and
+% typical values.}
 
 \section{Likely Changes}    
 
 \noindent \begin{itemize}
 
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] \plt{Give
-    the likely changes, with a reference to the related assumption (aref), as appropriate.}
+\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_object}:] 
+\aref{object} The system might be changed to evolve to identify multiple objects within a 
+single image, enhancing its complexity and usability.
+
+\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_class}:] 
+\aref{class} The system can be trained on larger dataset, such as CIFAR-100, 
+to be able to classify more objects.
+
+% \plt{Give
+%     the likely changes, with a reference to the related assumption (aref), as appropriate.}
 
 \end{itemize}
 
@@ -1357,9 +1398,13 @@ typical values.}
 
 \noindent \begin{itemize}
 
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] \plt{Give
-    the unlikely changes.  The design can assume that the changes listed will
-    not occur.}
+\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_size}:] 
+\aref{size} The model architecture depends on the size of the training dataset. 
+Consequently, the size of uploaded images should be always compatible with the size 
+of training dataset.
+% \plt{Give
+%     the unlikely changes.  The design can assume that the changes listed will
+%     not occur.}
 
 \end{itemize}
 
