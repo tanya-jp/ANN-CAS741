@@ -813,16 +813,20 @@ All images are of a size of 32x32
 
 \subsubsection{Theoretical Models}\label{sec_theoretical}
 
-\plt{Theoretical models are sets of abstract mathematical equations or axioms
-  for solving the problem described in Section ``Physical System Description''
-  (Section~\ref{sec_phySystDescrip}). Examples of theoretical models are
-  physical laws, constitutive equations, relevant conversion factors, etc.}
+% \plt{Theoretical models are sets of abstract mathematical equations or axioms
+%   for solving the problem described in Section ``Physical System Description''
+%   (Section~\ref{sec_phySystDescrip}). Examples of theoretical models are
+%   physical laws, constitutive equations, relevant conversion factors, etc.}
 
-\plt{Optionally the theory section could be divided into subsections to provide more structure and improve understandability and reusability.  Potential subsections include the following: Context theories, background theories, helper theories, generic theories, problem specific theories, final theories and rationale theories.}
+% \plt{Optionally the theory section could be divided into subsections to provide more structure 
+% and improve understandability and reusability.  Potential subsections include the following: 
+% Context theories, background theories, helper theories, generic theories, problem specific 
+% theories, final theories and rationale theories.}
 
-This section focuses on the general equations and laws that \progname{} is based
-on.  \plt{Modify the examples below for your problem, and add additional models
-  as appropriate.}
+This section focuses on the general equations and laws that ANN is based
+on.  
+% \plt{Modify the examples below for your problem, and add additional models
+%   as appropriate.}
 
 ~\newline
 
@@ -831,22 +835,16 @@ on.  \plt{Modify the examples below for your problem, and add additional models
 % #2 refname of theory
 {TM:COE}
 % #3 label
-{Conservation of thermal energy}
+{Cost Function}
 % #4 equation
 {
-  $-{\bf \nabla \cdot q} + g$ = $\rho C \frac{\partial T}{\partial t}$
+  $\text{Cost} = \sum_{j=0}^{n_{L-1}} \left( a_j^{(L)} - y_j \right)^2$
 }
 % #5 description
 {
-  The above equation gives the conservation of energy for transient heat transfer in a material
-  of specific heat capacity $C$ (\si{\joule\per\kilogram\per\celsius}) and density $\rho$ 
-  (\si{\kilogram\per\cubic\metre}), where $\bf q$ is the thermal flux vector (\si{\watt\per\square\metre}),
-  $g$ is the volumetric heat generation
-  (\si{\watt\per\cubic\metre}), $T$ is the temperature
-  (\si{\celsius}),  $t$ is time (\si{\second}), and $\nabla$ is
-  the gradient operator.  For this equation to apply, other forms
-  of energy, such as mechanical energy, are assumed to be negligible in the
-  system (\aref{A_OnlyThermalEnergy}).  In general, the material properties ($\rho$ and $C$) depend on temperature.
+  In this project the cost function is sum of squared errors (SSE). Our goal is to minimize cost function.\\
+  $a_j^{(L)}$: Predicted value for the j-th output in the training data.\\
+  $y_j$: Actual value for the j-th output in the training data.
 }
 % #6 Notes
 {
@@ -854,11 +852,11 @@ None.
 }
 % #7 Source
 {
-  \url{http://www.efunda.com/formulae/heat_transfer/conduction/overview_cond.cfm}
+  \url{https://en.wikipedia.org/wiki/Residual_sum_of_squares}
 }
 % #8 Referenced by
 {
-  \dref{ROCT}
+  \dref{GradientDescent}
 }
 % #9 Preconditions
 {
@@ -867,31 +865,18 @@ None
 % #1 derivation - not applicable by default
 {}
 
-\plt{``Ref.\ By'' is used repeatedly with the different types of information.
-  This stands for Referenced By.  It means that the models, definitions and
-  assumptions listed reference the current model, definition or assumption.
-  This information is given for traceability.  Ref. By provides a pointer in the
-  opposite direction to what we commonly do.  You still need to have a reference
-  in the other direction pointing to the current model, definition or
-  assumption.  As an example, if TM1 is referenced by GD2, that means that GD2 will
-  explicitly include a reference to TM1.}
-
 ~\newline
 
 \subsubsection{General Definitions}\label{sec_gendef}
 
-\plt{General Definitions (GDs) are a refinement of one or more TMs, and/or of
-  other GDs.  The GDs are less abstract than the TMs.  Generally the reduction
-  in abstraction is possible through invoking (using/referencing) Assumptions.
-  For instance, the TM could be Newton's Law of Cooling stated abstracting.  The
-  GD could take the general law and apply it to get a 1D equation.}
+% \plt{General Definitions (GDs) are a refinement of one or more TMs, and/or of
+%   other GDs.  The GDs are less abstract than the TMs.  Generally the reduction
+%   in abstraction is possible through invoking (using/referencing) Assumptions.
+%   For instance, the TM could be Newton's Law of Cooling stated abstracting.  The
+%   GD could take the general law and apply it to get a 1D equation.}
 
 This section collects the laws and equations that will be used in building the
 instance models.
-
-\plt{Some projects may not have any content for this section, but the section
-  heading should be kept.}  \plt{Modify the examples below for your problem, and
-  add additional definitions as appropriate.}
 
 ~\newline
 
@@ -901,114 +886,193 @@ instance models.
 \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
 \hline
 \rowcolor[gray]{0.9}
-Number& GD\refstepcounter{defnum}\thedefnum \label{NL}\\
+Number& GD\refstepcounter{defnum}\thedefnum \label{GradientDescent}\\
 \hline
-Label &\bf Newton's law of cooling \\
+Label &\bf Gradient Descent \\
 \hline
 % Units&$MLt^{-3}T^0$\\
 % \hline
-SI Units&\si{\watt\per\square\metre}\\
+SI Units&-\\
 \hline
-Equation&$ q(t) = h \Delta T(t)$  \\
+Equation&$(W, b) = (W, b) - \alpha \nabla \text{Cost}$ \\
 \hline
 Description &
-Newton's law of cooling describes convective cooling from a surface.  The law is
-stated as: the rate of heat loss from a body is proportional to the difference
-in temperatures between the body and its surroundings.
-\\
-& $q(t)$ is the thermal flux (\si{\watt\per\square\metre}).\\
-& $h$ is the heat transfer coefficient, assumed independent of $T$ (\aref{A_hcoeff})
-	(\si{\watt\per\square\metre\per\celsius}).\\
-&$\Delta T(t)$= $T(t) - T_{\text{env}}(t)$ is the time-dependent thermal gradient
-between the environment and the object (\si{\celsius}).
+In this project, Gradient Descent is a method used to minimize the cost function, essential 
+for improving the neural network's accuracy. It adjusts the weights (W) and biases (b) of 
+the network by subtracting a fraction (represented by the learning rate $\alpha$) of the cost 
+function's gradient ($\nabla$Cost) from the current values. 
 \\
 \hline
-  Source & Citation here \\
+  Source & \url{https://en.wikipedia.org/wiki/Artificial_neural_network} \\
   \hline
-  Ref.\ By & \ddref{FluxCoil}, \ddref{FluxPCM}\\
+  Ref.\ By & \iref{Feedforward}\\
   \hline
 \end{tabular}
 \end{minipage}\\
 
 \subsubsection*{Detailed derivation of simplified rate of change of temperature}
 
-\plt{This may be necessary when the necessary information does not fit in the
-  description field.}
-\plt{Derivations are important for justifying a given GD.  You want it to be
-  clear where the equation came from.}
+% \plt{This may be necessary when the necessary information does not fit in the
+%   description field.}
+% \plt{Derivations are important for justifying a given GD.  You want it to be
+%   clear where the equation came from.}
+
+For updating the weights matrices and bias vectors using Gradient Descent, the chain rule is applied:
+
+\begin{itemize}
+  \item \textbf{Last Layer Derivations:} 
+
+  \begin{itemize}
+    \item Weight:
+    $\frac{\partial \text{Cost}}{\partial w_{jk}^{(L)}} = 
+    \frac{\partial \text{Cost}}{\partial a_j^{(L)}} \times 
+    \frac{\partial a_j^{(L)}}{\partial z_j^{(L)}} \times 
+    \frac{\partial z_j^{(L)}}{\partial w_{jk}^{(L)}} = 
+    2(a_j^{(L)} - y_j) \times \sigma'(z_j^{(L)}) \times a_k^{(L-1)}$
+
+    \item Bias:
+    $\frac{\partial \text{Cost}}{\partial b_j^{(L)}} = 
+    \frac{\partial \text{Cost}}{\partial a_j^{(L)}} \times 
+    \frac{\partial a_j^{(L)}}{\partial z_j^{(L)}} \times 
+    \frac{\partial z_j^{(L)}}{\partial b_j^{(L)}} = 
+    2(a_j^{(L)} - y_j) \times \sigma'(z_j^{(L)}) \times 1$
+
+    \item Activation:
+    $\frac{\partial \text{Cost}}{\partial a_k^{(L-1)}} = 
+    \sum_{j=0}^{n_{L-1}} \left( 
+    \frac{\partial \text{Cost}}{\partial a_j^{(L)}} \times 
+    \frac{\partial a_j^{(L)}}{\partial z_j^{(L)}} \times 
+    \frac{\partial z_j^{(L)}}{\partial a_k^{(L-1)}} 
+    \right)$
+    
+  \end{itemize}
+
+  \item \textbf{Other Layers Derivations:} 
+
+  \begin{itemize}
+    \item Weight:
+    $\frac{\partial \text{Cost}}{\partial w_{km}^{(L-1)}} = 
+    \frac{\partial \text{Cost}}{\partial a_k^{(L-1)}} \times 
+    \sigma'(z_k^{(L-1)}) \times 
+    a_m^{(L-2)}$
+    
+    \item Bias:
+    $\frac{\partial \text{Cost}}{\partial b_k^{(L-1)}} = 
+    \frac{\partial \text{Cost}}{\partial a_k^{(L-1)}} \times 
+    \sigma'(z_k^{(L-1)}) \times 
+    1$
+    
+    \item Activation:
+    $\frac{\partial \text{Cost}}{\partial a_m^{(L-2)}} = 
+    \sum_{k=0}^{n_{L-2}} \left( 
+    \frac{\partial \text{Cost}}{\partial a_k^{(L-1)}} \times 
+    \sigma'(z_k^{(L-1)} \times w_{km}^{(L-1)}) 
+    \right)$
+  \end{itemize}
+
+\end{itemize}
+
+$j$: This index represents a specific neuron in the current layer. 
+It's used to refer to each individual output neuron in the last layer of the network.
+
+$k$: This index is used to refer to neurons in the layer preceding 
+(L-1) the current one. It's involved in calculations that connect the neurons of two consecutive layers.
+
+$m$: The index $m$ is used to refer to neurons or inputs from an earlier layer than $k$, 
+indicating the propagation of influence from one layer to another in the neural network.
+
+These derivations represent how the partial derivatives of the cost function with respect 
+to the weights, biases, and activations are computed using the chain rule. For the last layer, 
+these derivations are direct and involve the actual outputs of the network compared to the 
+target values, which directly contribute to the cost. In other layers, the derivatives are 
+computed as a sum over all neurons in the subsequent layer because each neuron's activation in 
+layer L-1 contributes to the activations in layer L, thus indirectly affecting the cost. This 
+approach ensures that the adjustments made to weights and biases through gradient descent are 
+based on how much they contribute to the overall error in the network's predictions.
+
 
 \subsubsection{Data Definitions}\label{sec_datadef}
 
-\plt{The Data Definitions are definitions of symbols and equations that are
-  given for the problem.  They are not derived; they are simply used by other
-  models.  For instance, if a problem depends on density, there may be a data
-  definition for the equation defining density.  The DDs are given information
-  that you can use in your other modules.}
+% \plt{The Data Definitions are definitions of symbols and equations that are
+%   given for the problem.  They are not derived; they are simply used by other
+%   models.  For instance, if a problem depends on density, there may be a data
+%   definition for the equation defining density.  The DDs are given information
+%   that you can use in your other modules.}
 
-\plt{All Data Definitions should be used (referenced) by at least one other
-  model.}
+% \plt{All Data Definitions should be used (referenced) by at least one other
+%   model.}
 
 This section collects and defines all the data needed to build the instance
-models. The dimension of each quantity is also given.  \plt{Modify the examples
-  below for your problem, and add additional definitions as appropriate.}
+models. The dimension of each quantity is also given.  
+% \plt{Modify the examples
+%   below for your problem, and add additional definitions as appropriate.}
+The data we use to build our model is image. We use RGB images whcih means they have 3D matrices.
+Each matrix is a 2D matrix for three channels of Red(R), Green(G), and Blue(B).
 
-~\newline
+% ~\newline
 
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-\hline
-\rowcolor[gray]{0.9}
-Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxCoil}\\
-\hline
-Label& \bf Heat flux out of coil\\
-\hline
-Symbol &$q_C$\\
-\hline
-% Units& $Mt^{-3}$\\
+% \noindent
+% \begin{minipage}{\textwidth}
+% \renewcommand*{\arraystretch}{1.5}
+% \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
 % \hline
-  SI Units & \si{\watt\per\square\metre}\\
-  \hline
-  Equation&$q_C(t) = h_C (T_C - T_W(t))$, over area $A_C$\\
-  \hline
-  Description & 
-                $T_C$ is the temperature of the coil (\si{\celsius}).  $T_W$ is the temperature of the water (\si{\celsius}).  
-                The heat flux out of the coil, $q_C$ (\si{\watt\per\square\metre}), is found by
-                assuming that Newton's Law 
-                of Cooling applies (\aref{A_Newt_coil}).  This law (\dref{NL}) is used on the surface of
-                the coil, which has area $A_C$ (\si{\square\metre}) and heat 
-                transfer coefficient $h_C$
-                (\si{\watt\per\square\metre\per\celsius}).  This equation
-                assumes that the temperature of the coil is constant over time (\aref{A_tcoil}) and that it does not vary along the length
-                of the coil (\aref{A_tlcoil}).
-  \\
-  \hline
-  Sources& Citation here \\
-  \hline
-  Ref.\ By & \iref{ewat}\\
-  \hline
-\end{tabular}
-\end{minipage}\\
+% \rowcolor[gray]{0.9}
+% Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxCoil}\\
+% \hline
+% Label& \bf Heat flux out of coil\\
+% \hline
+% Symbol &$q_C$\\
+% \hline
+% % Units& $Mt^{-3}$\\
+% % \hline
+%   SI Units & \si{\watt\per\square\metre}\\
+%   \hline
+%   Equation&$q_C(t) = h_C (T_C - T_W(t))$, over area $A_C$\\
+%   \hline
+%   Description & 
+%                 $T_C$ is the temperature of the coil (\si{\celsius}).  $T_W$ is the temperature of the water (\si{\celsius}).  
+%                 The heat flux out of the coil, $q_C$ (\si{\watt\per\square\metre}), is found by
+%                 assuming that Newton's Law 
+%                 of Cooling applies (\aref{A_Newt_coil}).  This law (\dref{NL}) is used on the surface of
+%                 the coil, which has area $A_C$ (\si{\square\metre}) and heat 
+%                 transfer coefficient $h_C$
+%                 (\si{\watt\per\square\metre\per\celsius}).  This equation
+%                 assumes that the temperature of the coil is constant over time (\aref{A_tcoil}) and that it does not vary along the length
+%                 of the coil (\aref{A_tlcoil}).
+%   \\
+%   \hline
+%   Sources& Citation here \\
+%   \hline
+%   Ref.\ By & \iref{ewat}\\
+%   \hline
+% \end{tabular}
+% \end{minipage}\\
 
 \subsubsection{Data Types}\label{sec_datatypes}
 
-\plt{This section is optional.  In many scientific computing programs it isn't
-  necessary, since the inputs and outpus are straightforward types, like reals,
-  integers, and sequences of reals and integers.  However, for some problems it
-  is very helpful to capture the type information.}
+% \plt{This section is optional.  In many scientific computing programs it isn't
+%   necessary, since the inputs and outpus are straightforward types, like reals,
+%   integers, and sequences of reals and integers.  However, for some problems it
+%   is very helpful to capture the type information.}
 
-\plt{The data types are not derived; they are simply stated and used by other
-  models.}
+% \plt{The data types are not derived; they are simply stated and used by other
+%   models.}
 
-\plt{All data types must be used by at least one of the models.}
+% \plt{All data types must be used by at least one of the models.}
 
-\plt{For the mathematical notation for expressing types, the recommendation is
-  to use the notation of~\citet{HoffmanAndStrooper1995}.}
+% \plt{For the mathematical notation for expressing types, the recommendation is
+%   to use the notation of~\citet{HoffmanAndStrooper1995}.}
 
 This section collects and defines all the data types needed to document the
-models. \plt{Modify the examples below for your problem, and add additional
-  definitions as appropriate.}
+models. 
+
+As outlined in the Data Definition section (Section~\ref{sec_datadef}), our project primarily uses images represented 
+as 3D matrices. These matrices are comprised of numerical data, which includes pixel values 
+of the images. This 
+numerical aspect is fundamental for the processing and interpretation tasks the neural 
+network undertakes, ensuring accurate image analysis and classification.
+% \plt{Modify the examples below for your problem, and add additional
+%   definitions as appropriate.}
 
 ~\newline
 
@@ -1018,39 +1082,41 @@ models. \plt{Modify the examples below for your problem, and add additional
 \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
   \hline
   \rowcolor[gray]{0.9}
-  Type Name & Name for Type\\
+  Type Name & Image\\
   \hline
-  Type Def & mathematical definition of the type\\
+  Type Def & 3D matrix of numerical data\\
   \hline
-  Description & description here
+  Description & Images are represented as 3D matrices, 
+  with each matrix element corresponding to pixel values across Red, 
+  Green, and Blue color channels. 
   \\
   \hline
-  Sources & Citation here, if the type is borrowed from another source\\
-  \hline
+  % Sources & Citation here, if the type is borrowed from another source\\
+  % \hline
 \end{tabular}
 \end{minipage}\\
 
 \subsubsection{Instance Models} \label{sec_instance}    
 
-\plt{The motivation for this section is to reduce the problem defined in
-  ``Physical System Description'' (Section~\ref{sec_phySystDescrip}) to one
-  expressed in mathematical terms. The IMs are built by refining the TMs and/or
-  GDs.  This section should remain abstract.  The SRS should specify the
-  requirements without considering the implementation.}
+% \plt{The motivation for this section is to reduce the problem defined in
+%   ``Physical System Description'' (Section~\ref{sec_phySystDescrip}) to one
+%   expressed in mathematical terms. The IMs are built by refining the TMs and/or
+%   GDs.  This section should remain abstract.  The SRS should specify the
+%   requirements without considering the implementation.}
 
 This section transforms the problem defined in Section~\ref{Sec_pd} into 
 one which is expressed in mathematical terms. It uses concrete symbols defined 
 in Section~\ref{sec_datadef} to replace the abstract symbols in the models 
 identified in Sections~\ref{sec_theoretical} and~\ref{sec_gendef}.
 
-The goals \plt{reference your goals} are solved by \plt{reference your instance
-  models}.  \plt{other details, with cross-references where appropriate.}
-\plt{Modify the examples below for your problem, and add additional models as
-  appropriate.}
+The goals \gsref{GradientDescent} are solved by \iref{Feedforward}.  
+% \plt{other details, with cross-references where appropriate.}
+% \plt{Modify the examples below for your problem, and add additional models as
+%   appropriate.}
 
 ~\newline
 
-%Instance Model 1
+Instance Model 1
 
 \noindent
 \begin{minipage}{\textwidth}
@@ -1058,42 +1124,52 @@ The goals \plt{reference your goals} are solved by \plt{reference your instance
 \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
   \hline
   \rowcolor[gray]{0.9}
-  Number& IM\refstepcounter{instnum}\theinstnum \label{ewat}\\
+  Number& IM\refstepcounter{instnum}\theinstnum \label{Feedforward}\\
   \hline
-  Label& \bf Energy balance on water to find $T_W$\\
+  Label& \bf Feedforward to find $a^{(L+1)}$\\
   \hline
-  Input&$m_W$, $C_W$, $h_C$, $A_C$, $h_P$, $A_P$, $t_\text{final}$, $T_C$, 
-  $T_\text{init}$, $T_P(t)$ from \iref{epcm}\\
-  & The input is constrained so that $T_\text{init} \leq T_C$ (\aref{A_charge})\\
+  Input& Raw pixel values of an image \\
+  % & The input is constrained so that $T_\text{init} \leq T_C$ (\aref{A_charge})\\
   \hline
-  Output&$T_W(t)$, $0\leq t \leq t_\text{final}$, such that\\
-  &$\frac{dT_W}{dt} = \frac{1}{\tau_W}[(T_C - T_W(t)) + {\eta}(T_P(t) - T_W(t))]$,\\
-  &$T_W(0) = T_P(0) = T_\text{init}$ (\aref{A_InitTemp}) and $T_P(t)$ from \iref{epcm} \\
+  Output& The predicted class of the input image using
+
+  $a^{(L+1)} = \sigma\left(W^{(L+1)} a^{(L)} + b^{(L+1)}\right)$, 
+  $W^{(L+1)}$ and $b^{(L+1)}$ from \gsref{GradientDescent}\\
   \hline
-  Description&$T_W$ is the water temperature (\si{\celsius}).\\
-  &$T_P$ is the PCM temperature (\si{\celsius}).\\
-  &$T_C$ is the coil temperature (\si{\celsius}).\\
-  &$\tau_W = \frac{m_W C_W}{h_C A_C}$ is a constant (\si{\second}).\\
-  &$\eta = \frac{h_P A_P}{h_C A_C}$ is a constant (dimensionless).\\
-  & The above equation applies as long as the water is in liquid form,
-  $0<T_W<100^o\text{C}$, where $0^o\text{C}$ and $100^o\text{C}$ are the melting
-  and boiling points of water, respectively (\aref{A_OpRange}, \aref{A_Pressure}).
+  Description&
+  The feedforward process in neural networks involves input data propagation to 
+  output prediction or classification. This includes calculating weighted sums 
+  and biases in each layer, followed by an activation function. Network weights 
+  are initially set using random normal distributions, and biases start as zero 
+  vectors. These initial settings are crucial as they impact the network's 
+  learning and evolution during training. After each iteration the result of this
+  part will be used to update the weights and biases.
+
+  $a^{(L)}$: Output activations of the L-th layer in a neural network.
+
+  $a^{(L+1)}$: Activations for the next layer, (L+1), resulting from the current layer's output.
+
+  $\sigma$ (sigma): The activation function applied to layer outputs, influencing neuron firing.
+
+  $b^{(L+1)}$: Bias vector for the (L+1)-th layer, adjusting neuron activation thresholds.
+
+  $W^{(L+1)}$: Weight matrix connecting layer L to layer (L+1), essential for learning patterns.
   \\
   \hline
-  Sources& Citation here \\
+  Sources& \url{https://en.wikipedia.org/wiki/Artificial_neural_network} \\
   \hline
-  Ref.\ By & \iref{epcm}\\
+  Ref.\ By & \gsref{GradientDescent} \\
   \hline
 \end{tabular}
 \end{minipage}\\
 
 %~\newline
 
-\subsubsection*{Derivation of ...}
+% \subsubsection*{Derivation of ...}
 
-\plt{The derivation shows how the IM is derived from the TMs/GDs.  In cases
-  where the derivation cannot be described under the Description field, it will
-  be necessary to include this subsection.}
+% \plt{The derivation shows how the IM is derived from the TMs/GDs.  In cases
+%   where the derivation cannot be described under the Description field, it will
+%   be necessary to include this subsection.}
 
 \subsubsection{Input Data Constraints} \label{sec_DataConstraints}    
 
@@ -1109,8 +1185,8 @@ provides an estimate of the confidence with which the physical quantities can be
 measured.  This information would be part of the input if one were performing an
 uncertainty quantification exercise.
 
-The specification parameters in Table~\ref{TblInputVar} are listed in
-Table~\ref{TblSpecParams}.
+% The specification parameters in Table~\ref{TblInputVar} are listed in
+% Table~\ref{TblSpecParams}.
 
 \begin{table}[!h]
   \caption{Input Variables} \label{TblInputVar}
@@ -1120,28 +1196,30 @@ Table~\ref{TblSpecParams}.
   \textbf{Var} & \textbf{Physical Constraints} & \textbf{Software Constraints} &
                              \textbf{Typical Value} & \textbf{Uncertainty}\\
   \midrule 
-  $L$ & $L > 0$ & $L_{\text{min}} \leq L \leq L_{\text{max}}$ & 1.5 \si[per-mode=symbol] {\metre} & 10\%
+  Image & mxn dimensions & Match training & mxn & None\\
+  Size & & data dimensions &
   \\
   \bottomrule
 \end{longtable*}
 \end{table}
 
-\noindent 
-\begin{description}
-\item[(*)] \plt{you might need to add some notes or clarifications}
-\end{description}
 
-\begin{table}[!h]
-\caption{Specification Parameter Values} \label{TblSpecParams}
-\renewcommand{\arraystretch}{1.2}
-\noindent \begin{longtable*}{l l} 
-  \toprule
-  \textbf{Var} & \textbf{Value} \\
-  \midrule 
-  $L_\text{min}$ & 0.1 \si{\metre}\\
-  \bottomrule
-\end{longtable*}
-\end{table}
+% \noindent 
+% \begin{description}
+% \item[(*)] \plt{you might need to add some notes or clarifications}
+% \end{description}
+
+% \begin{table}[!h]
+% \caption{Specification Parameter Values} \label{TblSpecParams}
+% \renewcommand{\arraystretch}{1.2}
+% \noindent \begin{longtable*}{l l} 
+%   \toprule
+%   \textbf{Var} & \textbf{Value} \\
+%   \midrule 
+%   $L_\text{min}$ & 0.1 \si{\metre}\\
+%   \bottomrule
+% \end{longtable*}
+% \end{table}
 
 \subsubsection{Properties of a Correct Solution} \label{sec_CorrectSolution}
 
