@@ -226,8 +226,14 @@ $a^L$ & \si[per-mode=symbol] {-} & Weighted input to neurons of layer L
 \\ 
 $W^L$ & \si[per-mode=symbol] {-} & Weight matrix of layer L in neural networks
 \\ 
+${w_{ij}}^L$ & \si[per-mode=symbol] {-} & Weight between neuron i and neuron j of layer L
+\\
 $b^L$ & \si[per-mode=symbol] {-} & Bias vector of layer L in neural networks
 \\ 
+${b_{i}}^L$ & \si[per-mode=symbol] {-} & Bias of neuron i of layer L
+\\
+${z_{i}}^L$ & \si[per-mode=symbol] {-} & Output of neuron i of layer L
+\\
 $\sigma$ & \si[per-mode=symbol] {-} & Activation function
 \\ 
 $\alpha$ & \si[per-mode=symbol] {-} & Learning rate in gradient descent
@@ -798,7 +804,7 @@ change [LC], in which the respective assumption is used.
 \begin{itemize}
 
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{size}:]
-All images are of a size of 32x32
+All images are of a size of mxn based on the size of images of training data set
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{object}:]
  The input image contains only one object
  \item[A\refstepcounter{assumpnum}\theassumpnum \label{class}:]
