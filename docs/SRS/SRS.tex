@@ -1010,8 +1010,11 @@ This section collects and defines all the data needed to build the instance
 models. The dimension of each quantity is also given.  
 % \plt{Modify the examples
 %   below for your problem, and add additional definitions as appropriate.}
-The data we use to build our model is image. We use RGB images whcih means they have 3D matrices.
-Each matrix is a 2D matrix for three channels of Red(R), Green(G), and Blue(B).
+In our model, we process RGB images, which are represented as three-dimensional 
+(3D) matrices. However, each color channel (Red, Green, and Blue) in an RGB 
+image is individually represented by a two-dimensional (2D) matrix. Therefore, 
+an RGB image comprises three 2D matrices, one for each color channel, collectively 
+forming a 3D matrix structure.
 
 % ~\newline
 
