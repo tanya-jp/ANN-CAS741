@@ -806,7 +806,7 @@ All images are of a size of mxn based on the size of images of training data set
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{object}:]
  The input image contains only one object
  \item[A\refstepcounter{assumpnum}\theassumpnum \label{class}:]
- Every uploaded image belongs to one of the 10 predefined classes in the CIFAR-10 dataset \cite{CIFAR}
+ Every uploaded image belongs to one of the 10 predefined classes in the CIFAR-10 dataset \cite{CIFAR10}
   % \plt{Short description of each assumption.  Each assumption
   %   should have a meaningful label.  Use cross-references to identify the
   %   appropriate traceability to TM, GD, DD etc., using commands like dref, ddref
@@ -1368,14 +1368,14 @@ The system should be user-friendly and easy to navigate for users with varying l
 \subsection{Rationale}
 
 In this Section, we delve into the reasoning behind key decisions in our documentation. 
-The scope was specifically chosen to focus on the CIFAR-10 dataset \cite{CIFAR}, targeting a manageable 
+The scope was specifically chosen to focus on the CIFAR-10 dataset \cite{CIFAR10}, targeting a manageable 
 yet diverse range of image classifications to demonstrate the neural network's capabilities 
 effectively. Our modeling choices, including the neural network architecture and algorithms 
 like gradient descent, were selected for their proven effectiveness and relevance to the 
 image classification task at hand. Assumptions were made based on realistic scenarios and 
 limitations, ensuring that our model remains practical and applicable. The typical 
 values chosen, such as image dimensions and parameter settings, were guided by 
-standard practices in the field and the specifics of the CIFAR-10 dataset \cite{CIFAR}, aiming to 
+standard practices in the field and the specifics of the CIFAR-10 dataset \cite{CIFAR10}, aiming to 
 optimize the model's performance and accuracy. Each decision was made with careful 
 consideration of its impact on the project's objectives and feasibility.
 
@@ -1392,7 +1392,7 @@ consideration of its impact on the project's objectives and feasibility.
 single image, enhancing its complexity and usability.
 
 \item[LC\refstepcounter{lcnum}\thelcnum\label{LC_class}:] 
-\aref{class} The system can be trained on larger dataset, such as CIFAR-100 \cite{CIFAR}, 
+\aref{class} The system can be trained on larger dataset, such as CIFAR-100 \cite{CIFAR10}, 
 to be able to classify more objects.
 
 % \plt{Give
@@ -1556,7 +1556,7 @@ The plan is divided into phases, prioritizing core functionalities first.
 
 \begin{itemize}
   \item \textbf{Phase1:} Initial development focuses on basic functionalities like image 
-  uploading and primary classification training using the CIFAR-10 dataset \cite{CIFAR}. 
+  uploading and primary classification training using the CIFAR-10 dataset \cite{CIFAR10}. 
   This phase ensures the system's ability to categorize images correctly.
 
   \item \textbf{Phase2:} The aim is to enhance the model's accuracy and efficiency. 
@@ -1581,7 +1581,7 @@ The plan is divided into phases, prioritizing core functionalities first.
 The following are the values for the symbolic parameters used throughout this report:
 
 \begin{itemize}
-  \item \textbf{Image Dimensions (mxn):} 32x32 (Standard dimensions of images in the CIFAR-10 dataset \cite{CIFAR}.)
+  \item \textbf{Image Dimensions (mxn):} 32x32 (Standard dimensions of images in the CIFAR-10 dataset \cite{CIFAR10}.)
 
   \item \textbf{Maintainability Fraction (FRACTION):} 0.25 (Indicating that any change should require no more than 
   25\% of the original development effort.)
