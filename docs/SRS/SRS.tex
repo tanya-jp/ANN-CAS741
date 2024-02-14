@@ -377,7 +377,7 @@ algorithms for calculating gradients.
 % expect in the Introduction section.}
 The evolution of machine learning and its profound impact on various fields has led to remarkable advancements, 
 particularly in the area of image classification. This project delves into the exploration of enhancing an 
-Artificial Neural Network (ANN) to tackle the challenge of classifying images from the CIFAR-10 dataset. 
+Artificial Neural Network (ANN) to tackle the challenge of classifying images from the CIFAR-10 dataset \cite{CIFAR10}. 
 This dataset, known for its diverse range of images, serves as a crucial benchmark in assessing the 
 capabilities of image recognition algorithms. Our goal is to not only improve the accuracy of the ANN but 
 also to make it robust enough to handle all ten categories of the dataset effectively.
@@ -413,7 +413,7 @@ it will address potential changes and modifications that could impact the develo
 %   it can ignore the effect of temperature (or pressure) on the material
 %   properties, etc.}  
 The scope of this project is specifically tailored to developing an enhanced neural network model for image 
-classification using the CIFAR-10 dataset. This involves:
+classification using the CIFAR-10 dataset \cite{CIFAR10}. This involves:
 
 \begin{inparaitem}
 
@@ -458,7 +458,7 @@ For more details, you can also see the assumptions section (Section~\ref{sec_ass
 %   instance, is high school physics adequate, or should the reader have had a
 %   graduate course on advanced quantum mechanics?}
 The intended readers for this project, which involves developing an enhanced neural network model for image 
-classification using the CIFAR-10 dataset, are likely to be individuals with a solid background in computer science, 
+classification using the CIFAR-10 dataset \cite{CIFAR}, are likely to be individuals with a solid background in computer science, 
 specifically in the areas of machine learning and neural networks. However, as explained in Section: 
 User Characteristics (Section~\ref{SecUserCharacteristics}), users of this project  are a broad audience 
 interested in image classification, without the necessity for a deep technical background in machine learning or 
@@ -541,7 +541,7 @@ This setup provides a clear visual framework of the system's interaction dynamic
 \begin{itemize}
 \item Input correct and relevant data into the system
 \item Upload images that are compatible with the system's specifications 
-and within the scope of the CIFAR-10 dataset classifications
+and within the scope of the CIFAR-10 dataset \cite{CIFAR} classifications
 \end{itemize}
 \item ANN Responsibilities:
 \begin{itemize}
@@ -576,7 +576,7 @@ The users of this image classification system are anticipated to have basic prof
 in using software for tasks such as uploading images. Their understanding of image 
 classification should be fundamental, enough to set realistic expectations of the system's 
 functionality. Extensive expertise in machine learning is not required, but a general familiarity 
-with the types of images in the CIFAR-10 dataset will be beneficial for choosing appropriate 
+with the types of images in the CIFAR-10 dataset \cite{CIFAR} will be beneficial for choosing appropriate 
 images for classification. Additionally, a keen interest or curiosity in the practical applications 
 of machine learning, especially in areas like image classification, will likely enhance their experience 
 and engagement with the system.
@@ -597,7 +597,7 @@ the system must integrate into the real world.
   resources, such as processing power and memory capacity, which influence the complexity and 
   efficiency of the neural network model.
 
-  \textbf{Dataset Constraints:} The system is tailored specifically for the CIFAR-10 dataset. 
+  \textbf{Dataset Constraints:} The system is tailored specifically for the CIFAR-10 dataset \cite{CIFAR}. 
   This specialization may limit its effectiveness with other types of image data.
   Moreover, this system cannot classify any images that is not in the 10 classes.
 \end{inparaitem}
@@ -638,7 +638,7 @@ network of neurons, used for tasks like image recognition and classification.
 \item \textbf{Image Classification:} The process of identifying and categorizing elements in a 
 digital image into predefined classes.
 
-\item \textbf{CIFAR-10 Dataset:} A collection of images used for evaluating machine learning 
+\item \textbf{CIFAR-10 Dataset \cite{CIFAR}:} A collection of images used for evaluating machine learning 
 models, consisting of 60,000 32x32 color images in 10 different classes.
 
 \item \textbf{Accuracy:} In the context of an ANN, the degree to which the model correctly 
@@ -806,7 +806,7 @@ All images are of a size of mxn based on the size of images of training data set
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{object}:]
  The input image contains only one object
  \item[A\refstepcounter{assumpnum}\theassumpnum \label{class}:]
- Every uploaded image belongs to one of the 10 predefined classes in the CIFAR-10 datase
+ Every uploaded image belongs to one of the 10 predefined classes in the CIFAR-10 dataset \cite{CIFAR}
   % \plt{Short description of each assumption.  Each assumption
   %   should have a meaningful label.  Use cross-references to identify the
   %   appropriate traceability to TM, GD, DD etc., using commands like dref, ddref
@@ -1368,14 +1368,14 @@ The system should be user-friendly and easy to navigate for users with varying l
 \subsection{Rationale}
 
 In this Section, we delve into the reasoning behind key decisions in our documentation. 
-The scope was specifically chosen to focus on the CIFAR-10 dataset, targeting a manageable 
+The scope was specifically chosen to focus on the CIFAR-10 dataset \cite{CIFAR}, targeting a manageable 
 yet diverse range of image classifications to demonstrate the neural network's capabilities 
 effectively. Our modeling choices, including the neural network architecture and algorithms 
 like gradient descent, were selected for their proven effectiveness and relevance to the 
 image classification task at hand. Assumptions were made based on realistic scenarios and 
 limitations, ensuring that our model remains practical and applicable. The typical 
 values chosen, such as image dimensions and parameter settings, were guided by 
-standard practices in the field and the specifics of the CIFAR-10 dataset, aiming to 
+standard practices in the field and the specifics of the CIFAR-10 dataset \cite{CIFAR}, aiming to 
 optimize the model's performance and accuracy. Each decision was made with careful 
 consideration of its impact on the project's objectives and feasibility.
 
@@ -1392,7 +1392,7 @@ consideration of its impact on the project's objectives and feasibility.
 single image, enhancing its complexity and usability.
 
 \item[LC\refstepcounter{lcnum}\thelcnum\label{LC_class}:] 
-\aref{class} The system can be trained on larger dataset, such as CIFAR-100, 
+\aref{class} The system can be trained on larger dataset, such as CIFAR-100 \cite{CIFAR}, 
 to be able to classify more objects.
 
 % \plt{Give
@@ -1556,7 +1556,7 @@ The plan is divided into phases, prioritizing core functionalities first.
 
 \begin{itemize}
   \item \textbf{Phase1:} Initial development focuses on basic functionalities like image 
-  uploading and primary classification training using the CIFAR-10 dataset. 
+  uploading and primary classification training using the CIFAR-10 dataset \cite{CIFAR}. 
   This phase ensures the system's ability to categorize images correctly.
 
   \item \textbf{Phase2:} The aim is to enhance the model's accuracy and efficiency. 
@@ -1581,9 +1581,10 @@ The plan is divided into phases, prioritizing core functionalities first.
 The following are the values for the symbolic parameters used throughout this report:
 
 \begin{itemize}
-  \item \textbf{Image Dimensions (mxn):} 32x32 (Standard dimensions of images in the CIFAR-10 dataset.)
+  \item \textbf{Image Dimensions (mxn):} 32x32 (Standard dimensions of images in the CIFAR-10 dataset \cite{CIFAR}.)
 
-  \item \textbf{Maintainability Fraction (FRACTION):} 0.25 (Indicating that any change should require no more than 25\% of the original development effort.)
+  \item \textbf{Maintainability Fraction (FRACTION):} 0.25 (Indicating that any change should require no more than 
+  25\% of the original development effort.)
 
 \end{itemize}
 These values are set here for ease of maintenance and to ensure consistency across the report.
