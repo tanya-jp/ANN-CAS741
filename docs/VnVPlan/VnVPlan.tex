@@ -11,6 +11,8 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage{graphicx}
+\usepackage{colortbl}
 
 \input{../Comments}
 \input{../Common}
@@ -178,9 +180,40 @@ Software validation plan (\autoref{SoftwareValPlan}).
 
 \subsection{Verification and Validation Team}\label{VnVTeam}
 
-\wss{Your teammates.  Maybe your supervisor.
-  You should do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+The VnV team members and their roles are shown in Table~\ref{VnVTeamTable}.
+
+\begin{center}
+  \begin{table}[h]
+  \resizebox{\textwidth}{!}{ %
+      \begin{tabular}{ |l|l|p{2cm}|p{5cm}| } 
+      \hline
+      \rowcolor[gray]{0.9}
+      \textbf{Name} & \textbf{Document} & \textbf{Role} & \textbf{Description} \\
+      \hline
+       Dr.\ Spencer Smith & All & Instructor/ Reviewer & Review the documents, design and documentation style. \\ 
+       \hline
+       Tanya Djavaherpour & All & Author & Create and manage all the documents, create the VnV plan, perform the VnV testing, verify the implementation. \\  
+       \hline
+       Fatemeh Norouziani & All & Domain Expert Reviewer & Review all the documents. \\  
+       \hline
+       Atiyeh Sayadi & SRS & Secondary Reviewer & Review the SRS document \\
+       \hline
+       Yi-Leng Chen & VnV Plan & Secondary Reviewer & Review the VnV plan. \\ 
+      \hline 
+      Cynthia Liu & MG + MIS & Secondary Reviewer & Review the MG and MIS document. \\
+      \hline 
+      
+      \hline
+      \end{tabular} %
+  }
+  \caption{Verification and validation team} 
+  \label{VnVTeamTable}
+  \end{table}
+  \end{center}
+
+% \wss{Your teammates.  Maybe your supervisor.
+%   You should do more than list names.  You should say what each person's role is
+%   for the project's verification.  A table is a good way to summarize this information.}
 
 \subsection{SRS Verification Plan}\label{SRSVerPlan}
 
