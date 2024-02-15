@@ -77,6 +77,9 @@ Feb. 15, 2024 & 1.0 & Initial Draft\\
   \bottomrule
 \end{tabular}\\
 
+For complete symbols used within the system, please refer the section 1 in 
+\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS} document.
+
 % \wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
 %   \citep{SRS} tables, if appropriate}
 
@@ -86,10 +89,19 @@ Feb. 15, 2024 & 1.0 & Initial Draft\\
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
+This document outlines the Verification and Validation (VnV) plan for the Artificial 
+Neural Network for Image Classification project, as detailed in the 
+\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS}. 
+The purpose of this VnV plan is to ensure that all requirements and objectives outlined 
+in the SRS \href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS} 
+are met with accuracy and efficiency.
 
-\section{General Information}
+The organization of this document starts with the General Information about the ANN in \autoref{GeneralInformation}. 
+A verification plan is provided in \autoref{Plan} and \autoref{SystemTest} 
+describes the system tests, including tests for functional and nonfunctional requirements. 
+Test Description is explained in \autoref{UnitTest}.
+
+\section{General Information}\label{GeneralInformation}
 
 \subsection{Summary}
 
@@ -127,7 +139,7 @@ has already been verified by its implementation team.}
 \wss{Don't just list the other documents.  You should explain why they are relevant and 
 how they relate to your VnV efforts.}
 
-\section{Plan}
+\section{Plan}\label{Plan}
 
 \wss{Introduce this section.   You can provide a roadmap of the sections to
   come.}
@@ -209,7 +221,7 @@ as a Rev 0 demo for the supervisor.}
 
 \wss{This section might reference back to the SRS verification section.}
 
-\section{System Test Description}
+\section{System Test Description}\label{SystemTest}
 	
 \subsection{Tests for Functional Requirements}
 
@@ -319,7 +331,7 @@ How test will be performed:
 \wss{Provide a table that shows which test cases are supporting which
   requirements.}
 
-\section{Unit Test Description}
+\section{Unit Test Description}\label{UnitTest}
 
 \wss{This section should not be filled in until after the MIS (detailed design
   document) has been completed.}
