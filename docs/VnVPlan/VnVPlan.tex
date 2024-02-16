@@ -13,6 +13,7 @@
 \usepackage[round]{natbib}
 \usepackage{graphicx}
 \usepackage{colortbl}
+\usepackage{paralist}
 
 \input{../Comments}
 \input{../Common}
@@ -284,12 +285,35 @@ and make necessary modifications.
 
 \subsection{Implementation Verification Plan}\label{ImplementationVerPlan}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
+The implementation of the software will be verified using several techniques
+involving manual and automated techniques as outlined below:
 
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
+\begin{inparaitem}
+  \item \textbf{Static Verification Techniques:}
+  Code Walkthroughs will be the primary technique used for static verification. 
+  These sessions involve the development team, consisting of the author, Tanya Djavaherpour, 
+  and the domain expert, Fatemeh Norouziani, reviewing the code together. 
+  The final version of the code will be shared with the domain expert prior 
+  to the meeting, during which important test cases will be manually examined. 
+  This process allows the domain expert to present findings and raise questions, 
+  facilitating a comprehensive review.
+
+  \item \textbf{Dynamic Testing:}
+  Evaluation of the code will include both unit and system testing, focusing on 
+  the functional and nonfunctional requirements outlined in the
+  \href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS} document.
+  The tools used for these evaluations will be detailed in \ref{AutoTestVerTools}. Furthermore, the test cases 
+  used in system and unit testing will be stated in sections \ref{SystemTest} and \ref{UnitTest}, respectively.
+  This approach ensures a thorough validation of the software across various levels of testing.
+
+\end{inparaitem}
+
+% \wss{You should at least point to the tests listed in this document and the unit
+%   testing plan.}
+
+% \wss{In this section you would also give any details of any plans for static
+%   verification of the implementation.  Potential techniques include code
+%   walkthroughs, code inspection, static analyzers, etc.}
 
 \subsection{Automated Testing and Verification Tools}\label{AutoTestVerTools}
 
