@@ -317,40 +317,62 @@ involving manual and automated techniques as outlined below:
 
 \subsection{Automated Testing and Verification Tools}\label{AutoTestVerTools}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
+In this image classification project, Pylint \cite{pylint} and a regular testing process with a 
+dedicated testing dataset of CIFAR-10 \cite{CIFAR10} are employed for automated testing and verification. 
+Pylint \cite{pylint} is key for enhancing code quality by identifying coding errors, 
+enforcing standards, and encouraging best practices. Alongside, a robust 
+testing process, involving thorough evaluation on a separate testing dataset, 
+ensures the accuracy and reliability of the image classification model. The combination of 
+Pylint \cite{pylint} for code quality analysis and performance validation through targeted testing 
+provides a comprehensive approach to maintaining robustness and effectiveness in the 
+image classification system.
 
-\wss{If you have already done this in the development plan, you can point to
-that document.}
+% \wss{What tools are you using for automated testing.  Likely a unit testing
+%   framework and maybe a profiling tool, like ValGrind.  Other possible tools
+%   include a static analyzer, make, continuous integration tools, test coverage
+%   tools, etc.  Explain your plans for summarizing code coverage metrics.
+%   Linters are another important class of tools.  For the programming language
+%   you select, you should look at the available linters.  There may also be tools
+%   that verify that coding standards have been respected, like flake9 for
+%   Python.}
 
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+% \wss{If you have already done this in the development plan, you can point to
+% that document.}
+
+% \wss{The details of this section will likely evolve as you get closer to the
+%   implementation.}
 
 \subsection{Software Validation Plan}\label{SoftwareValPlan}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
+Validation is the process of comparing the outputs of models to experimental values. 
+Since the CIFAR-10 dataset \cite{CIFAR10} does not come with a predefined validation 
+set and there is not enough experimental data, the validation of the implemented ANN 
+cannot be measured in a traditional sense. Instead, as mentioned previously in \ref{AutoTestVerTools}, the network 
+will be tested to find the accuracy using testing data. 
 
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
+It's essential to understand that this approach, while deviating from 
+conventional validation methods due 
+to dataset constraints, still provides a valid assessment of the model's performance. 
+This testing process offers a reliable evaluation of the model's ability to 
+generalize and perform accurately on unseen data.
 
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
+% \wss{If there is any external data that can be used for validation, you should
+%   point to it here.  If there are no plans for validation, you should state that
+%   here.}
 
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
+% \wss{You might want to use review sessions with the stakeholder to check that
+% the requirements document captures the right requirements.  Maybe task based
+% inspection?}
 
-\wss{This section might reference back to the SRS verification section.}
+% \wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
+% be used as an opportunity to validate the requirements.  You should plan on 
+% demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
+% The feedback from your supervisor will be very useful for improving your project.}
+
+% \wss{For teams without an external supervisor, user testing can serve the same purpose 
+% as a Rev 0 demo for the supervisor.}
+
+% \wss{This section might reference back to the SRS verification section.}
 
 \section{System Test Description}\label{SystemTest}
 	
