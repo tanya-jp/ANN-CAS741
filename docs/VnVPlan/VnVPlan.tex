@@ -395,7 +395,8 @@ explained in the output verification test.
 
 \subsubsection{Input Verification}
 
-The inputs will be tested to satisfy R1 and R2 from Truss Tool SRS. Specifically,
+The inputs will be tested to satisfy R1 and R2 from ANN 
+\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS}. Specifically,
 this test will ensure values of the inputs align with the input constraints.
 Table~\ref{TCInput} displays the inputs and outputs of test cases for the input constraints
 tests.
@@ -456,9 +457,37 @@ tests.
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Output Verification Test}
+To satisfy R3, R4 and R5 from the 
+\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS}, any input image 
+should be properly classified and related to the correct output label
+from the set of 10 classes of CIFAR-10 \cite{CIFAR10}.
 
-...
+\begin{enumerate}
+
+  \item{T1: Accuracy Test\\}
+
+  Control: Automated Test
+  
+  Initial State: Loading Trained ANN
+  
+  Input: Set of test images form the CIFAR-10 dataset \cite{CIFAR10}
+  
+  Output: System accuracy based on prediction of class of the image object
+  
+  Test Case Derivation: This test aims to validate the ANN's ability to 
+  correctly classify images into one of the 10 predefined classes, 
+  reflecting its effectiveness and accuracy as per the functional requirements.
+
+  How test will be performed: The test will be executed using an automated 
+  script that feeds a batch of test images from the CIFAR-10 dataset \cite{CIFAR10} 
+  into the trained ANN. 
+  The script will then compare the ANN's predicted class for each image against 
+  the known label, calculating the overall accuracy of the system. This process 
+  will quantify the model's performance in terms of correct classifications, 
+  providing a clear measure of its effectiveness in fulfilling the specified requirements.
+
+\end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
