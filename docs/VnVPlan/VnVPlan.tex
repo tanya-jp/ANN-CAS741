@@ -471,13 +471,51 @@ from the set of 10 classes of CIFAR-10 \cite{CIFAR10}.
   
   Initial State: Loading Trained ANN
   
+  Input: One image with one object
+  
+  Output: Class of the image object
+  
+  Test Case Derivation: The test is designed to evaluate the ANN's precision in classifying an 
+  individual image, reflecting its real-world application for singular image analysis.
+
+  How test will be performed: This test will be conducted using an automated script that 
+  inputs a single, randomly selected test image with one object into the trained ANN. 
+  The output will be the classified label provided by 
+   the ANN, which will then be compared to the actual label of the image to verify the accuracy of the classification.
+
+\end{enumerate}
+
+\subsection{Tests for Nonfunctional Requirements}
+
+NonFunctional requirements for ANN are given in 
+\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS} section 5.2.
+
+% \wss{The nonfunctional requirements for accuracy will likely just reference the
+%   appropriate functional tests from above.  The test cases should mention
+%   reporting the relative error for these tests.  Not all projects will
+%   necessarily have nonfunctional requirements related to accuracy}
+
+% \wss{Tests related to usability could include conducting a usability test and
+%   survey.  The survey will be in the Appendix.}
+
+% \wss{Static tests, review, inspections, and walkthroughs, will not follow the
+% format for the tests given below.}
+
+\subsubsection{Nonfunctional: Accuracy}
+		
+\paragraph{Accuracy}
+
+\begin{enumerate}
+
+  \item{T1: Accuracy Test\\}
+
+  Control: Automated Test
+  
+  Initial State: Loading Trained ANN
+  
   Input: Set of test images form the CIFAR-10 dataset \cite{CIFAR10}
   
   Output: System accuracy based on prediction of class of the image object
-  
-  Test Case Derivation: This test aims to validate the ANN's ability to 
-  correctly classify images into one of the 10 predefined classes, 
-  reflecting its effectiveness and accuracy as per the functional requirements.
 
   How test will be performed: The test will be executed using an automated 
   script that feeds a batch of test images from the CIFAR-10 dataset \cite{CIFAR10} 
@@ -489,54 +527,62 @@ from the set of 10 classes of CIFAR-10 \cite{CIFAR10}.
 
 \end{enumerate}
 
-\subsection{Tests for Nonfunctional Requirements}
-
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy}
-
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
-
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
-
-\subsubsection{Area of Testing1}
+\subsubsection{Nonfunctional: Usability}
 		
-\paragraph{Title for Test}
+\paragraph{Usability}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{T1: Usability Test\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+  Control: Manual with group of people
+  
+  Initial State: None
+  
+  Input: None
+  
+  Output: A survey to know about the user perspective towards the system
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
-
+  How test will be performed: The user group will be asked to install the software on
+  their system and give input on their own. Then user need to fill out the scale of the
+  question given in the survey 0000000000000000
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Nonfunctional: Maintainability}
+		
+\paragraph{Maintainability}
 
-...
+\begin{enumerate}
+
+  \item{T1: Code Walkthrough Maintainability Test\\}
+
+  Control: Code Walkthrough
+  
+  Initial State: None
+  
+  Input: None
+  
+  Output: Walkthrough Meeting helps to improve the maintainability of the system and
+  all documentations.
+
+  How test will be performed: During code walkthrough meeting all the details related
+  to the software lifespan, coupling of the software architecture, documentation of the
+  software will discussed among team members listed in \ref{VnVTeamTable}.  
+
+  \item{T2: Automatic Maintainability Test\\}
+
+  Control: Automatic
+  
+  Initial State: None
+  
+  Input: None
+  
+  Output: Using Pylint \cite{pylint} helps to improve the code quality
+
+  How test will be performed: Pylint \cite{pylint} will be used to check the code quality.
+  This library can check the quality of code against different coding styles such as unused libraries
+and undefined variable. Which leads to easier maintenance.
+\end{enumerate}
 
 \subsection{Traceability Between Test Cases and Requirements}
 
