@@ -378,51 +378,81 @@ generalize and perform accurately on unseen data.
 	
 \subsection{Tests for Functional Requirements}
 
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
+The functional requirements are described in the 
+\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS} section 5.1. 
+Implemented ANN will detect invalid inputs and, although the accuracy will not be 100\%,
+classes of uploaded image will be determined. There are five functional requirements for
+this system. Testing R1 and R2 will be explained in 
+the input verification section. R3, R4 and R5 will be
+explained in the output verification test.
 
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.}
+% \wss{Subsets of the tests may be in related, so this section is divided into
+%   different areas.  If there are no identifiable subsets for the tests, this
+%   level of document structure can be removed.}
 
-\subsubsection{Area of Testing1}
+% \wss{Include a blurb here to explain why the subsections below
+%   cover the requirements.  References to the SRS would be good here.}
 
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
+\subsubsection{Input Verification}
+
+The inputs will be tested to satisfy R1 and R2 from Truss Tool SRS. Specifically,
+this test will ensure values of the inputs align with the input constraints.
+Table~\ref{TCInput} displays the inputs and outputs of test cases for the input constraints
+tests.
+% \wss{It would be nice to have a blurb here to explain why the subsections below
+%   cover the requirements.  References to the SRS would be good here.  If a section
+%   covers tests for input constraints, you should reference the data constraints
+%   table in the SRS.}
 		
-\paragraph{Title for Test}
+\paragraph{Input Verification Test}
+\begin{center}
+  \begin{table}[h]
+  \resizebox{\textwidth}{!}
+  { %
+      \begin{tabular}{ lccccc }
+      \hline
+      \multicolumn{1}{l|}{}   & \multicolumn{2}{c|}{Input (an imgae) }                            & \multicolumn{2}{c}{Output} \\ 
+      
+      \hline
+      
+      \multicolumn{1}{c|}{ID} &   $type$   &   \multicolumn{1}{c|}{$size$}   &   valid?   &   Error Message \\ \hline
+      
+      TC-ANN-1-1   &   PNG  & mxn        &  Y  & NONE               \\
+      TC-ANN-1-2   &   JPG  & mxn        &  Y  & NONE               \\
+      TC-ANN-1-3   &   GIF  & mxn        &  N  & Invalid Input Type  \\ 
+      TC-ANN-1-4   &   PNG  & (m+1)x(n)  &  N  & Invalid Input Size   \\
+      TC-ANN-1-5   &   JPG  & (m+1)x(n)  &  N  & Invalid Input Size    \\
+      TC-ANN-1-6   &   GIF  & (m+1)x(n)  &  N  & Invalid Input Type and Size \\
+      TC-ANN-1-7   &        &            &  N  & Empty      \\
+      \hline
+      
+      
+      \end{tabular} %
+  }
+  \caption{TC-ANN- Test cases for Input Verification}
+  \label{TCInput}
+  \end{table}
+  \end{center}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{T1: Valid Inputes\\}
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+  Control: Automated Test
+  
+  Initial State: Pending Input
+  
+  Input: Set of input values for area of particular object given in the Table~\ref{TCInput}.
+  
+  Output: Either give an appropriate error message for TC-ANN-1-3 to TC-ANN-1-7,
+  or the class of the image object identified by the ANN as an output defined in the Table~\ref{TCInput}.
+  
+  Test Case Derivation: Justified by the ANN's training to accurately classify 
+  valid input images according to the 
+  \href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS} specifications.
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-					
-How test will be performed: 
-					
-\item{test-id2\\}
-
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-
-How test will be performed: 
+  How test will be performed: An automated script will input valid and invalid images to the ANN, 
+  comparing the output classifications with expected results to verify accuracy.
 
 \end{enumerate}
 
