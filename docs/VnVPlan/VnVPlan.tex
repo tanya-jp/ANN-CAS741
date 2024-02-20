@@ -81,7 +81,7 @@ Feb. 15, 2024 & 1.0 & Initial Draft\\
 \end{tabular}\\
 
 For complete symbols used within the system, please refer the section 1 in 
-\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS} document.
+SRS \cite{SRS} document.
 
 % \wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
 %   \citep{SRS} tables, if appropriate}
@@ -94,15 +94,16 @@ For complete symbols used within the system, please refer the section 1 in
 
 This document outlines the Verification and Validation (VnV) plan for the Artificial 
 Neural Network for Image Classification project, as detailed in the 
-\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS}. 
+SRS \cite{SRS}. 
 The purpose of this VnV plan is to ensure that all requirements and objectives outlined 
-in the SRS \href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS} 
+in the SRS \cite{SRS} 
 are met with accuracy and efficiency.
 
 The organization of this document starts with the General Information about the ANN in \autoref{GeneralInformation}. 
 A verification plan is provided in \autoref{Plan} and \autoref{SystemTest} 
 describes the system tests, including tests for functional and nonfunctional requirements. 
-Test Description is explained in \autoref{UnitTest}.
+Test Description is explained in section 5 (will be added).
+% \autoref{UnitTest}.
 
 \section{General Information}\label{GeneralInformation}
 
@@ -121,11 +122,11 @@ The primary objective of this VnV plan is to build confidence in the correctness
 reliability of the Artificial Neural Network for Image Classification. Our goal is to 
 demonstrate that the system can classify images with a high degree of accuracy. We aim 
 to significantly improve upon the less than 50\% accuracy achieved in 
-\href{https://github.com/tanya-jp/CIFAR-Classification/blob/main/CIFAR_ANN.ipynb}{previous implementation}, 
+previous implementation \cite{ANN:CIFAR10}, 
 acknowledging that reaching 100\% accuracy is not feasible due to inherent limitations in 
 ANN models and the variability of image data. The focus will be on achieving the highest 
 possible accuracy within these constraints. The system's accuracy will be measured through 
-defined quantitative methods such as the cost function in \href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS}.
+defined quantitative methods such as the cost function in SRS \cite{SRS}.
 
 % \wss{State what is intended to be accomplished.  The objective will be around
 %   the qualities that are most important for your project.  You might have
@@ -147,12 +148,10 @@ defined quantitative methods such as the cost function in \href{https://github.c
 \subsection{Relevant Documentation}
 
 The ANN project is supported by several crucial documents. 
-These include a \href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/ProblemStatementAndGoals/ProblemStatement.pdf}
-{Problem Statement}, which introduces the initial concept, and a 
-\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{Software 
-Requirements Specification} that outlines the necessary system requirements, accompanied 
-by a \href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/VnVReport/VnVReport.pdf}
-{Verification and Validation Report} to ensure the system's compliance and efficacy.
+These include a
+Problem Statement \cite{ProblemStatement}, which introduces the initial concept, and a 
+Software Requirements Specification \cite{SRS} that outlines the necessary system requirements, accompanied 
+by a Verification and Validation Report \cite{VnVReport} to ensure the system's compliance and efficacy.
 
 % \wss{Reference relevant documentation.  This will definitely include your SRS
 %   and your other project documents (design documents, like MG, MIS, etc).  You
@@ -225,8 +224,7 @@ document will be conducted as follows:
   \item An initial review will be carried out by designated team members, which include Dr. 
     Spencer Smith, Fatemeh Norouziani, Atiyeh Sayadi, and Tanya Djavaherpour. 
     This review will utilize a manual method, guided by an 
-    \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/SRS-Checklist.pdf}
-    {SRS Checklist} developed by Dr. Smith.
+    SRS Checklist \cite{SRS-Checklist} developed by Dr. Smith.
   \item Reviewers can give feedback and revision suggestions to the author by creating issues on GitHub.
   \item It is the responsibility of the author, Tanya Djavaherpour, to respond to and 
   resolve these issues, incorporating feedback from both primary and secondary reviewers, 
@@ -252,8 +250,7 @@ provide their feedback directly to the author by creating issues in the
 project's GitHub repository. It is the responsibility of the author to 
 address and resolve these issues, taking into account all the suggestions 
 made. The review process will be facilitated by utilizing the 
-\href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MG-Checklist.pdf}{MG} 
-and \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MIS-Checklist.pdf}{MIS} 
+MG \cite{MG-Checklist} and MIS \cite{MIS-checklist} 
 Checklists, which have been formulated by Dr. Spencer Smith.
 
 % \wss{Plans for design verification}
@@ -271,8 +268,7 @@ Yi-Leng Chen as a secondary reviewer, will review it.
 They give feedback and suggestions via GitHub issues. 
 Once done, Instructor will do final review of the VnV plan.
 The whole review process will be aligned with the 
-\href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/VnV-Checklist.pdf}
-{VnV Checklist} that Dr. Smith has prepared.
+VnV Checklist \cite{VnV-Checklist} that Dr. Smith has prepared.
 It is the author’s responsibility to check the submitted issues regularly 
 and make necessary modifications.
 
@@ -301,9 +297,11 @@ involving manual and automated techniques as outlined below:
   \item \textbf{Dynamic Testing:}
   Evaluation of the code will include both unit and system testing, focusing on 
   the functional and nonfunctional requirements outlined in the
-  \href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS} document.
+  SRS \cite{SRS} document.
   The tools used for these evaluations will be detailed in \ref{AutoTestVerTools}. Furthermore, the test cases 
-  used in system and unit testing will be stated in sections \ref{SystemTest} and \ref{UnitTest}, respectively.
+  used in system and unit testing will be stated in sections \ref{SystemTest} and 5 (will be added),
+  % \ref{UnitTest}, 
+  respectively.
   This approach ensures a thorough validation of the software across various levels of testing.
 
 \end{inparaitem}
@@ -379,7 +377,7 @@ generalize and perform accurately on unseen data.
 \subsection{Tests for Functional Requirements}
 
 The functional requirements are described in the 
-\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS} section 5.1. 
+SRS \cite{SRS} section 5.1. 
 Implemented ANN will detect invalid inputs and, although the accuracy will not be 100\%,
 classes of uploaded image will be determined. There are five functional requirements for
 this system. Testing R1 and R2 will be explained in 
@@ -393,10 +391,10 @@ explained in the output verification test.
 % \wss{Include a blurb here to explain why the subsections below
 %   cover the requirements.  References to the SRS would be good here.}
 
-\subsubsection{Input Verification}
+\subsubsection{Input Verification} \label{InputVerification}
 
 The inputs will be tested to satisfy R1 and R2 from ANN 
-\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS}. Specifically,
+SRS \cite{SRS}. Specifically,
 this test will ensure values of the inputs align with the input constraints.
 Table~\ref{TCInput} displays the inputs and outputs of test cases for the input constraints
 tests.
@@ -405,7 +403,7 @@ tests.
 %   covers tests for input constraints, you should reference the data constraints
 %   table in the SRS.}
 		
-\paragraph{Input Verification Test}
+\paragraph{Input Verification Test} 
 \begin{center}
   \begin{table}[h]
   \resizebox{\textwidth}{!}
@@ -437,7 +435,7 @@ tests.
 
 \begin{enumerate}
 
-  \item{T1: Valid Inputes\\}
+  \item{T1: Valid Inputs\\} 
 
   Control: Automated Test
   
@@ -450,22 +448,22 @@ tests.
   
   Test Case Derivation: Justified by the ANN's training to accurately classify 
   valid input images according to the 
-  \href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS} specifications.
+  SRS \cite{SRS} specifications.
 
   How test will be performed: An automated script will input valid and invalid images to the ANN, 
   comparing the output classifications with expected results to verify accuracy.
 
 \end{enumerate}
 
-\subsubsection{Output Verification Test}
+\subsubsection{Output Verification Test} \label{OutputVerificationTest}
 To satisfy R3, R4 and R5 from the 
-\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS}, any input image 
+SRS \cite{SRS}, any input image 
 should be properly classified and related to the correct output label
 from the set of 10 classes of CIFAR-10 \cite{CIFAR10}.
 
 \begin{enumerate}
 
-  \item{T2: Classifier Test\\}
+  \item{T2: Classifier Test\\} \label{T2}
 
   Control: Automated Test
   
@@ -488,7 +486,7 @@ from the set of 10 classes of CIFAR-10 \cite{CIFAR10}.
 \subsection{Tests for Nonfunctional Requirements}
 
 NonFunctional requirements for ANN are given in 
-\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{SRS} section 5.2.
+SRS \cite{SRS} section 5.2.
 
 % \wss{The nonfunctional requirements for accuracy will likely just reference the
 %   appropriate functional tests from above.  The test cases should mention
@@ -501,7 +499,7 @@ NonFunctional requirements for ANN are given in
 % \wss{Static tests, review, inspections, and walkthroughs, will not follow the
 % format for the tests given below.}
 
-\subsubsection{Nonfunctional: Accuracy}
+\subsubsection{Nonfunctional: Accuracy} \label{NFAccuracy}
 		
 \paragraph{Accuracy}
 
@@ -527,7 +525,7 @@ NonFunctional requirements for ANN are given in
 
 \end{enumerate}
 
-\subsubsection{Nonfunctional: Usability}
+\subsubsection{Nonfunctional: Usability} \label{NFUsability}
 		
 \paragraph{Usability}
 
@@ -548,7 +546,7 @@ NonFunctional requirements for ANN are given in
   Following this, they will complete a survey focusing on aspects of 
   usability such as ease of use, intuitiveness, and overall satisfaction. 
   The survey results will be analyzed to identify areas for improvement in the software's usability. 
-  The questions are given in Table~\ref{UsabilitySurvey}
+  The questions are given in Table~\ref{UsabilitySurvey}.
 \end{enumerate}
 
 \begin{table}[h!]
@@ -575,7 +573,7 @@ NonFunctional requirements for ANN are given in
   \end{center}
   \end{table}
 
-\subsubsection{Nonfunctional: Maintainability}
+\subsubsection{Nonfunctional: Maintainability} \label{NFMaintainablity}
 		
 \paragraph{Maintainability}
 
@@ -589,12 +587,13 @@ NonFunctional requirements for ANN are given in
   
   Input: None
   
-  Output: Walkthrough Meeting helps to improve the maintainability of the system and
-  all documentations.
+  Output: Walkthrough Meeting aimed at identifying areas for improvement in 
+  system maintainability and documentation quality.
 
-  How test will be performed: During code walkthrough meeting all the details related
-  to the software lifespan, coupling of the software architecture, documentation of the
-  software will discussed among team members listed in Table~\ref{VnVTeamTable}.  
+  How test will be performed: In the code walkthrough meeting, team members 
+  (referenced in Table~\ref{VnVTeamTable}) will review the software's code and documentation, 
+  focusing on readability, modularity, and documentation clarity. Key findings and action 
+  points for enhancing maintainability will be documented for future reference and implementation.
 
   \item{T6: Automatic Maintainability Test\\}
 
@@ -604,14 +603,14 @@ NonFunctional requirements for ANN are given in
   
   Input: None
   
-  Output: Using Pylint \cite{pylint} helps to improve the code quality
+  Output: Improve code quality with Pylint \cite{pylint}.
 
   How test will be performed: Pylint \cite{pylint} will be used to check the code quality.
   This library can check the quality of code against different coding styles such as unused libraries
-and undefined variable. Which leads to easier maintenance.
+  and undefined variable. Which leads to easier maintenance.
 \end{enumerate}
 
-\subsubsection{Nonfunctional: Portability}
+\subsubsection{Nonfunctional: Portability} \label{NFPortablity}
 		
 \paragraph{Portability}
 
@@ -635,133 +634,160 @@ and undefined variable. Which leads to easier maintenance.
 
 \subsection{Traceability Between Test Cases and Requirements}
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
+The traceability between test cases and requirements is indicated in \autoref{Traceability} 
 
-\section{Unit Test Description}\label{UnitTest}
 
-\wss{This section should not be filled in until after the MIS (detailed design
-  document) has been completed.}
 
-\wss{Reference your MIS (detailed design document) and explain your overall
-philosophy for test case selection.}  
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{ l|c|c|c|c|c|c|c|c|c }
+\hline
+ & R1 & R2 & R3 & R4 & R5 & NFR1 & NFR2 & NFR3 & NFR4 \\
+\hline
+\ref{InputVerification} & X & X & & & & & & \\
+\hline
+\ref{OutputVerificationTest} & & & X & X & X & & & \\
+\hline
+\ref{NFAccuracy} & & & & & & X & & \\
+\hline
+\ref{NFUsability} & & & & & & & X & \\
+\hline
+\ref{NFMaintainablity} & & & & & & & & X & \\
+\hline
+\ref{NFPortablity} & & & & & & & & & X \\
+\hline
+\end{tabular}
+\caption{Tracebility between test cases and requirements}
+\label{Traceability}
+\end{center}
+\end{table}
+% \wss{Provide a table that shows which test cases are supporting which
+%   requirements.}
 
-\wss{To save space and time, it may be an option to provide less detail in this section.  
-For the unit tests you can potentially layout your testing strategy here.  That is, you 
-can explain how tests will be selected for each module.  For instance, your test building 
-approach could be test cases for each access program, including one test for normal behaviour 
-and as many tests as needed for edge cases.  Rather than create the details of the input 
-and output here, you could point to the unit testing code.  For this to work, you code 
-needs to be well-documented, with meaningful names for all of the tests.}
+% \section{Unit Test Description}\label{UnitTest}
 
-\subsection{Unit Testing Scope}
+% \wss{This section should not be filled in until after the MIS (detailed design
+%   document) has been completed.}
 
-\wss{What modules are outside of the scope.  If there are modules that are
-  developed by someone else, then you would say here if you aren't planning on
-  verifying them.  There may also be modules that are part of your software, but
-  have a lower priority for verification than others.  If this is the case,
-  explain your rationale for the ranking of module importance.}
+% \wss{Reference your MIS (detailed design document) and explain your overall
+% philosophy for test case selection.}  
 
-\subsection{Tests for Functional Requirements}
+% \wss{To save space and time, it may be an option to provide less detail in this section.  
+% For the unit tests you can potentially layout your testing strategy here.  That is, you 
+% can explain how tests will be selected for each module.  For instance, your test building 
+% approach could be test cases for each access program, including one test for normal behaviour 
+% and as many tests as needed for edge cases.  Rather than create the details of the input 
+% and output here, you could point to the unit testing code.  For this to work, you code 
+% needs to be well-documented, with meaningful names for all of the tests.}
 
-\wss{Most of the verification will be through automated unit testing.  If
-  appropriate specific modules can be verified by a non-testing based
-  technique.  That can also be documented in this section.}
+% \subsection{Unit Testing Scope}
 
-\subsubsection{Module 1}
+% \wss{What modules are outside of the scope.  If there are modules that are
+%   developed by someone else, then you would say here if you aren't planning on
+%   verifying them.  There may also be modules that are part of your software, but
+%   have a lower priority for verification than others.  If this is the case,
+%   explain your rationale for the ranking of module importance.}
 
-\wss{Include a blurb here to explain why the subsections below cover the module.
-  References to the MIS would be good.  You will want tests from a black box
-  perspective and from a white box perspective.  Explain to the reader how the
-  tests were selected.}
+% \subsection{Tests for Functional Requirements}
 
-\begin{enumerate}
+% \wss{Most of the verification will be through automated unit testing.  If
+%   appropriate specific modules can be verified by a non-testing based
+%   technique.  That can also be documented in this section.}
 
-\item{test-id1\\}
+% \subsubsection{Module 1}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+% \wss{Include a blurb here to explain why the subsections below cover the module.
+%   References to the MIS would be good.  You will want tests from a black box
+%   perspective and from a white box perspective.  Explain to the reader how the
+%   tests were selected.}
+
+% \begin{enumerate}
+
+% \item{test-id1\\}
+
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
 					
-Initial State: 
+% Initial State: 
 					
-Input: 
+% Input: 
 					
-Output: \wss{The expected result for the given inputs}
+% Output: \wss{The expected result for the given inputs}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+% Test Case Derivation: \wss{Justify the expected value given in the Output field}
 
-How test will be performed: 
+% How test will be performed: 
 					
-\item{test-id2\\}
+% \item{test-id2\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
 					
-Initial State: 
+% Initial State: 
 					
-Input: 
+% Input: 
 					
-Output: \wss{The expected result for the given inputs}
+% Output: \wss{The expected result for the given inputs}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+% Test Case Derivation: \wss{Justify the expected value given in the Output field}
 
-How test will be performed: 
+% How test will be performed: 
 
-\item{...\\}
+% \item{...\\}
     
-\end{enumerate}
+% \end{enumerate}
 
-\subsubsection{Module 2}
+% \subsubsection{Module 2}
 
-...
+% ...
 
-\subsection{Tests for Nonfunctional Requirements}
+% \subsection{Tests for Nonfunctional Requirements}
 
-\wss{If there is a module that needs to be independently assessed for
-  performance, those test cases can go here.  In some projects, planning for
-  nonfunctional tests of units will not be that relevant.}
+% \wss{If there is a module that needs to be independently assessed for
+%   performance, those test cases can go here.  In some projects, planning for
+%   nonfunctional tests of units will not be that relevant.}
 
-\wss{These tests may involve collecting performance data from previously
-  mentioned functional tests.}
+% \wss{These tests may involve collecting performance data from previously
+%   mentioned functional tests.}
 
-\subsubsection{Module ?}
+% \subsubsection{Module ?}
 		
-\begin{enumerate}
+% \begin{enumerate}
 
-\item{test-id1\\}
+% \item{test-id1\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
 					
-Initial State: 
+% Initial State: 
 					
-Input/Condition: 
+% Input/Condition: 
 					
-Output/Result: 
+% Output/Result: 
 					
-How test will be performed: 
+% How test will be performed: 
 					
-\item{test-id2\\}
+% \item{test-id2\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+% Type: Functional, Dynamic, Manual, Static etc.
 					
-Initial State: 
+% Initial State: 
 					
-Input: 
+% Input: 
 					
-Output: 
+% Output: 
 					
-How test will be performed: 
+% How test will be performed: 
 
-\end{enumerate}
+% \end{enumerate}
 
-\subsubsection{Module ?}
+% \subsubsection{Module ?}
 
-...
+% ...
 
-\subsection{Traceability Between Test Cases and Modules}
+% \subsection{Traceability Between Test Cases and Modules}
 
-\wss{Provide evidence that all of the modules have been considered.}
+% \wss{Provide evidence that all of the modules have been considered.}
 				
 \bibliographystyle{plainnat}
 
@@ -769,43 +795,43 @@ How test will be performed:
 
 \newpage
 
-\section{Appendix}
+% \section{Appendix}
 
-This is where you can place additional information.
+% This is where you can place additional information.
 
-\subsection{Symbolic Parameters}
+% \subsection{Symbolic Parameters}
 
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
+% The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
+% Their values are defined in this section for easy maintenance.
 
-\subsection{Usability Survey Questions?}
+% \subsection{Usability Survey Questions?}
 
-\wss{This is a section that would be appropriate for some projects.}
+% \wss{This is a section that would be appropriate for some projects.}
 
-\newpage{}
-\section*{Appendix --- Reflection}
+% \newpage{}
+% \section*{Appendix --- Reflection}
 
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
+% The information in this section will be used to evaluate the team members on the
+% graduate attribute of Lifelong Learning.  Please answer the following questions:
 
-\newpage{}
-\section*{Appendix --- Reflection}
+% \newpage{}
+% \section*{Appendix --- Reflection}
 
-\wss{This section is not required for CAS 741}
+% \wss{This section is not required for CAS 741}
 
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
+% The information in this section will be used to evaluate the team members on the
+% graduate attribute of Lifelong Learning.  Please answer the following questions:
 
-\begin{enumerate}
-  \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete the verification and validation of your project?
-  Examples of possible knowledge and skills include dynamic testing knowledge,
-  static testing knowledge, specific tool usage etc.  You should look to
-  identify at least one item for each team member.
-  \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
-\end{enumerate}
+% \begin{enumerate}
+%   \item What knowledge and skills will the team collectively need to acquire to
+%   successfully complete the verification and validation of your project?
+%   Examples of possible knowledge and skills include dynamic testing knowledge,
+%   static testing knowledge, specific tool usage etc.  You should look to
+%   identify at least one item for each team member.
+%   \item For each of the knowledge areas and skills identified in the previous
+%   question, what are at least two approaches to acquiring the knowledge or
+%   mastering the skill?  Of the identified approaches, which will each team
+%   member pursue, and why did they make this choice?
+% \end{enumerate}
 
 \end{document}
