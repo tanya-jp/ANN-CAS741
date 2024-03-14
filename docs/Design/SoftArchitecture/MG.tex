@@ -207,7 +207,7 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{HW}:] Hardware-Hiding Module
 \item [\refstepcounter{mnum} \mthemnum \label{ACM}:] ANN Control Module
 \item [\refstepcounter{mnum} \mthemnum \label{Output}:] Output Module
-\item [\refstepcounter{mnum} \mthemnum \label{Saved ANN}:] Saved ANN Model Module
+\item [\refstepcounter{mnum} \mthemnum \label{SavedANN}:] Saved ANN Model Module
 \item [\refstepcounter{mnum} \mthemnum \label{In-class}:] Input Classifier Module
 \item [\refstepcounter{mnum} \mthemnum \label{In-prep}:] Input Preparing and Preprocessing Module
 \item [\refstepcounter{mnum} \mthemnum \label{In-set}:] Setting Input Image Module
@@ -234,7 +234,6 @@ actually be implemented.
 & ANN Control Module\\
 & Plotting Module\\
 & Saved ANN Model Module\\
-& Setting Feedback Module\\
 & Setting Input Image Module\\
 & Testing Module\\ 
 & Training Data Preparing and Prepocessing Module\\
@@ -245,6 +244,8 @@ actually be implemented.
 \multirow{3}{0.3\textwidth}{Software Decision Module}
 & Input Classifier Module\\
 & Input Preparing and Preprocedding Module\\
+& Output Module\\
+& Setting Feedback Module\\
 \bottomrule
 
 \end{tabular}
@@ -281,7 +282,7 @@ Only the leaf modules in the hierarchy have to be implemented. If a dash
 (\emph{--}) is shown, this means that the module is not a leaf and will not have
 to be implemented.
 
-\subsection{Hardware Hiding Modules (\mref{mHH})}
+\subsection{Hardware Hiding Modules (\mref{HW})}
 
 \begin{description}
 \item[Secrets:]The data structure and algorithm used to implement the virtual
@@ -298,22 +299,52 @@ to be implemented.
 \item[Secrets:]The contents of the required behaviours.
 \item[Services:]Includes programs that provide externally visible behaviour of
   the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
+  documents \cite{SRS}. This module serves as a communication layer between the
   hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
+  module will need to change if there are changes in the SRS \cite{SRS}.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+\subsubsection{ANN Control Module (\mref{ACM})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Secrets:]The algorithm for coordinating the running of the program.
+\item[Services:]Provides the main program.
+\item[Implemented By:] ANN
+\item[Type of Module:] Abstract Data Type
 \end{description}
+
+\subsubsection{Output Module (\mref{Output})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the output data.
+\item[Services:]Outputs the class of the uploaded image.
+\item[Implemented By:] ANN
+\item[Type of Module:] Abstract Object
+\end{description}
+
+\subsubsection{Saved ANN Model Module (\mref{SavedANN})}
+
+\begin{description}
+  \item[Secrets:]The weights and biases that make up the ANN classification model for th 10
+  classes of CIFAR-10 dataset \cite{CIFAR10}.
+  \item[Services:]Saves the data of the highest performance model trained by ANN in 
+  a .txt file.
+  \item[Implemented By:] ANN
+  \item[Type of Module:] Record
+  \end{description}
+
+  \subsubsection{Input Classifier Module(\mref{In-class})}
+
+  \begin{description}
+    \item[Secrets:]The algorithm for classification given the input image and using the 
+    saved ANN model.
+    \item[Services:]Predicts the class of the uploaded image by restoring the model using saved 
+    weights and biases in \mref{SavedANN}.
+    \item[Implemented By:] ANN
+    \item[Type of Module:] Abstract Data Type
+    \end{description}
+
 
 \subsubsection{Etc.}
 
