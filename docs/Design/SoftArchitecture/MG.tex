@@ -161,20 +161,19 @@ change.
   hardware on which the software is running.
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
   initial input data.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The constraint on 
-  the input images.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] Evolution of methods 
+% \item[\refstepcounter{acnum} \actheacnum \label{acInputSize}:] The constraint on 
+%   the size of the input images.
+\item[\refstepcounter{acnum} \actheacnum \label{methods}:] Evolution of methods 
   for processing and analyzing input images to extract features.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] Modifications in 
+\item[\refstepcounter{acnum} \actheacnum \label{ANNAlgo}:] Modifications in 
   neural network training algorithms and parameter adjustments.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] Updates in the 
+\item[\refstepcounter{acnum} \actheacnum \label{modelTraining}:] Updates in the 
   scheduling and methodology for model training and updating.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] Evolution in the 
-  format and structure of the output data, including classification results.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] Changes in the 
+\item[\refstepcounter{acnum} \actheacnum \label{acOutput}:] Evolution in the 
+  format and structure of the output data, including classification results, 
+  by developing GUI.
+\item[\refstepcounter{acnum} \actheacnum \label{algo}:] Changes in the 
   algorithms and techniques used for image classification.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] Development in 
-  the user interface and visualization of data and results.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -205,19 +204,19 @@ below, which are leaves in the hierarchy tree, are the modules that will
 actually be implemented.
 
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] ANN Control Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Output Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Saved ANN Model Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Input Classifier Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Input Preparing and Preprocessing Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Setting Input Image Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Training Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Training Model Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Training Data Preparing and Preprocessing Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Testing Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Plotting Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Setting Feedback Module
+\item [\refstepcounter{mnum} \mthemnum \label{HW}:] Hardware-Hiding Module
+\item [\refstepcounter{mnum} \mthemnum \label{ACM}:] ANN Control Module
+\item [\refstepcounter{mnum} \mthemnum \label{Output}:] Output Module
+\item [\refstepcounter{mnum} \mthemnum \label{Saved ANN}:] Saved ANN Model Module
+\item [\refstepcounter{mnum} \mthemnum \label{In-class}:] Input Classifier Module
+\item [\refstepcounter{mnum} \mthemnum \label{In-prep}:] Input Preparing and Preprocessing Module
+\item [\refstepcounter{mnum} \mthemnum \label{In-set}:] Setting Input Image Module
+\item [\refstepcounter{mnum} \mthemnum \label{Train}:] Training Module
+\item [\refstepcounter{mnum} \mthemnum \label{Train-Model}:] Training Model Module
+\item [\refstepcounter{mnum} \mthemnum \label{Train-Data}:] Training Data Preparing and Preprocessing Module
+\item [\refstepcounter{mnum} \mthemnum \label{Test}:] Testing Module
+\item [\refstepcounter{mnum} \mthemnum \label{Plot}:] Plotting Module
+\item [\refstepcounter{mnum} \mthemnum \label{Feedback}:] Setting Feedback Module
 \end{description}
 
 
@@ -347,17 +346,11 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+R1 & \mref{HW}, \mref{ACM}, \mref{In-prep}, \mref{In-set}\\
+R2 & \mref{ACM}, \mref{In-class}, \mref{In-prep}\\
+R3 & \mref{ACM}, \mref{In-class}, \mref{Train-Model}\\
+R4 & \mref{ACM}, \mref{Output}, \mref{Feedback}\\
+R5 & \mref{ACM}, \mref{Output}, \mref{In-class}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -370,18 +363,13 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{acHardware} & \mref{HW}\\
+\acref{acInput} & \mref{In-set}\\
+\acref{methods} & \mref{In-prep}\\
+\acref{ANNAlgo} & \mref{Train-Model}\\
+\acref{modelTraining} & \mref{Train}\\
+\acref{acOutput} & \mref{Output}\\
+\acref{algo} & \mref{In-class}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
