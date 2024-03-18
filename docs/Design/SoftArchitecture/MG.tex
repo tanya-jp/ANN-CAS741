@@ -211,9 +211,9 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{In-class}:] Input Classifier Module
 \item [\refstepcounter{mnum} \mthemnum \label{In-set}:] Input Image Module
 \item [\refstepcounter{mnum} \mthemnum \label{Train-Model}:] Training Model Module
-\item [\refstepcounter{mnum} \mthemnum \label{Feedback}:] Setting Feedback Module
+\item [\refstepcounter{mnum} \mthemnum \label{Feedback}:] Feedback Module
 \item [\refstepcounter{mnum} \mthemnum \label{In-prep}:] Input Preparing and Preprocessing Module
-\item [\refstepcounter{mnum} \mthemnum \label{Train-Data}:] Training Data Preparing and Preprocessing Module
+\item [\refstepcounter{mnum} \mthemnum \label{Data}:] Data Preparing and Preprocessing Module
 \item [\refstepcounter{mnum} \mthemnum \label{Train}:] Training Module
 \item [\refstepcounter{mnum} \mthemnum \label{Test}:] Testing Module
 \end{description}
@@ -347,7 +347,7 @@ to be implemented.
 \subsubsection{Input Image Module(\mref{In-set})}
 
 \begin{description}
-  \item[Secrets:]Receives the input data.
+  \item[Secrets:]Receiving the input data.
   \item[Services:]Prompts user for input image and checks its size and format.
   \item[Implemented By:] ANN
   \item[Type of Module:] Abstract Data Type
@@ -364,6 +364,16 @@ to be implemented.
   \item[Type of Module:] Abstract Data Type
 \end{description}
 
+\subsubsection{Feedback Module(\mref{Feedback})}
+
+\begin{description}
+  \item[Secrets:]Recording end user's feedback.
+  \item[Services:]Receives the end user's feedback on the classification's accuracy. 
+  This feedback will be used to improve the model's performance and accuracy.
+  \item[Implemented By:] ANN
+  \item[Type of Module:] Record
+\end{description}
+
 \subsection{Software Decision Module}
 
 \begin{description}
@@ -377,7 +387,47 @@ to be implemented.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Input Preparing and Preprocessing Module(\mref{In-prep})}
+
+\begin{description}
+  \item[Secrets:]Preparing the input data in a format that can be used by model for classifying.
+  \item[Services:]Changes the input image form a 3D matrix to an 1D one by grayscaling it and 
+  put all the cells next to each other as a vector.
+  \item[Implemented By:] ANN
+  % \item[Type of Module:] Abstract Data Type
+\end{description}
+
+\subsubsection{Data Preparing and Preprocessing Module(\mref{Data})}
+
+\begin{description}
+  \item[Secrets:]Preparing training dataset in a format that can be used by model for training and testing.
+  \item[Services:]For the better accurate training and testing results, shuffles the training and testing dataset. 
+  Changes the traing and test images form 3D matrices to 1D ones by grayscaling them and 
+  put all the cells of every image next to each other as vectors.
+  \item[Implemented By:] ANN
+  % \item[Type of Module:] Abstract Data Type
+\end{description}
+
+\subsubsection{Training Module(\mref{Train})}
+
+\begin{description}
+  \item[Secrets:]Finding weights and biases of the model.
+  \item[Services:]Applies the training process on prepared trining data from \mref{Data}, using the impelemted model 
+  from \mref{Train-Model} to find the best weights between neurons and each neuron's biase.
+  \item[Implemented By:] ANN
+  % \item[Type of Module:] Abstract Data Type
+\end{description}
+
+\subsubsection{Testing Module(\mref{Test})}
+
+\begin{description}
+  \item[Secrets:]Testing the trained model to find the achived accuracy.
+  \item[Services:]Applies the testing process on prepared testing data from \mref{Data}, using the trained model 
+  from \mref{Train} to check the model's merformance.
+  \item[Implemented By:] ANN
+  % \item[Type of Module:] Abstract Data Type
+\end{description}
+
 
 \section{Traceability Matrix} \label{SecTM}
 
