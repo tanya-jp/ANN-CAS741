@@ -46,7 +46,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-March 15 & 1.0 & Initial Draft\\
+March 18 & 1.0 & Initial Draft\\
 % Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -65,16 +65,18 @@ This section records information for easy reference.
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   AC & Anticipated Change\\
+  ANN & Artificial Neural Network\\
   DAG & Directed Acyclic Graph \\
+  GUI & Graphical User Interface\\
   M & Module \\
   MG & Module Guide \\
   OS & Operating System \\
   R & Requirement\\
   SC & Scientific Computing \\
   SRS & Software Requirements Specification\\
-  \progname & Explanation of program name\\
+  % \progname & Explanation of program name\\
   UC & Unlikely Change \\
-  \wss{etc.} & \wss{...}\\
+  % \wss{etc.} & \wss{...}\\
   \bottomrule
 \end{tabular}\\
 
@@ -111,7 +113,7 @@ Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \end{itemize}
 
 After completing the first stage of the design, the Software Requirements
-Specification (SRS), the Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG
+Specification (SRS) \cite{SRS}, the Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG
 specifies the modular structure of the system and is intended to allow both
 designers and maintainers to easily identify the parts of the software.  The
 potential readers of this document are as follows:
@@ -137,7 +139,7 @@ was constructed according to the likely changes. Section \ref{SecConnection}
 specifies the connections between the software requirements and the
 modules. Section \ref{SecMD} gives a detailed description of the
 modules. Section \ref{SecTM} includes two traceability matrices. One checks
-the completeness of the design against the requirements provided in the SRS. The
+the completeness of the design against the requirements provided in the SRS \cite{SRS}. The
 other shows the relation between anticipated changes and the modules. Section
 \ref{SecUse} describes the use relation between modules.
 
@@ -379,7 +381,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] The design decision based on mathematical theorems, physical
   facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
+  \emph{not} described in the SRS \cite{SRS}.
 \item[Services:] Includes data structure and algorithms used in the system that
   do not provide direct interaction with the user. 
   % Changes in these modules are more likely to be motivated by a desire to
@@ -442,11 +444,11 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{HW}, \mref{ACM}, \mref{In-prep}, \mref{In-set}\\
-R2 & \mref{ACM}, \mref{In-class}, \mref{In-prep}\\
-R3 & \mref{ACM}, \mref{In-class}, \mref{Train-Model}\\
-R4 & \mref{ACM}, \mref{Output}, \mref{Feedback}\\
-R5 & \mref{ACM}, \mref{Output}, \mref{In-class}\\
+R1 & \mref{HW}, \mref{ACM}, \mref{In-set}, \mref{In-prep}\\
+R2 & \mref{ACM}, \mref{Output}, \mref{In-set}\\
+R3 & \mref{ACM}, \mref{SavedANN}, \mref{In-class}\\
+R4 & \mref{HW}, \mref{ACM}, \mref{SavedANN}, \mref{Output}, \mref{Feedback}\\
+R5 & \mref{ACM}, \mref{Output}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -461,11 +463,10 @@ R5 & \mref{ACM}, \mref{Output}, \mref{In-class}\\
 \midrule
 \acref{acHardware} & \mref{HW}\\
 \acref{acInput} & \mref{In-set}\\
-\acref{methods} & \mref{In-prep}\\
+\acref{algo} & \mref{In-class}\\
 \acref{ANNAlgo} & \mref{Train-Model}\\
 \acref{modelTraining} & \mref{Train}\\
 \acref{acOutput} & \mref{Output}\\
-\acref{algo} & \mref{In-class}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -487,27 +488,27 @@ because they use modules from the lower levels.
 
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.7\textwidth]{Modules.PNG}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
 
 %\section*{References}
 
-\section{User Interfaces}
+% \section{User Interfaces}
 
-\wss{Design of user interface for software and hardware.  Attach an appendix if
-needed. Drawings, Sketches, Figma}
+% \wss{Design of user interface for software and hardware.  Attach an appendix if
+% needed. Drawings, Sketches, Figma}
 
-\section{Design of Communication Protocols}
+% \section{Design of Communication Protocols}
 
-\wss{If appropriate}
+% \wss{If appropriate}
 
-\section{Timeline}
+% \section{Timeline}
 
-\wss{Schedule of tasks and who is responsible}
+% \wss{Schedule of tasks and who is responsible}
 
-\wss{You can point to GitHub if this information is included there}
+% \wss{You can point to GitHub if this information is included there}
 
 \bibliographystyle {plainnat}
 \bibliography{../../../refs/References}
