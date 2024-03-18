@@ -200,7 +200,6 @@ None.
 \end{center}
 
 \subsection{Semantics}
-None.
 
 \subsubsection{State Variables}
 None.
@@ -255,6 +254,72 @@ None.
 %   They are not necessarily something that is going to be implemented
 %   explicitly.  Even if they are implemented, they are not exported; they only
 %   have local scope.}
+
+\section{MIS of Saved ANN Model Module} \label{SavedANN} 
+
+\subsection{Module}
+\code{model} 
+
+\subsection{Uses}
+\begin{itemize}
+  \item Hardware-Hiding Module  
+  \item Training Module (\ref{Train})
+\end{itemize}
+
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None.
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\code{save\_model} & - & - & PermissionError \\
+\code{load\_model} & - & [weights, biases] & FileNotFoundError \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+modelData: structure holding the current ANN model's data. 
+This is an array including weights and biases.
+
+\subsubsection{Environment Variables}
+modelFile: A file on the file system where the ANN model data is saved and 
+from where it is loaded.
+
+\subsubsection{Assumptions}
+None.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \code{save\_model}():
+\begin{itemize}
+  \item transition: Writes the current state of the ANN model (weights and biases) to the \code{modelFile}.
+  \item output: None.
+  \item exception: Raises \code{PermissionError} if the module lacks the necessary permissions to write to \code{modelFile}. 
+  It may also raise an IOError if there are issues with the file system, such as insufficient storage space.
+\end{itemize}
+
+\noindent \code{load\_model}():
+\begin{itemize}
+  \item transition: Reads the model data from \code{modelFile}. 
+  \item output: Returns the trained model based on weights and biases from \code{modelData}.
+  \item exception: Raises \code{FileNotFoundError} if \code{modelFile} does not exist or cannot be accessed. 
+  Additionally, an exception may be raised for data corruption or format mismatch, indicating issues 
+  with the integrity or compatibility of the stored model data.
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+None.
 
 \newpage
 
