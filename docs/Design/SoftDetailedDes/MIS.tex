@@ -40,7 +40,7 @@ urlcolor=cyan          % color of external links
 
 \begin{document}
 
-\title{Module Interface Specification for ANN (Artificial Neural Newcounter)}
+\title{Module Interface Specification for ANN (Artificial Neural Network)}
 
 \author{Tanya Djavehrpour}
 
@@ -144,7 +144,7 @@ The following table is taken directly from the Module Guide \cite{MG} document f
 &Input Classifier Module\\
 &Input Image Module\\
 &Training Model Module\\
-&Feedback Module\\
+% &Feedback Module\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision} &Input Preparing and Preprocessing Module\\
@@ -275,12 +275,12 @@ None.
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{3.5cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{save\_model} & - & - & PermissionError \\
-\code{load\_model} & - & [weights, biases] & FileNotFoundError \\
+\code{save\_model} & - & \code{boolean} & \code{PermissionError} \\
+\code{load\_model} & - & \code{[weights, biases]} & \code{FileNotFoundError} \\
 \hline
 \end{tabular}
 \end{center}
@@ -288,11 +288,13 @@ None.
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-modelData: structure holding the current ANN model's data. 
+\begin{itemize}
+  \item \code{modelData}: structure holding the current ANN model's data. 
 This is an array including weights and biases.
+\end{itemize}
 
 \subsubsection{Environment Variables}
-modelFile: A file on the file system where the ANN model data is saved and 
+\code{modelFile}: A file on the file system where the ANN model data is saved and 
 from where it is loaded.
 
 \subsubsection{Assumptions}
@@ -303,7 +305,7 @@ None.
 \noindent \code{save\_model}():
 \begin{itemize}
   \item transition: Writes the current state of the ANN model (weights and biases) to the \code{modelFile}.
-  \item output: None.
+  \item output: Returns \code{True} if model is saved successfully.
   \item exception: Raises \code{PermissionError} if the module lacks the necessary permissions to write to \code{modelFile}. 
   It may also raise an IOError if there are issues with the file system, such as insufficient storage space.
 \end{itemize}
@@ -320,6 +322,145 @@ None.
 
 \subsubsection{Local Functions}
 None.
+
+\section{MIS of Output Module} \label{Output} 
+
+\subsection{Module}
+\code{output} 
+
+\subsection{Uses}
+\begin{itemize}
+  \item Hardware-Hiding Module  
+  \item Input Classifier Module (\ref{In-class})
+\end{itemize}
+
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None.
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2.5cm} p{4cm} p{4cm} p{3cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\code{set\_class} & - & - & - \\
+\code{set\_feedback} & \code{String} & \code{boolean} &  \code{PermissionError}\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None.
+
+\subsubsection{Environment Variables}
+None.
+
+\subsubsection{Assumptions}
+None.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \code{get\_class}():
+\begin{itemize}
+  \item transition: Receives the classification result from the Input Classifier Module (\ref{In-class}).
+  \item output: None.
+  \item exception: None.
+\end{itemize}
+
+\noindent \code{set\_feedback}():
+\begin{itemize}
+  \item transition: Sets user feedback on classification result. 
+  \item output: Returns a confirmation message or status after recording the feedback.
+  \item exception: Raises \code{PermissionError} if the module lacks the necessary permissions to record feedback.
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+None.
+
+\section{MIS of Input Classifier Module} \label{In-class} 
+
+\subsection{Module}
+\code{classifier} 
+
+\subsection{Uses}
+\begin{itemize}
+  \item Hardware-Hiding Module  
+  \item Saved ANN Module (\ref{SavedANN})
+  \item Input Preparing and Preprocessing Module (\ref{In-prep})
+\end{itemize}
+
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None.
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{3cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\code{load\_model} & - & - & - \\
+\code{set\_image\_pixels} & - & - & - \\
+\code{get\_class} & - & \code{String} &  -\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+\begin{itemize}
+  \item \code{modelData}: structure holding the current ANN model's data. 
+  This is an array including weights and biases.
+  \item \code{imagePixels}: An array of input image's pixels after preprocessing.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+None.
+
+\subsubsection{Assumptions}
+None.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \code{load\_model}():
+\begin{itemize}
+  \item transition: Receives trained model from the Saved ANN Model Module (\ref{SavedANN}) 
+  and saves it in \code{modelData}.
+  \item output: None.
+  \item exception: None.
+\end{itemize}
+
+\noindent \code{set\_image\_pixels}():
+\begin{itemize}
+  \item transition: Receives the array of input image from Input Preparing and Preprocessing Module (\ref{In-prep}) 
+  and saves in \code{imagePixels}.
+  \item output: None.
+  \item exception: None.
+\end{itemize}
+
+\noindent \code{get\_class}():
+\begin{itemize}
+  \item transition: Classifies the input image.
+  \item output: The class of input image.
+  \item exception: None.
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+None.
+
+
 
 \newpage
 
