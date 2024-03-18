@@ -313,15 +313,6 @@ to be implemented.
 \item[Type of Module:] Abstract Data Type
 \end{description}
 
-\subsubsection{Output Module (\mref{Output})}
-
-\begin{description}
-\item[Secrets:]The format and structure of the output data.
-\item[Services:]Outputs the class of the uploaded image.
-\item[Implemented By:] ANN
-\item[Type of Module:] Abstract Object
-\end{description}
-
 \subsubsection{Saved ANN Model Module (\mref{SavedANN})}
 
 \begin{description}
@@ -333,13 +324,21 @@ to be implemented.
   \item[Type of Module:] Record
   \end{description}
 
+\subsubsection{Output Module (\mref{Output})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the output data.
+\item[Services:]Outputs the class of the uploaded image.
+\item[Implemented By:] ANN
+\item[Type of Module:] Abstract Object
+\end{description}
+
   \subsubsection{Input Classifier Module(\mref{In-class})}
 
   \begin{description}
     \item[Secrets:]The algorithm for classification given the input image and using the 
     saved ANN model.
-    \item[Services:]Predicts the class of the uploaded image by restoring the model using saved 
-    weights and biases in \mref{SavedANN}.
+    \item[Services:]Predicts the class of the uploaded image by getting the saved model from \mref{SavedANN}.
     \item[Implemented By:] ANN
     \item[Type of Module:] Abstract Data Type
     \end{description}
