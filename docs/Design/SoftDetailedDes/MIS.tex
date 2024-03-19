@@ -55,7 +55,7 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-March 18 & 1.0 & Initial Draft\\
+March 19 & 1.0 & Initial Draft\\
 % Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -108,8 +108,14 @@ The following table summarizes the primitive data types used by ANN.
 \toprule 
 \textbf{Data Type} & \textbf{Notation} & \textbf{Description}\\ 
 \midrule
+1D array & $\mathbf{A}_{i}$ & A linear sequence of elements\\
+2D matrix & $\mathbf{M}_{ij}$ &  A collection of elements arranged in rows and columns\\
+3D matrix & $\mathbf{M}_{ijk}$ & A structure composed of elements arranged in a grid with three dimensions\\ 
+boolean & $bool$ & True or False\\
+string & $str$ & A sequence of characters\\
 character & char & a single symbol or digit\\
 integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
+positive Integer & $\mathbf{Z}_{+}$ & a number without a fractional component in ($0$, $\infty$) \\
 natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
 real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
 \bottomrule
@@ -117,10 +123,10 @@ real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
 \end{center}
 
 \noindent
-The specification of \progname \ uses some derived data types: sequences, strings, and
+The specification of ANN uses some derived data types: sequences, strings, and
 tuples. Sequences are lists filled with elements of the same data type. Strings
 are sequences of characters. Tuples contain a list of values, potentially of
-different types. In addition, \progname \ uses functions, which
+different types. In addition, ANN uses functions, which
 are defined by the data types of their inputs and outputs. Local functions are
 described by giving their type signature followed by their specification.
 
@@ -281,8 +287,8 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{save\_model} & - & \code{boolean} & \code{PermissionError} \\
-\code{load\_model} & - & \code{[weights, biases]} & \code{FileNotFoundError} \\
+\code{save\_model} & - & $bool$ & \code{PermissionError} \\
+\code{load\_model} & - & [$\mathbf{M}_{ijk}$, $\mathbf{M}_{ij}$] & \code{FileNotFoundError} \\
 \hline
 \end{tabular}
 \end{center}
@@ -315,7 +321,10 @@ None.
 \noindent \code{load\_model}():
 \begin{itemize}
   \item transition: Reads the model data from \code{modelFile}. 
-  \item output: Returns the trained model based on weights and biases from \code{modelData}.
+  \item output: Returns the trained model based on weights and biases from \code{modelData}. 
+  The return value is a list. The first argument is a list of weights (each weight matrix is $\mathbf{M}_{ij}$), 
+  so that this argument is a $\mathbf{M}_{ijk}$. The second argument is a list of biases (each bias vector is $\mathbf{A}_{i}$). 
+  This argument is a $\mathbf{M}_{ij}$.
   \item exception: Raises \code{FileNotFoundError} if \code{modelFile} does not exist or cannot be accessed. 
   Additionally, an exception may be raised for data corruption or format mismatch, indicating issues 
   with the integrity or compatibility of the stored model data.
@@ -352,7 +361,7 @@ None.
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
 \code{set\_class} & - & - & - \\
-\code{set\_feedback} & \code{String} & \code{boolean} &  \code{PermissionError}\\
+\code{set\_feedback} & $str$ & $bool$ &  \code{PermissionError}\\
 \hline
 \end{tabular}
 \end{center}
@@ -417,7 +426,7 @@ None.
 \hline
 \code{load\_model} & - & - & - \\
 \code{get\_image\_pixels} & - & - & - \\
-\code{get\_class} & - & \code{String} &  -\\
+\code{get\_class} & - & $str$&  -\\
 \hline
 \end{tabular}
 \end{center}
@@ -494,8 +503,8 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{set\_input} & \code{inputImagePath} & - & \code{FileNotFoundError, InvalidSize, InvalidFormat} \\
-\code{get\_image\_pixels} & - & \code{inputImage} & - \\
+\code{set\_input} & \code{File path} & - & \code{FileNotFoundError, InvalidSize, InvalidFormat} \\
+\code{get\_image\_pixels} & - & $\mathbf{M}_{ijk}$ & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -504,7 +513,7 @@ None.
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item \code{inputImage}: A 3D of the RGB input image.
+  \item \code{inputImage}: A $\mathbf{M}_{ijk}$ of the RGB input image.
 \end{itemize}
 
 \subsubsection{Environment Variables}
@@ -528,7 +537,7 @@ None.
 \noindent \code{get\_image\_pixels}():
 \begin{itemize}
   \item transition: Getter of the input image's matrix.
-  \item output: 3D matrix of \code{inputImage}.
+  \item output: $\mathbf{M}_{ijk}$ of \code{inputImage}.
   \item exception: None.
 \end{itemize}
 
@@ -564,7 +573,7 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{create\_gradients} & - & \code{gradientsArrays} & - \\
+\code{create\_gradients} & - & $\mathbf{A}_{i}$ & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -586,7 +595,7 @@ None.
 \begin{itemize}
   \item transition: Creates zero arrays for all needed gradients based on the 
   \code{LAYERS\_NUMBER} and \code{LAYERS\_NEURONS}.
-  \item output: All gradients' zero arrays.
+  \item output: All gradients' zero vector ($\mathbf{A}_{i}$)
   \item exception: None.
 \end{itemize}
 
@@ -614,7 +623,7 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{input\_prep} & - & \code{1D array} & - \\
+\code{input\_prep} & - & $\mathbf{A}_{i}$ & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -623,7 +632,7 @@ None.
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item \code{input}: A 3D matrix incling input image pixels.
+  \item \code{input}: A $\mathbf{M}_{ijk}$ incling input image pixels.
 \end{itemize}
 
 \subsubsection{Environment Variables}
@@ -634,11 +643,11 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \code{set\_image\_pixels}():
+\noindent \code{input\_prep}():
 \begin{itemize}
   \item transition: Prepares and preprocess the input image to change it 
   the way model can use it to predicts the class.
-  \item output: An array including prepared and preprocessed input image.
+  \item output: an $\mathbf{A}_{i}$ including prepared and preprocessed input image.
   \item exception: None.
 \end{itemize}
 
@@ -654,7 +663,7 @@ None.
   \item \code{rgb2gray}():
   \begin{itemize}
     \item transition: Converts RGB data (\code{input}) into grayscale in order to reduce complexity. 
-    \item output: Grayscaled input.
+    \item output: Grayscaled input ($\mathbf{M}_{ijk}$).
     \item exception: None.
   \end{itemize}
   \item \code{prep\_pixels}(grayInput):
@@ -666,7 +675,7 @@ None.
   \item \code{flat\_data}(normalInput):
   \begin{itemize}
     \item transition: Data is flatten since input image should be vectorized with the size of 1024. 
-    After grayscaling input image is a 2D matrix. this should be an 1D array to be used by implemented model.
+    After grayscaling input image is a $\mathbf{M}_{ij}$. this should be an $\mathbf{A}_{i}$ to be used by implemented model.
     \item output: flatten input.
     \item exception: None.
   \end{itemize}
@@ -694,8 +703,8 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{get\_train\_dataset} & - & \code{train\_data} & \code{UnableToLoad} \\
-\code{get\_test\_dataset} & - & \code{test\_data} & \code{UnableToLoad} \\
+\code{get\_train\_dataset} & - & [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$] & \code{UnableToLoad} \\
+\code{get\_test\_dataset} & - & [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$] & \code{UnableToLoad} \\
 \hline
 \end{tabular}
 \end{center}
@@ -704,10 +713,16 @@ None.
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item \code{train\_data}: Data structure holding train data images and their labels.
-  \item \code{test\_data}: Data structure holding test data images and their labels.
-  \item \code{train\_label}: An array incling traing data labels.
-  \item \code{test\_label}: An array incling test data labels.
+  \item \code{train\_data}: Data structure holding train data images and their labels. 
+  Since train images after processing are vectors ($\mathbf{A}_{i}$), a list of these images is 
+  a matix ($\mathbf{M}_{ij}$). Alos, labels are saving in a vector ($\mathbf{A}_{i}$). 
+  Consequently, this data structure is a list in [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$] format.
+  \item \code{test\_data}: Data structure holding test data images and their labels. 
+  Since test images after processing are vectors ($\mathbf{A}_{i}$), a list of these images is 
+  a matix ($\mathbf{M}_{ij}$). Alos, labels are saving in a vector ($\mathbf{A}_{i}$). 
+  Consequently, this data structure is a list in [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$] format.
+  \item \code{train\_label}: An $\mathbf{A}_{i}$ incling traing data labels.
+  \item \code{test\_label}: An $\mathbf{A}_{i}$ incling test data labels.
 \end{itemize}
 
 \subsubsection{Environment Variables}
@@ -746,7 +761,7 @@ None.
   \item \code{rgb2gray}(unprocessedTrainData, unprocessedTestData):
   \begin{itemize}
     \item transition: Converts RGB data into grayscale in order to reduce complexity. 
-    \item output: Grayscaled train and test data.
+    \item output: Grayscaled train and test data ($\mathbf{M}_{ijk}$).
     \item exception: None.
   \end{itemize}
   \item \code{prep\_pixels}(grayTrainData, grayTestData):
@@ -758,7 +773,7 @@ None.
   \item \code{flat\_data}(normalTrainData, normalTestData):
   \begin{itemize}
     \item transition: Data is flatten since imagws should be vectorized with the size of 1024. 
-    After grayscaling each image is a 2D matrix. These images should be an 1D array to be used in 
+    After grayscaling each image is a $\mathbf{M}_{ij}$. These images should be an $\mathbf{A}_{i}$ to be used in 
     training and testing process by implemented model.
     \item output: flatten train and test data.
     \item exception: None.
@@ -800,11 +815,12 @@ The details of fucntions using here are described in SRS document \cite{SRS}.
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{3.5cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{3.5cm} p{5.25cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{train\_and\_test} & \code{gradientsArrays, train\_data, test\_data} & \code{[weights, biases]} & -\\
+\code{train\_and\_test} & $\mathbf{A}_{i}$, [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$], 
+[$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$] & [$\mathbf{M}_{ijk}$, $\mathbf{M}_{ij}$]  & -\\
 \code{set\_layers} & - & - & -\\
 \hline
 \end{tabular}
@@ -815,7 +831,7 @@ The details of fucntions using here are described in SRS document \cite{SRS}.
 \subsubsection{State Variables}
 \begin{itemize}
   \item \code{layers}: Layers dimensions are defined based on the 
-  model architecture and are saved in a list named layers.
+  model architecture and are saved in an $\mathbf{A}_{i}$ named layers.
 \end{itemize}
 
 \subsubsection{Environment Variables}
@@ -832,7 +848,8 @@ None.
   Gradient arrays and train data are needed for training. Input parameters are achieved from 
   \ref{Train-Model} and \ref{Data}. At the same time, apply changes on \code{test\_data} to make 
   sure it is working and being trained correctly.
-  \item output: Returns a data structure including weights and biases of trained model.
+  \item output: Returns a data structure ([$\mathbf{M}_{ijk}$, $\mathbf{M}_{ij}$])
+  including weights and biases of trained model.
   \item exception: None.
 \end{itemize}
 
@@ -855,7 +872,8 @@ None.
 
   \item \code{initialize\_parameters}(layers):
   \begin{itemize}
-    \item transition: Allocates random normal Weights and zero biases for each layer.
+    \item transition: Allocates random normal weights ($\mathbf{M}_{ij}$) 
+    and zero biases ($\mathbf{A}_{i}$) for each layer.
     \item output: Returns a dictionary (named \code{parameters}) 
     that the keys define weights or biases, and the values are allocated random numbers 
     to each of them.
@@ -873,7 +891,7 @@ None.
   \item \code{feed\_forward}(predicted, parameters, layersNumb):
   \begin{itemize}
     \item transition: Claculates feedforwarding process as described in SRS \cite{SRS}. 
-    This is done by using the predicted value of previous step, parameters and the number of layers.
+    This is done by using the predicted value of previous step, parameters and the number of layers, 
     \code{parameters} dictionary and the number of layers.
     \item output: Returns the new predicted value and a \code{cache} including new and old parameters.
     \item exception: None.
@@ -881,7 +899,7 @@ None.
 
   \item \code{extract\_parameters}(cache):
   \begin{itemize}
-    \item transition: Extracts parameters saved during forwardfeeding from the cache, based on \code{layers}.
+    \item transition: Extracts parameters saved during forwardfeeding from the cache, based on \code{layers},
     \code{parameters} dictionary and the number of layers.
     \item output: Returns extracted parameters.
     \item exception: None.
@@ -905,23 +923,23 @@ None.
 
 \newpage
 
-\section{Appendix} \label{Appendix}
+% \section{Appendix} \label{Appendix}
 
-\wss{Extra information if required}
+% \wss{Extra information if required}
 
-\section{Reflection}
+% \section{Reflection}
 
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Problem Analysis and Design.  Please answer the following questions:
+% The information in this section will be used to evaluate the team members on the
+% graduate attribute of Problem Analysis and Design.  Please answer the following questions:
 
-\begin{enumerate}
-  \item What are the limitations of your solution?  Put another way, given
-  unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)
-  \item Give a brief overview of other design solutions you considered.  What
-  are the benefits and tradeoffs of those other designs compared with the chosen
-  design?  From all the potential options, why did you select the documented design?
-  (LO\_Explores)
-\end{enumerate}
+% \begin{enumerate}
+%   \item What are the limitations of your solution?  Put another way, given
+%   unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)
+%   \item Give a brief overview of other design solutions you considered.  What
+%   are the benefits and tradeoffs of those other designs compared with the chosen
+%   design?  From all the potential options, why did you select the documented design?
+%   (LO\_Explores)
+% \end{enumerate}
 
 
 \end{document}
