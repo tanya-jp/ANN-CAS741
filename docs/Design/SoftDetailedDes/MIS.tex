@@ -528,6 +528,130 @@ None.
 \subsubsection{Local Functions}
 None.
 
+\section{MIS of Training Model Module} \label{Train-Model} 
+
+\subsection{Module}
+\code{train model} 
+
+\subsection{Uses}
+\begin{itemize}
+  \item Data Preparing and Preprocessing Module (\ref{Data})
+\end{itemize}
+
+
+\subsection{Syntax}
+\subsubsection{Exported Constants}
+\begin{itemize}
+  \item \code{LAYERS\_NUMBER}: A value ($\mathbf{Z}_{+}$) describing the number of 
+  neural network's layers.
+  \item \code{LAYERS\_NEURONS}: An array including each layer's number of neurons.
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{3.5cm} p{4cm} p{4cm} p{3.5cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\code{create\_gradients} & - & - & \code{gradientsArrays} \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None.
+
+\subsubsection{Environment Variables}
+None.
+
+\subsubsection{Assumptions}
+None.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \code{create\_gradients}():
+\begin{itemize}
+  \item transition: Creates zero arrays for all needed gradients based on the 
+  \code{LAYERS\_NUMBER} and \code{LAYERS\_NEURONS}.
+  \item output: All gradients' zero arrays.
+  \item exception: None.
+\end{itemize}
+
+\subsubsection{Local Functions}
+None.
+
+\section{MIS of Training Module} \label{Train} 
+
+\subsection{Module}
+\code{train} 
+
+\subsection{Uses}
+\begin{itemize}
+  \item Data Preparing and Preprocessing Module (\ref{Data})
+\end{itemize}
+
+
+\subsection{Syntax}
+\subsubsection{Exported Constants}
+\begin{itemize}
+  \item \code{BATCH\_SIZE}: The partition size of the dataset for each step of learning, 
+  typically a power of two.
+  \item \code{LEARNING\_RATE}: Speed at which the model learns; controls adjustments to the weights.
+  \item \code{EPOCHS}: Total number of training cycles through the entire dataset.
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{3.5cm} p{4cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\code{set\_input} & \code{inputImagePath} & - & \code{FileNotFoundError, InvalidSize, InvalidFormat} \\
+\code{get\_image\_pixels} & - & \code{inputImage} & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+\begin{itemize}
+  \item \code{inputImage}: A 3D of the RGB input image.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+None.
+
+\subsubsection{Assumptions}
+None.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \code{set\_input}(inputImagePath):
+\begin{itemize}
+  \item transition: Receives the input image from end user and saves its matrix as \code{inputImage}.
+  \item output: None.
+  \item exception: Raises \code{FileNotFoundError} if \code{inputImagePath} does not exist or cannot be accessed. 
+  Also, \code{InvalidSize} is raised when the size of input image in not compatible with \code{HEIGHT} or 
+  \code{WIDTH}. Additionally, \code{InvalidFormat} is thrown if the input image's format is 
+  not compatible with \code{IMAGE\_FORMAT}.
+\end{itemize}
+
+\noindent \code{get\_image\_pixels}():
+\begin{itemize}
+  \item transition: Getter of the input image's matrix.
+  \item output: 3D matrix of \code{inputImage}.
+  \item exception: None.
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+None.
+
 
 
 \newpage
