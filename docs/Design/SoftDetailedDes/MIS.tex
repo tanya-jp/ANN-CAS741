@@ -149,8 +149,8 @@ The following table is taken directly from the Module Guide \cite{MG} document f
 
 \multirow{3}{0.3\textwidth}{Software Decision} &Input Preparing and Preprocessing Module\\
 &Data Preparing and Preprocessing Module\\
-&Training Module\\
-&Testing Module\\
+&Training and Testing Module\\
+% &Testing Module\\
 \bottomrule
 
 \end{tabular}
@@ -255,6 +255,8 @@ None.
 %   explicitly.  Even if they are implemented, they are not exported; they only
 %   have local scope.}
 
+\newpage
+
 \section{MIS of Saved ANN Model Module} \label{SavedANN} 
 
 \subsection{Module}
@@ -263,7 +265,7 @@ None.
 \subsection{Uses}
 \begin{itemize}
   \item Hardware-Hiding Module  
-  \item Training Module (\ref{Train})
+  \item Training and Testing Module (\ref{Train})
 \end{itemize}
 
 
@@ -322,6 +324,8 @@ None.
 
 \subsubsection{Local Functions}
 None.
+
+\newpage
 
 \section{MIS of Output Module} \label{Output} 
 
@@ -383,6 +387,8 @@ None.
 
 \subsubsection{Local Functions}
 None.
+
+\newpage
 
 \section{MIS of Input Classifier Module} \label{In-class} 
 
@@ -456,6 +462,8 @@ None.
   \item exception: None.
 \end{itemize}
 
+\newpage
+
 \section{MIS of Input Image Module} \label{In-set} 
 
 \subsection{Module}
@@ -528,6 +536,8 @@ None.
 \subsubsection{Local Functions}
 None.
 
+\newpage
+
 \section{MIS of Training Model Module} \label{Train-Model} 
 
 \subsection{Module}
@@ -582,6 +592,8 @@ None.
 
 \subsubsection{Local Functions}
 None.
+
+\newpage
 
 \section{Input Preparing and Preprocessing Module} \label{In-prep} 
 
@@ -661,6 +673,8 @@ None.
 
 \end{itemize}
 
+\newpage
+
 \section{Data Preparing and Preprocessing Module} \label{Data} 
 
 \subsection{Module}
@@ -680,8 +694,8 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{get\_train\_dataset} & - & \code[trainImages, trainImagesLabels] & \code{UnableToLoad} \\
-\code{get\_test\_dataset} & - & \code[testImages, testImagesLabels] & \code{UnableToLoad} \\
+\code{get\_train\_dataset} & - & \code{train\_data} & \code{UnableToLoad} \\
+\code{get\_test\_dataset} & - & \code{test\_data} & \code{UnableToLoad} \\
 \hline
 \end{tabular}
 \end{center}
@@ -760,19 +774,22 @@ None.
 
 \end{itemize}
 
-\section{MIS of Training Module} \label{Train} 
+\newpage
 
+\section{MIS of Training and Testing Module} \label{Train} 
+The details of fucntions using here are described in SRS document \cite{SRS}.
 \subsection{Module}
-\code{train} 
+\code{train\_and\_test} 
 
 \subsection{Uses}
 \begin{itemize}
+  \item Training Model Module (\ref{Train-Model})
   \item Data Preparing and Preprocessing Module (\ref{Data})
 \end{itemize}
 
 
 \subsection{Syntax}
-\subsubsection{Exported Constants}
+\subsubsection{Exported Constants} \label{Train-Const}
 \begin{itemize}
   \item \code{BATCH\_SIZE}: The partition size of the dataset for each step of learning, 
   typically a power of two.
@@ -783,12 +800,12 @@ None.
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{3.5cm} p{4cm} p{4cm} p{4cm}}
+\begin{tabular}{p{3.5cm} p{4cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{set\_input} & \code{inputImagePath} & - & \code{FileNotFoundError, InvalidSize, InvalidFormat} \\
-\code{get\_image\_pixels} & - & \code{inputImage} & - \\
+\code{train\_and\_test} & \code{gradientsArrays, train\_data, test\_data} & \code{[weights, biases]} & -\\
+\code{set\_layers} & - & - & -\\
 \hline
 \end{tabular}
 \end{center}
@@ -797,7 +814,8 @@ None.
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item \code{inputImage}: A 3D of the RGB input image.
+  \item \code{layers}: Layers dimensions are defined based on the 
+  model architecture and are saved in a list named layers.
 \end{itemize}
 
 \subsubsection{Environment Variables}
@@ -808,28 +826,77 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \code{set\_input}(inputImagePath):
+\noindent \code{train\_and\_test}(gradientsArrays, train\_data, test\_data):
 \begin{itemize}
-  \item transition: Receives the input image from end user and saves its matrix as \code{inputImage}.
-  \item output: None.
-  \item exception: Raises \code{FileNotFoundError} if \code{inputImagePath} does not exist or cannot be accessed. 
-  Also, \code{InvalidSize} is raised when the size of input image in not compatible with \code{HEIGHT} or 
-  \code{WIDTH}. Additionally, \code{InvalidFormat} is thrown if the input image's format is 
-  not compatible with \code{IMAGE\_FORMAT}.
+  \item transition: Train the model based on constant variables defined in \ref{Train-Model}. 
+  Gradient arrays and train data are needed for training. Input parameters are achieved from 
+  \ref{Train-Model} and \ref{Data}. At the same time, apply changes on \code{test\_data} to make 
+  sure it is working and being trained correctly.
+  \item output: Returns a data structure including weights and biases of trained model.
+  \item exception: None.
 \end{itemize}
 
-\noindent \code{get\_image\_pixels}():
+\noindent \code{set\_layers}():
 \begin{itemize}
-  \item transition: Getter of the input image's matrix.
-  \item output: 3D matrix of \code{inputImage}.
+  \item transition: \code{layers} is set based on Train Model Module (\ref{Train-Model}).
+  \item output: None.
   \item exception: None.
 \end{itemize}
 
 
 \subsubsection{Local Functions}
-None.
+\begin{itemize}
+  \item \code{sigmoid}(x):
+  \begin{itemize}
+    \item transition: Claculates sigmoid function for x, as the activation function.
+    \item output: Sigmoid value of x. 
+    \item exception: None.
+  \end{itemize}
 
+  \item \code{initialize\_parameters}(layers):
+  \begin{itemize}
+    \item transition: Allocates random normal Weights and zero biases for each layer.
+    \item output: Returns a dictionary (named \code{parameters}) 
+    that the keys define weights or biases, and the values are allocated random numbers 
+    to each of them.
+    \item exception: None.
+  \end{itemize}
 
+  \item \code{compute\_cost}(predicted, actual):
+  \begin{itemize}
+    \item transition: Claculates the sum of the squared errors based on the 
+    predicted and actual values.
+    \item output: Returns the sum of the squared errors
+    \item exception: None.
+  \end{itemize}
+
+  \item \code{feed\_forward}(predicted, parameters, layersNumb):
+  \begin{itemize}
+    \item transition: Claculates feedforwarding process as described in SRS \cite{SRS}. 
+    This is done by using the predicted value of previous step, parameters and the number of layers.
+    \code{parameters} dictionary and the number of layers.
+    \item output: Returns the new predicted value and a \code{cache} including new and old parameters.
+    \item exception: None.
+  \end{itemize}
+
+  \item \code{extract\_parameters}(cache):
+  \begin{itemize}
+    \item transition: Extracts parameters saved during forwardfeeding from the cache, based on \code{layers}.
+    \code{parameters} dictionary and the number of layers.
+    \item output: Returns extracted parameters.
+    \item exception: None.
+  \end{itemize}
+
+  \item \code{backpropagation}(cache, predicted, actual, layers):
+  \begin{itemize}
+    \item transition: Claculates backpropagation process as described in SRS \cite{SRS} 
+    to calculate gradients of wights and biases. 
+    \item output: A dictionary as gradients that keys are labels of gradients to define weights or biases, 
+    and values are gradients.
+    \item exception: None.
+  \end{itemize}
+
+\end{itemize}
 
 \newpage
 
