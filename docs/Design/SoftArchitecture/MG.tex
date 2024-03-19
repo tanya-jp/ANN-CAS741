@@ -213,11 +213,11 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{In-class}:] Input Classifier Module
 \item [\refstepcounter{mnum} \mthemnum \label{In-set}:] Input Image Module
 \item [\refstepcounter{mnum} \mthemnum \label{Train-Model}:] Training Model Module
-\item [\refstepcounter{mnum} \mthemnum \label{Feedback}:] Feedback Module
+% \item [\refstepcounter{mnum} \mthemnum \label{Feedback}:] Feedback Module
 \item [\refstepcounter{mnum} \mthemnum \label{In-prep}:] Input Preparing and Preprocessing Module
 \item [\refstepcounter{mnum} \mthemnum \label{Data}:] Data Preparing and Preprocessing Module
 \item [\refstepcounter{mnum} \mthemnum \label{Train}:] Training Module
-\item [\refstepcounter{mnum} \mthemnum \label{Test}:] Testing Module
+% \item [\refstepcounter{mnum} \mthemnum \label{Test}:] Testing Module
 \end{description}
 
 
@@ -238,14 +238,14 @@ actually be implemented.
 &Input Classifier Module\\
 &Input Image Module\\
 &Training Model Module\\
-&Feedback Module\\
+% &Feedback Module\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module}
 &Input Preparing and Preprocessing Module\\
 &Data Preparing and Preprocessing Module\\
 &Training Module\\
-&Testing Module\\
+% &Testing Module\\
 
 \bottomrule
 
@@ -330,7 +330,8 @@ to be implemented.
 
 \begin{description}
 \item[Secrets:]The format and structure of the output data.
-\item[Services:]Outputs the class of the uploaded image.
+\item[Services:]Outputs the class of the uploaded image and receives 
+the end user's feedback.
 \item[Implemented By:] ANN
 \item[Type of Module:] Abstract Object
 \end{description}
@@ -366,15 +367,15 @@ to be implemented.
   \item[Type of Module:] Abstract Data Type
 \end{description}
 
-\subsubsection{Feedback Module(\mref{Feedback})}
+% \subsubsection{Feedback Module(\mref{Feedback})}
 
-\begin{description}
-  \item[Secrets:]Recording end user's feedback.
-  \item[Services:]Receives the end user's feedback on the classification's accuracy. 
-  This feedback will be used to improve the model's performance and accuracy.
-  \item[Implemented By:] ANN
-  \item[Type of Module:] Record
-\end{description}
+% \begin{description}
+%   \item[Secrets:]Recording end user's feedback.
+%   \item[Services:]Receives the end user's feedback on the classification's accuracy. 
+%   This feedback will be used to improve the model's performance and accuracy.
+%   \item[Implemented By:] ANN
+%   \item[Type of Module:] Record
+% \end{description}
 
 \subsection{Software Decision Module}
 
@@ -410,25 +411,26 @@ to be implemented.
   % \item[Type of Module:] Abstract Data Type
 \end{description}
 
-\subsubsection{Training Module(\mref{Train})}
+\subsubsection{Training and Testing Module(\mref{Train})}
 
 \begin{description}
   \item[Secrets:]Finding weights and biases of the model.
   \item[Services:]Applies the training process on prepared trining data from \mref{Data}, using the impelemted model 
-  from \mref{Train-Model} to find the best weights between neurons and each neuron's biase.
+  from \mref{Train-Model} to find the best weights between neurons and each neuron's biase. At the same 
+  time, tests the model to make sure it is being trained.
   \item[Implemented By:] ANN
   % \item[Type of Module:] Abstract Data Type
 \end{description}
 
-\subsubsection{Testing Module(\mref{Test})}
+% \subsubsection{Testing Module(\mref{Test})}
 
-\begin{description}
-  \item[Secrets:]Testing the trained model to find the achived accuracy.
-  \item[Services:]Applies the testing process on prepared testing data from \mref{Data}, using the trained model 
-  from \mref{Train} to check the model's merformance.
-  \item[Implemented By:] ANN
-  % \item[Type of Module:] Abstract Data Type
-\end{description}
+% \begin{description}
+%   \item[Secrets:]Testing the trained model to find the achived accuracy.
+%   \item[Services:]Applies the testing process on prepared testing data from \mref{Data}, using the trained model 
+%   from \mref{Train} to check the model's merformance.
+%   \item[Implemented By:] ANN
+%   % \item[Type of Module:] Abstract Data Type
+% \end{description}
 
 
 \section{Traceability Matrix} \label{SecTM}
@@ -447,7 +449,7 @@ requirements and between the modules and the anticipated changes.
 R1 & \mref{HW}, \mref{ACM}, \mref{In-set}, \mref{In-prep}\\
 R2 & \mref{ACM}, \mref{Output}, \mref{In-set}\\
 R3 & \mref{ACM}, \mref{SavedANN}, \mref{In-class}\\
-R4 & \mref{HW}, \mref{ACM}, \mref{SavedANN}, \mref{Output}, \mref{Feedback}\\
+R4 & \mref{HW}, \mref{ACM}, \mref{SavedANN}, \mref{Output}\\
 R5 & \mref{ACM}, \mref{Output}\\
 \bottomrule
 \end{tabular}
@@ -464,8 +466,8 @@ R5 & \mref{ACM}, \mref{Output}\\
 \acref{acHardware} & \mref{HW}\\
 \acref{acInput} & \mref{In-set}\\
 \acref{algo} & \mref{In-class}\\
-\acref{ANNAlgo} & \mref{Train-Model}\\
-\acref{modelTraining} & \mref{Train}\\
+\acref{ANNAlgo} & \mref{Train}\\
+\acref{modelTraining} & \mref{Train-Model}\\
 \acref{acOutput} & \mref{Output}\\
 \bottomrule
 \end{tabular}
