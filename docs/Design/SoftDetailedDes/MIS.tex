@@ -289,7 +289,7 @@ None.
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item \code{modelData}: structure holding the current ANN model's data. 
+  \item \code{modelData}: Data structure holding the current ANN model's data. 
 This is an array including weights and biases.
 \end{itemize}
 
@@ -420,7 +420,7 @@ None.
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item \code{modelData}: structure holding the current ANN model's data. 
+  \item \code{modelData}: Data structure holding the current ANN model's data. 
   This is an array including weights and biases.
   \item \code{imagePixels}: An array of input image's pixels after preprocessing.
 \end{itemize}
@@ -531,7 +531,7 @@ None.
 \section{MIS of Training Model Module} \label{Train-Model} 
 
 \subsection{Module}
-\code{train model} 
+\code{training\_model} 
 
 \subsection{Uses}
 \begin{itemize}
@@ -554,7 +554,7 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{create\_gradients} & - & - & \code{gradientsArrays} \\
+\code{create\_gradients} & - & \code{gradientsArrays} & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -582,6 +582,183 @@ None.
 
 \subsubsection{Local Functions}
 None.
+
+\section{Input Preparing and Preprocessing Module} \label{In-prep} 
+
+\subsection{Module}
+\code{input\_prep} 
+
+\subsection{Uses}
+None.
+
+\subsection{Syntax}
+\subsubsection{Exported Constants}
+None.
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{3.5cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\code{input\_prep} & - & \code{1D array} & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+\begin{itemize}
+  \item \code{input}: A 3D matrix incling input image pixels.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+None.
+
+\subsubsection{Assumptions}
+None.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \code{set\_image\_pixels}():
+\begin{itemize}
+  \item transition: Prepares and preprocess the input image to change it 
+  the way model can use it to predicts the class.
+  \item output: An array including prepared and preprocessed input image.
+  \item exception: None.
+\end{itemize}
+
+\subsubsection{Local Functions}
+\begin{itemize}
+  \item \code{set\_image\_pixels}():
+  \begin{itemize}
+    \item transition: Receives the input image pixels and saves in \code{input}.
+    \item output: None.
+    \item exception: None.
+  \end{itemize}
+
+  \item \code{rgb2gray}():
+  \begin{itemize}
+    \item transition: Converts RGB data (\code{input}) into grayscale in order to reduce complexity. 
+    \item output: Grayscaled input.
+    \item exception: None.
+  \end{itemize}
+  \item \code{prep\_pixels}(grayInput):
+  \begin{itemize}
+    \item transition: Normalizes grayscaled input to change the range of data between 0 and 1.
+    \item output: Normalized input.
+    \item exception: None.
+  \end{itemize}
+  \item \code{flat\_data}(normalInput):
+  \begin{itemize}
+    \item transition: Data is flatten since input image should be vectorized with the size of 1024. 
+    After grayscaling input image is a 2D matrix. this should be an 1D array to be used by implemented model.
+    \item output: flatten input.
+    \item exception: None.
+  \end{itemize}
+
+\end{itemize}
+
+\section{Data Preparing and Preprocessing Module} \label{Data} 
+
+\subsection{Module}
+\code{data} 
+
+\subsection{Uses}
+None.
+
+\subsection{Syntax}
+\subsubsection{Exported Constants}
+None.
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{3.5cm} p{4cm} p{6cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\code{get\_train\_dataset} & - & \code[trainImages, trainImagesLabels] & \code{UnableToLoad} \\
+\code{get\_test\_dataset} & - & \code[testImages, testImagesLabels] & \code{UnableToLoad} \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+\begin{itemize}
+  \item \code{train\_data}: Data structure holding train data images and their labels.
+  \item \code{test\_data}: Data structure holding test data images and their labels.
+  \item \code{train\_label}: An array incling traing data labels.
+  \item \code{test\_label}: An array incling test data labels.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+None.
+
+\subsubsection{Assumptions}
+None.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \code{get\_train\_dataset}():
+\begin{itemize}
+  \item transition: Returns the prepared and processed train data.
+  \item output: \code{train\_data}.
+  \item exception: None.
+\end{itemize}
+
+\noindent \code{get\_test\_dataset}():
+\begin{itemize}
+  \item transition: Returns the prepared and processed test data.
+  \item output: \code{test\_data}.
+  \item exception: None.
+\end{itemize}
+
+\subsubsection{Local Functions}
+\begin{itemize}
+  \item \code{load\_data}():
+  \begin{itemize}
+    \item transition: Downloads and extracts dataset. After extracting data, 
+    this function saves \code{train\_label} and \code{test\_label}.
+    \item output: Unprocessed train and test data, and their labels. 
+    These images are in RGB. 
+    \item exception: This function raises \code{UnableToDownload}, when there is 
+    a problem with downloading or extracting data.
+  \end{itemize}
+  \item \code{rgb2gray}(unprocessedTrainData, unprocessedTestData):
+  \begin{itemize}
+    \item transition: Converts RGB data into grayscale in order to reduce complexity. 
+    \item output: Grayscaled train and test data.
+    \item exception: None.
+  \end{itemize}
+  \item \code{prep\_pixels}(grayTrainData, grayTestData):
+  \begin{itemize}
+    \item transition: Normalizes grayscaled images to change the range of data between 0 and 1.
+    \item output: Normalized train and test data.
+    \item exception: None.
+  \end{itemize}
+  \item \code{flat\_data}(normalTrainData, normalTestData):
+  \begin{itemize}
+    \item transition: Data is flatten since imagws should be vectorized with the size of 1024. 
+    After grayscaling each image is a 2D matrix. These images should be an 1D array to be used in 
+    training and testing process by implemented model.
+    \item output: flatten train and test data.
+    \item exception: None.
+  \end{itemize}
+  \item \code{shuffle\_data}(flatTrainData, flatTestData):
+  \begin{itemize}
+    \item transition: Attaches traind data and test data to their labels 
+    (\code{train\_label} and \code{test\_label}). Also, shuffle the attached data to improve the 
+    performance.
+    \item output: \code{train\_data} and \code{test\_data}.
+    \item exception: None.
+  \end{itemize}
+
+\end{itemize}
 
 \section{MIS of Training Module} \label{Train} 
 
