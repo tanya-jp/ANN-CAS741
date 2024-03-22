@@ -3,7 +3,7 @@ import numpy as np
 class TrainingModel():
 
     LAYERS_NUMBER = 4
-    LAYERS_NEURONS = [1024, 16, 16, 4]
+    LAYERS_NEURONS = [1024, 16, 16, 10]
 
     def __init__(self):
         return
@@ -24,7 +24,7 @@ class TrainingModel():
         # b
         for i in range (self.LAYERS_NUMBER-1, 0, -1):
             grads.append(np.zeros((self.LAYERS_NEURONS[i], 1)))
-        
+
         return grads
 
 if __name__ == '__main__': 
