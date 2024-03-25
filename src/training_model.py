@@ -25,6 +25,8 @@ class TrainingModel():
         for i in range (self.LAYERS_NUMBER-1, 0, -1):
             grads.append(np.zeros((self.LAYERS_NEURONS[i], 1)))
 
+        # For a network with 4 layers (one input, two hedden layers, one output)
+        # it will be grad_a2, grad_a1, grad_W3, grad_W2, grad_W1, grad_b3, grad_b2, grad_b1
         return grads
 
 if __name__ == '__main__': 
