@@ -151,6 +151,7 @@
 Feb. 2, 2024 & 1.0 & Initial Draft\\
 Feb. 14, 2024 & 1.1 & Modification According to the Feedback\\
 Feb. 16, 2024 & 1.2 & Modification According to the Feedback 2\\
+Apr. 8, 2024 & 1.3 & Modification According to Dr. Smith's Feedback\\
 \bottomrule
 \end{tabularx}
 
@@ -169,23 +170,21 @@ This section records information for easy reference.
 
 \subsection{Table of Units}
 
-Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is employed
-as the unit system. 
-In this document, we do not use any specific SI unit.
-While the SI unit system is primarily employed, for image dimensions, the unit 
-of pixels (px) is used due to its relevance and standard usage in image processing tasks.
-Derived units are used as described below. For each unit, the symbol is given followed by a
-description of the unit and the SI name.
+In this document, the unit of measurement used is the pixel (px), 
+which is relevant for specifying image dimensions in image processing 
+tasks. The pixel is a non-SI (custom) unit and is the only unit 
+mentioned in this specification, as it directly relates to the digital 
+images being classified in this project.
 
 ~\newline
 
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[ht]
-  \noindent \begin{tabular}{l l l} 
+  \noindent \begin{tabular}{l l} 
     \toprule		
-    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
+    \textbf{symbol} & \textbf{unit}\\
     \midrule 
-    px & pixel (matrix entity) & 	Non-SI (custom)\\
+    px & pixel (matrix entity)\\
     \bottomrule
   \end{tabular}
   	% \caption{Provide a caption}
@@ -229,9 +228,13 @@ $b^L$ & \si[per-mode=symbol] {-} & Bias vector of layer L in neural networks
 \\
 ${b_{i}}^L$ & \si[per-mode=symbol] {-} & Bias of neuron i of layer L
 \\
+${\partial}$ & \si[per-mode=symbol] {-} & Partial derivation to represent the rate of change of a function with respect to one variable 
+\\
 $\nabla$ & \si[per-mode=symbol] {-} & Gradient operator
 \\
 $\sigma$ & \si[per-mode=symbol] {-} & Activation function
+\\
+$\sigma'(x)$ & \si[per-mode=symbol] {-} & Derivation of $\sigma$ function with $x$ as the input of the function
 \\
 $W^L$ & \si[per-mode=symbol] {-} & Weight matrix of layer L in neural networks
 \\ 
@@ -259,10 +262,10 @@ ${z_{i}}^L$ & \si[per-mode=symbol] {-} & Output of neuron i of layer L
   GS & Goal Statement\\
   IM & Instance Model\\
   LC & Likely Change\\
-  PS & Physical System Description\\
+  % PS & Physical System Description\\
   R & Requirement\\
   SRS & Software Requirements Specification\\
-  \progname{} & Artificial Neural Newtwork for Image Classification\\
+  ANN & Artificial Neural Newtwork for Image Classification\\
   TM & Theoretical Model\\
   \bottomrule
 \end{tabular}\\
@@ -284,9 +287,9 @@ ${z_{i}}^L$ & \si[per-mode=symbol] {-} & Output of neuron i of layer L
 %   people outside of your domain.  It should be explained.}
 \begin{inparaitem}
 \textbf{Typographic Conventions:} In this document, matrices are denoted by uppercase letters 
-(e.g., W for weight matrices), vectors by lowercase letters (e.g., a for activation vectors), 
-and scalars by regular font (e.g., $\alpha$ for the learning rate). Greek letters are used for specific 
-functions or parameters (e.g., $\sigma$ for the activation function).
+(e.g., \textbf{W} for weight matrices), vectors by lowercase letters (e.g., \textbf{a} for activation vectors), 
+and scalars by regular font (e.g., $\boldsymbol{\alpha}$ for the learning rate). Greek letters are used for specific 
+functions or parameters (e.g., $\boldsymbol{\sigma}$ for the activation function).
 \\ 
 \textbf{Symbols for Mathematical Operations:}
 
@@ -465,11 +468,10 @@ For more details, you can also see the assumptions section (Section~\ref{sec_ass
 %   instance, is high school physics adequate, or should the reader have had a
 %   graduate course on advanced quantum mechanics?}
 The intended readers for this project, which involves developing an enhanced neural network model for image 
-classification using the CIFAR-10 dataset \cite{CIFAR10}, are likely to be individuals with a solid background in computer science, 
-specifically in the areas of machine learning and neural networks. However, as explained in Section: 
-User Characteristics (Section~\ref{SecUserCharacteristics}), users of this project  are a broad audience 
-interested in image classification, without the necessity for a deep technical background in machine learning or 
-neural networks.
+classification using the CIFAR-10 dataset \cite{CIFAR10}, are likely to be individuals with a solid background in computer science. 
+Specifically, this refers to readers who have at least an undergraduate level of education in computer science 
+or a related field. Ideal readers would have taken foundational courses such as Introduction to Computer Science, 
+Data Structures, and Algorithms, and at least one introductory course in Machine Learning or Artificial Intelligence. 
 
 \subsection{Organization of Document}
 
@@ -554,7 +556,7 @@ and within the scope of the CIFAR-10 dataset \cite{CIFAR10} classifications
 \begin{itemize}
 \item Detect data type mismatch, such as text file instead of an image
 \item Process image data, ensuring timely and accurate output
-\item Allows users to easily upload images and view classification results
+% \item Allows users to easily upload images and view classification results
 \item Ensure the security and privacy of any data uploaded by users for classification
 \end{itemize}
 \end{itemize}
@@ -579,10 +581,13 @@ and within the scope of the CIFAR-10 dataset \cite{CIFAR10} classifications
 %   user characteristics should be specific an unambiguous.  For instance, ``The
 %   end user of \progname{} should have an understanding of undergraduate Level 1
 %   Calculus and Physics.''}
-The users of this image classification system are anticipated to have basic proficiency 
-in using software for tasks such as uploading images. Their understanding of image 
-classification should be fundamental, enough to set realistic expectations of the system's 
-functionality. Extensive expertise in machine learning is not required, but a general familiarity 
+The users of this image classification system are anticipated to have basic proficiency in using computer 
+software, specifically comfortable with basic command line operations. This level of proficiency is 
+suitable for individuals at an undergraduate level in computer science or related fields, or those 
+with equivalent experience in a non-academic setting. Users should be familiar with navigating directories 
+and entering commands in a command line interface (CLI) to upload images by specifying file paths. 
+Their understanding of image classification should be fundamental, enough to set realistic expectations 
+of the system's functionality. While extensive expertise in machine learning is not required, a general familiarity 
 with the types of images in the CIFAR-10 dataset \cite{CIFAR10} will be beneficial for choosing appropriate 
 images for classification. Additionally, a keen interest or curiosity in the practical applications 
 of machine learning, especially in areas like image classification, will likely enhance their experience 
@@ -600,13 +605,12 @@ In this project, system constraints are critical as they shape the design space 
 the system must integrate into the real world.
 
 \begin{inparaitem}
-  \textbf{Technical Resource Limitations:} The system's design is bound by the available computational 
-  resources, such as processing power and memory capacity, which influence the complexity and 
-  efficiency of the neural network model.
-
-  \textbf{Dataset Constraints:} The system is tailored specifically for the CIFAR-10 dataset \cite{CIFAR10}. 
-  This specialization may limit its effectiveness with other types of image data.
-  Moreover, this system cannot classify any images that is not in the 10 classes.
+  \textbf{Technical Resource Limitations:} The design accommodates typical computational resources, 
+  like processing power and memory, available to users. This limitation is an external constraint 
+  impacting the complexity and efficiency of the neural network model.
+  % \textbf{Dataset Constraints:} The system is tailored specifically for the CIFAR-10 dataset \cite{CIFAR10}. 
+  % This specialization may limit its effectiveness with other types of image data.
+  % Moreover, this system cannot classify any images that is not in the 10 classes.
 \end{inparaitem}
 
 \section{Specific System Description}
@@ -646,7 +650,9 @@ network of neurons, used for tasks like image recognition and classification.
 digital image into predefined classes.
 
 \item \textbf{CIFAR-10 Dataset \cite{CIFAR10}:} A collection of images used for evaluating machine learning 
-models, consisting of 60,000 32x32 color images in 10 different classes.
+models, consisting of 60,000 32x32 color images in 10 different classes. These classes are: airplane, 
+automobile, bird, cat, deer, dog, frog, horse, ship, and truck. More information is provided by 
+University of Toronto on their website \href{https://www.cs.toronto.edu/~kriz/cifar.html}{HERE}.
 
 \item \textbf{Accuracy:} In the context of an ANN, the degree to which the model correctly 
 classifies test images.
@@ -658,7 +664,7 @@ processing speed and resource utilization.
 with the same size (mxn) of training data.
 \end{itemize}
 
-\subsubsection{Physical System Description} \label{sec_phySystDescrip}
+\subsubsection{System Components and Architecture Description} \label{sec_ArchDescrip}
 
 % \plt{The purpose of this section is to clearly and unambiguously state the
 %   physical system that is to be modelled. Effective problem solving requires a
@@ -678,8 +684,18 @@ with the same size (mxn) of training data.
 
 This ANN system is primarily software-based, focusing on computational processes and 
 algorithms for image classification, and consequently, does not have a physical description in the 
-traditional sense. Therefore, its description revolves around software architecture, data 
-processing methods, user interface design, and performance metrics, rather than physical characteristics.
+traditional sense. Therefore, ANN consists of several key elements critical to its functionality:
+
+\begin{itemize}
+  \item \textbf{Software Architecture:} Emphasizing a modular design to facilitate maintenance and scalability.
+  \item \textbf{Data Processing Methods:} Involving algorithms and techniques for handling and preparing image 
+  data for classification.
+  \item \textbf{User Interface Design:} Focused on user-friendliness and ease of interaction, 
+  particularly for uploading images and viewing results.
+  \item \textbf{Performance Metrics:} Key indicators such as classification accuracy 
+  and processing speed are used to gauge system effectiveness.
+\end{itemize}
+These components are integral to the system's ability to perform its intended image classification tasks efficiently and accurately.
 
 % \begin{itemize}
 
@@ -721,7 +737,7 @@ processing methods, user interface design, and performance metrics, rather than 
 % ‍‍     \plt{One
 %     sentence description of the goal.  There may be more than one.  Each Goal
 %     should have a meaningful label.}
-    Predict the class of uploaded image
+    Predict the class of the uploaded image
 \end{itemize}
 
 \subsection{Solution Characteristics Specification}
@@ -813,7 +829,8 @@ All images are of a size of mxn based on the size of images of training data set
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{object}:]
  The input image contains only one object
  \item[A\refstepcounter{assumpnum}\theassumpnum \label{class}:]
- Every uploaded image belongs to one of the 10 predefined classes in the CIFAR-10 dataset \cite{CIFAR10}
+ Every uploaded image belongs to one of the 10 predefined classes (airplane, 
+ automobile, bird, cat, deer, dog, frog, horse, ship, truck) in the CIFAR-10 dataset \cite{CIFAR10}
   % \plt{Short description of each assumption.  Each assumption
   %   should have a meaningful label.  Use cross-references to identify the
   %   appropriate traceability to TM, GD, DD etc., using commands like dref, ddref
@@ -855,6 +872,7 @@ on.
 {
   In this project the cost function is sum of squared errors (SSE). Our goal is to minimize cost function.\\
   $a_j^{(L)}$: Predicted value for the j-th output in the training data.\\
+  $n_{L-1}$: Number of neurons in the neural network's penultimate layer.\\
   $y_j$: Actual value for the j-th output in the training data.
 }
 % #6 Notes
@@ -905,7 +923,7 @@ Label &\bf Gradient Descent \\
 % \hline
 SI Units&-\\
 \hline
-Equation&$(W, b) = (W, b) - \alpha \nabla \text{Cost}$ \\
+Equation&$(W, b)_{new} = (W, b)_{old} - \alpha \nabla \text{Cost}$ \\
 \hline
 Description &
 In this project, Gradient Descent is a method used to minimize the cost function, essential 
@@ -928,7 +946,9 @@ function's gradient ($\nabla$Cost) from the current values.
 % \plt{Derivations are important for justifying a given GD.  You want it to be
 %   clear where the equation came from.}
 
-For updating the weights matrices and bias vectors using Gradient Descent, the chain rule is applied:
+For updating the weights matrices and bias vectors using Gradient Descent, it is needed to first find 
+the $\nabla \text{Cost}$. For this purpose, it is needed to find the partial derivative of weights and 
+biases. The chain rule is applied to find the desired partial derivatives:
 
 \begin{itemize}
   \item \textbf{Last Layer Derivations:} 
@@ -1098,11 +1118,14 @@ network undertakes, ensuring accurate image analysis and classification.
   \rowcolor[gray]{0.9}
   Type Name & Image\\
   \hline
+  Type Symbol & img \\
+  \hline
   Type Def & 3D matrix of numerical data\\
   \hline
   Description & Images are represented as 3D matrices, 
   with each matrix element corresponding to pixel values across Red, 
-  Green, and Blue color channels. 
+  Green, and Blue color channels. Each pixel is a natural number, with a value 
+  between 0 and 255.
   \\
   \hline
   % Sources & Citation here, if the type is borrowed from another source\\
@@ -1209,10 +1232,9 @@ uncertainty quantification exercise.
   \textbf{Var} & \textbf{Physical Constraints} & \textbf{Software Constraints} &
                              \textbf{Typical Value} & \textbf{Uncertainty}\\
   \midrule 
-  Format & None & Acceptable formats & PNG or JPG & None\\
-  Image & mxn dimensions & Match training & mxn & None\\
-  Size & & data dimensions &
-  \\
+  img format & None & Acceptable formats & PNG or JPG & None\\
+  img height & m & Input data height & Training data height & None\\
+  img width & n & Input data width &  Training data width & None\\
   \bottomrule
 \end{longtable*}
 \end{table}
@@ -1274,14 +1296,16 @@ qualities that the software is expected to exhibit.
 \noindent \begin{itemize}
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] 
-The system requires user-uploaded images in a specified format and resolution. 
+The system requires user-uploaded images in a specified format and resolution 
+as is mentioned in the Table~\ref{TblInputVar}.. 
     % \plt{Requirements
     % for the inputs that are supplied by the user.  This information has to be
     % explicit.}
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:] 
 Verify the given inputs are in correct form and satify the required physical constraints
-given in the Table~\ref{TblInputVar}. 
+given in the Table~\ref{TblInputVar}, by checking the type of the input file and if it is 
+acceptable then by checking the size of the image. 
 The system provides feedback by displaying the classification results for user confirmation.
   % \plt{It isn't
   %   always required, but often echoing the inputs as part of the output is a
@@ -1291,16 +1315,7 @@ The system provides feedback by displaying the classification results for user c
 Classify the uploaded image from \iref{Feedforward}.
 % \plt{Calculation
 %     related requirements.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:] 
-The system will provide its classification results based on the trained model, 
-acknowledging that accuracy may not be 100\%. 
-To validate outputs, the system will incorporate a user feedback mechanism.
   % \plt{Verification related requirements.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] 
-The system presents classification results in an understandable format, clearly indicating the 
-identified image categories.
   % \plt{Output related
   %   requirements.}
 \end{itemize}
@@ -1331,8 +1346,9 @@ identified image categories.
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:]
   \textbf{Accuracy} 
-  The system aims for higher classification accuracy than previous model, 
-  measurable through defined quantitative methods, such as cost function (\hyperref[TM:COE]{TM:COE}). 
+  The system aims for higher classification accuracy than 
+  \href{https://github.com/tanya-jp/CIFAR-Classification/tree/main}{previous model}, 
+  measurable through defined quantitative methods. 
   % \plt{Characterize the accuracy by giving the context/use for
   %   the software.  Maybe something like, ``The accuracy of the computed
   %   solutions should meet the level needed for $<$engineering or scientific
@@ -1341,7 +1357,8 @@ identified image categories.
   %   Validation Plan.''  A link to the VnV plan would be a nice extra.}
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability} 
-The system should be user-friendly and easy to navigate for users with varying levels of technical expertise.
+The system should be user-friendly the way that everything is so clear and well explained for the users. 
+Also, this will be easy to navigate for users with varying levels of technical expertise.
   % \plt{Characterize the usability by giving the context/use for the software.
   %   You should likely reference the user characteristics section.  The level of
   %   usability achieved by the software shall be described following the
@@ -1351,13 +1368,18 @@ The system should be user-friendly and easy to navigate for users with varying l
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:]
   \textbf{Maintainability} 
   The software should be easy to modify.
+  This is designed for easy maintainability, emphasizing modular architecture, 
+  following coding standards, comprehensive documentation, and robust testing practices. 
+  These factors ensure efficient updates, adaptations, and debugging, facilitating 
+  straightforward modifications and reducing long-term maintenance efforts.
   % \plt{The effort required to make any of the likely
   %   changes listed for \progname{} should be less than FRACTION of the original
   %   development time.  FRACTION is then a symbolic constant that can be defined
   %   at the end of the report.}
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:]
-  \textbf{Portability} The system is compatible with multiple operating environment.
+  \textbf{Portability} The system is compatible with multiple operating environment, including 
+  Windows and macOS.
   % \plt{This NFR is easier to write than the others.  The
   %   systems that \progname{} should run on should be listed here.  When possible
   %   the specific versions of the potential operating environments should be
@@ -1367,6 +1389,19 @@ The system should be user-friendly and easy to navigate for users with varying l
 
 % \item Other NFRs that might be discussed include verifiability,
 %   understandability and reusability.
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Interaction}:]
+\textbf{User Interaction Efficiency} The system allowws users to easily upload 
+images and view classification results with minimal complexity and effort, ensuring a smooth and user-friendly experience.
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_VerifyOutput}:] 
+\textbf{Accuracy and Validation} The system will provide its classification results based on the trained model, 
+acknowledging that accuracy may not be 100\%. 
+To validate outputs, the system will incorporate a user feedback mechanism.
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Output}:] 
+\textbf{User-Friendly Output Presentation} The system presents classification results in an 
+understandable format, clearly indicating the 
+identified image categories.
 
 \end{itemize}
 
@@ -1500,15 +1535,12 @@ the assumptions.
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
-	& \iref{Feedforward}& \ref{sec_DataConstraints}& \rref{R_Inputs}& \rref{R_OutputInputs}& \rref{R_Calculate}& 
-  \rref{R_VerifyOutput}& \rref{R_Output}\\
+	& \iref{Feedforward}& \ref{sec_DataConstraints}& \rref{R_Inputs}& \rref{R_OutputInputs}& \rref{R_Calculate}\\
 \hline
-\iref{Feedforward}            & & & & & X& X& \\ \hline
-\rref{R_Inputs}     & & & & & & & \\ \hline
-\rref{R_OutputInputs}    & & X& & & & & \\ \hline
-\rref{R_Calculate}   & & X& & & & X& \\ \hline
-\rref{R_VerifyOutput}  & & X& & & X& & \\ \hline
-\rref{R_Output}     & & & & & & & \\
+\iref{Feedforward}            & & & & & X\\ \hline
+\rref{R_Inputs}     & & & & & \\ \hline
+\rref{R_OutputInputs}    & & X& & &\\ \hline
+\rref{R_Calculate}   & & X& & & \\ 
 \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Requirements and Instance Models}
@@ -1587,9 +1619,6 @@ The following are the values for the symbolic parameters used throughout this re
 
 \begin{itemize}
   \item \textbf{Image Dimensions (mxn):} 32x32 (Standard dimensions of images in the CIFAR-10 dataset \cite{CIFAR10}.)
-
-  \item \textbf{Maintainability Fraction (FRACTION):} 0.25 (Indicating that any change should require no more than 
-  25\% of the original development effort.)
 
 \end{itemize}
 These values are set here for ease of maintenance and to ensure consistency across the report.
