@@ -426,7 +426,7 @@ tests.
       TC-ANN-3   &   GIF  & mxn        &  N  & Invalid Input Type  \\ 
       TC-ANN-4   &   PNG  & (m+1)x(n)  &  N  & Invalid Input Size   \\
       TC-ANN-5   &   JPG  & (m+1)x(n)  &  N  & Invalid Input Size    \\
-      TC-ANN-6   &   GIF  & (m+1)x(n)  &  N  & Invalid Input Type and Size \\
+      TC-ANN-6   &   GIF  & (m+1)x(n)  &  N  & Invalid Input Type \\
       TC-ANN-7   &        &            &  N  & Empty      \\
       \hline
       
@@ -449,8 +449,10 @@ tests.
   Input: Set of input values for area of particular object given in the Table~\ref{TCInput}.
   
   Output: Either give an appropriate error message for TC-ANN-1-3 to TC-ANN-1-7,
-  or the class of the image object identified by the ANN as an output defined in the Table~\ref{TCInput}.
-  
+  or the class of the image object identified by the ANN as an output defined in the Table~\ref{TCInput}. 
+  It must be mentioned that if the type is not valid, the exception will be raised and the size will not 
+  be checked (like TC-ANN-6).
+
   Test Case Derivation: Justified by the ANN's training to accurately classify 
   valid input images according to the 
   SRS \cite{SRS} specifications.
