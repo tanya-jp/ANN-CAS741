@@ -317,7 +317,7 @@ to be implemented.
 \item[Secrets:]The algorithm for coordinating the running of the program.
 \item[Services:]Provides the main program.
 \item[Implemented By:] ANN
-\item[Type of Module:] Abstract Data Type
+\item[Type of Module:] Control Module
 \end{description}
 
 \subsubsection{Saved ANN Model Module (\mref{SavedANN})}
@@ -328,7 +328,7 @@ to be implemented.
   \item[Services:]Saves the data of the highest performance model trained by ANN in 
   a .txt file.
   \item[Implemented By:] ANN
-  \item[Type of Module:] Record
+  \item[Type of Module:] Data Management Module 
   \end{description}
 
 \subsubsection{Output Module (\mref{Output})}
@@ -338,7 +338,7 @@ to be implemented.
 \item[Services:]Outputs the class of the uploaded image and receives 
 the end user's feedback.
 \item[Implemented By:] ANN
-\item[Type of Module:] Abstract Object
+\item[Type of Module:] Abstract object
 \end{description}
 
 \subsubsection{Input Classifier Module(\mref{In-class})}
@@ -348,7 +348,7 @@ the end user's feedback.
   saved ANN model.
   \item[Services:]Predicts the class of the uploaded image by getting the saved model from \mref{SavedANN}.
   \item[Implemented By:] ANN
-  \item[Type of Module:] Abstract Data Type
+  \item[Type of Module:] Abstract object
 \end{description}
 
 
@@ -358,7 +358,7 @@ the end user's feedback.
   \item[Secrets:]Receiving the input data.
   \item[Services:]Prompts user for input image and checks its size and format.
   \item[Implemented By:] ANN
-  \item[Type of Module:] Abstract Data Type
+  \item[Type of Module:] Abstract object
 \end{description}
 
 \subsubsection{Training Model Module(\mref{Train-Model})}
@@ -369,7 +369,7 @@ the end user's feedback.
   This module includes the number of neurons, the connection between them, feedforarding and backpropagassion 
   algorithm.
   \item[Implemented By:] ANN
-  \item[Type of Module:] Abstract Data Type
+  \item[Type of Module:] Abstract object
 \end{description}
 
 % \subsubsection{Feedback Module(\mref{Feedback})}
