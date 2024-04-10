@@ -20,7 +20,7 @@
 
 \begin{document}
 
-\title{Project Title: System Verification and Validation Plan for ANN} 
+\title{System Verification and Validation Plan for ANN} 
 \author{Tanya Djavaherpour}
 \date{\today}
 	
@@ -36,6 +36,7 @@
 Feb. 15, 2024 & 1.0 & Initial Draft\\
 Mar. 04, 2024 & 1.1 & Modification According to the Feedback 1\\
 Apr. 09, 2024 & 1.2 & Modification According to the Feedback 2\\
+Apr. 10, 2024 & 1.3 & Modification According to Dr. Smith's Feedback\\
 \bottomrule
 \end{tabularx}
 
@@ -87,7 +88,7 @@ Apr. 09, 2024 & 1.2 & Modification According to the Feedback 2\\
 \end{tabular}\\
 
 For complete symbols used within the system, please refer the section 1 in 
-SRS \cite{SRS} document.
+SRS \citep{SRS} document.
 
 % \wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
 %   \citep{SRS} tables, if appropriate}
@@ -100,9 +101,9 @@ SRS \cite{SRS} document.
 
 This document outlines the Verification and Validation (VnV) plan for the Artificial 
 Neural Network for Image Classification project, as detailed in the 
-SRS \cite{SRS}. 
+SRS \citep{SRS}. 
 The purpose of this VnV plan is to ensure that all requirements and objectives outlined 
-in the SRS \cite{SRS} 
+in the SRS \citep{SRS} 
 are met with accuracy and efficiency.
 
 The organization of this document starts with the General Information about the ANN in \autoref{GeneralInformation}. 
@@ -113,13 +114,21 @@ Test Description is explained in section 5 (will be added).
 
 \section{General Information}\label{GeneralInformation}
 
+This Verification and Validation (VnV) Plan outlines the procedures and 
+criteria to be used for ensuring the quality and reliability of the Artificial 
+Neural Network (ANN) developed for Image Classification. Central to this plan is the 
+systematic verification of the software's adherence to its requirements and specifications, 
+as detailed in the Software Requirements Specification \citep{SRS}, and the validation of its 
+effectiveness in accurately classifying images within the scope of the CIFAR-10 dataset \citep{CIFAR10}. 
+This VnV process is crucial to affirm that the ANN system meets both its technical and user-centric goals.
+
 \subsection{Summary}
 
 The software being validated in this plan is an Artificial Neural Network designed for 
-Image Classification, tailored specifically to work with the CIFAR-10 dataset \cite{CIFAR10}. 
+Image Classification, tailored specifically to work with the CIFAR-10 dataset \citep{CIFAR10}. 
 It allows users to upload images and efficiently classifies them into predefined 
 categories. It operates within the constraints of available computational 
-resources and is limited to handling images that fall under the CIFAR-10 dataset \cite{CIFAR10}
+resources and is limited to handling images that fall under the CIFAR-10 dataset \citep{CIFAR10}
 categories, ensuring focused and optimized performance in its designated area.
 
 \subsection{Objectives}
@@ -128,11 +137,11 @@ The primary objective of this VnV plan is to build confidence in the correctness
 reliability of the Artificial Neural Network for Image Classification. Our goal is to 
 demonstrate that the system can classify images with a high degree of accuracy. We aim 
 to significantly improve upon the less than 50\% accuracy achieved in 
-previous implementation \cite{ANN:CIFAR10}, 
+previous implementation \citep{ANN:CIFAR10}, 
 acknowledging that reaching 100\% accuracy is not feasible due to inherent limitations in 
 ANN models and the variability of image data. The focus will be on achieving the highest 
 possible accuracy within these constraints. The system's accuracy will be measured through 
-defined quantitative methods such as the cost function in SRS \cite{SRS}.
+defined quantitative methods such as the cost function in SRS \citep{SRS}.
 
 % \wss{State what is intended to be accomplished.  The objective will be around
 %   the qualities that are most important for your project.  You might have
@@ -155,9 +164,9 @@ defined quantitative methods such as the cost function in SRS \cite{SRS}.
 
 The ANN project is supported by several crucial documents. 
 These include a
-Problem Statement \cite{ProblemStatement}, which introduces the initial concept, and a 
-Software Requirements Specification \cite{SRS} that outlines the necessary system requirements, accompanied 
-by a Verification and Validation Report \cite{VnVReport} to ensure the system's compliance and efficacy.
+Problem Statement \citep{ProblemStatement}, which introduces the initial concept, and a 
+Software Requirements Specification \citep{SRS} that outlines the necessary system requirements, accompanied 
+by a Verification and Validation Report \citep{VnVReport} to ensure the system's compliance and efficacy.
 
 % \wss{Reference relevant documentation.  This will definitely include your SRS
 %   and your other project documents (design documents, like MG, MIS, etc).  You
@@ -230,7 +239,7 @@ document will be conducted as follows:
   \item An initial review will be carried out by designated team members, which include Dr. 
     Spencer Smith, Fatemeh Norouziani, Atiyeh Sayadi, and Tanya Djavaherpour. 
     This review will utilize a manual method, guided by an 
-    SRS Checklist \cite{SRS-Checklist} developed by Dr. Smith.
+    SRS Checklist \citep{SRS-Checklist} developed by Dr. Smith.
   \item Reviewers can give feedback and revision suggestions to the author by creating issues on GitHub.
   \item It is the responsibility of the author, Tanya Djavaherpour, to respond to and 
   resolve these issues, incorporating feedback from both primary and secondary reviewers, 
@@ -256,7 +265,7 @@ provide their feedback directly to the author by creating issues in the
 project's GitHub repository. It is the responsibility of the author to 
 address and resolve these issues, taking into account all the suggestions 
 made. The review process will be facilitated by utilizing the 
-MG \cite{MG-Checklist} and MIS \cite{MIS-checklist} 
+MG \citep{MG-Checklist} and MIS \citep{MIS-checklist} 
 Checklists, which have been formulated by Dr. Spencer Smith.
 
 % \wss{Plans for design verification}
@@ -274,8 +283,10 @@ Yi-Leng Chen as a secondary reviewer, will review it.
 They give feedback and suggestions via GitHub issues. 
 Once done, Instructor will do final review of the VnV plan.
 The whole review process will be aligned with the 
-VnV Checklist \cite{VnV-Checklist} that Dr. Smith has prepared.
-It is the author’s responsibility to check the submitted issues regularly 
+VnV Checklist \citep{VnV-Checklist} that Dr. Smith has prepared. 
+One specefic template has been defined for this purpose on the 
+\href{https://github.com/tanya-jp/ANN-CAS741}{GitHub repository}.
+It is the author's responsibility to check the submitted issues regularly 
 and make necessary modifications.
 
 % \wss{The verification and validation plan is an artifact that should also be
@@ -295,15 +306,24 @@ involving manual and automated techniques as outlined below:
   Code Walkthroughs will be the primary technique used for static verification. 
   These sessions involve the development team, consisting of the author, Tanya Djavaherpour, 
   and the domain expert, Fatemeh Norouziani, reviewing the code together. 
-  The final version of the code will be shared with the domain expert prior 
+  Initially, th author, Djavaherpour, thoroughly reviews the code independently, pinpointing 
+  possible issues. The final version of the code will be shared with the domain expert prior 
   to the meeting, during which important test cases will be manually examined. 
-  This process allows the domain expert to present findings and raise questions, 
+  In our static verification approach, we use code walkthroughs, 
+  guided by domain expert Fatemeh Norouziani. 
+  In the walkthrough meetings, we collaboratively discuss these 
+  points, focusing on logical inconsistencies and adherence to standards. 
+  The discussions and resolutions are then documented systematically. 
+  Following this, the author addresses the highlighted issues, ensuring all modifications are well-documented. 
+  If substantial issues are detected, we schedule an additional walkthrough to verify the resolutions. 
+  This methodical process is crucial for ensuring the software's adherence to the project's quality standards.
+  Also, this process allows the domain expert to present findings and raise questions, 
   facilitating a comprehensive review.
 
   \item \textbf{Dynamic Testing:}
   Evaluation of the code will include both unit and system testing, focusing on 
   the functional and nonfunctional requirements outlined in the
-  SRS \cite{SRS} document.
+  SRS \citep{SRS} document.
   The tools used for these evaluations will be detailed in \ref{AutoTestVerTools}. Furthermore, the test cases 
   used in system and unit testing will be stated in sections \ref{SystemTest} and 5 (will be added),
   % \ref{UnitTest}, 
@@ -321,13 +341,17 @@ involving manual and automated techniques as outlined below:
 
 \subsection{Automated Testing and Verification Tools}\label{AutoTestVerTools}
 
-In this image classification project, Pylint \cite{pylint} and a regular testing process with a 
-dedicated testing dataset of CIFAR-10 \cite{CIFAR10} are employed for automated testing and verification. 
-Pylint \cite{pylint} is key for enhancing code quality by identifying coding errors, 
-enforcing standards, and encouraging best practices. Alongside, a robust 
-testing process, involving thorough evaluation on a separate testing dataset, 
-ensures the accuracy and reliability of the image classification model. The combination of 
-Pylint \cite{pylint} for code quality analysis and performance validation through targeted testing 
+In this image classification project, Pylint \citep{pylint} and a regular testing process with a 
+dedicated testing dataset of CIFAR-10 \citep{CIFAR10} are employed for automated testing and verification. 
+Pylint \citep{pylint} is thorough in identifying coding issues, including syntax errors, 
+logical bugs, and signs of problematic coding patterns, like complexity or redundancy. 
+It upholds the PEP 8 style guide, promoting best practices in code formatting and naming. 
+Pylint \citep{pylint} also supports type checking for annotated projects, identifies unused 
+code, and flags potential string format errors. Security-wise, it alerts on usage of risky 
+functions such as "exec" or "eval" and checks for documentation quality. Its flexibility 
+in configuration allows customization according to project needs, playing a key role in 
+sustaining the quality of our Python code. The combination of 
+Pylint \citep{pylint} for code quality analysis and performance validation through targeted testing 
 provides a comprehensive approach to maintaining robustness and effectiveness in the 
 image classification system.
 
@@ -348,17 +372,24 @@ image classification system.
 
 \subsection{Software Validation Plan}\label{SoftwareValPlan}
 
-Validation is the process of comparing the outputs of models to experimental values. 
-Since the CIFAR-10 dataset \cite{CIFAR10} does not come with a predefined validation 
-set and there is not enough experimental data, the validation of the implemented ANN 
-cannot be measured in a traditional sense. Instead, as mentioned previously in \ref{AutoTestVerTools}, the network 
-will be tested to find the accuracy using testing data. 
+Considering the extensive amount of experimental data required for a thorough software 
+validation, this process falls outside the practical scope of our ANN project. 
+The constraints of time make it infeasible to collect and analyze the necessary 
+data to validate system behavior comprehensively. However, we will ensure that the 
+system undergoes rigorous verification to maintain high standards of quality and 
+performance within these constraints.
 
-It's essential to understand that this approach, while deviating from 
-conventional validation methods due 
-to dataset constraints, still provides a valid assessment of the model's performance. 
-This testing process offers a reliable evaluation of the model's ability to 
-generalize and perform accurately on unseen data.
+% Validation is the process of comparing the outputs of models to experimental values. 
+% Since the CIFAR-10 dataset \citep{CIFAR10} does not come with a predefined validation 
+% set and there is not enough experimental data, the validation of the implemented ANN 
+% cannot be measured in a traditional sense. Instead, as mentioned previously in \ref{AutoTestVerTools}, the network 
+% will be tested to find the accuracy using testing data. 
+
+% It's essential to understand that this approach, while deviating from 
+% conventional validation methods due 
+% to dataset constraints, still provides a valid assessment of the model's performance. 
+% This testing process offers a reliable evaluation of the model's ability to 
+% generalize and perform accurately on unseen data.
 
 % \wss{If there is any external data that can be used for validation, you should
 %   point to it here.  If there are no plans for validation, you should state that
@@ -379,15 +410,19 @@ generalize and perform accurately on unseen data.
 % \wss{This section might reference back to the SRS verification section.}
 
 \section{System Test Description}\label{SystemTest}
+
+In this section, we outline the test strategies for validating the ANN system's functional 
+and nonfunctional requirements. The tests are designed to ensure compliance with the 
+specifications detailed in the SRS, encompassing all aspects of system performance and quality.
 	
 \subsection{Tests for Functional Requirements}
 
 The functional requirements are described in the 
-SRS \cite{SRS} section 5.1. 
+SRS \citep{SRS} section 5.1. 
 Implemented ANN will detect invalid inputs and, although the accuracy will not be 100\%,
 classes of uploaded image will be determined. There are five functional requirements for
 this system. Testing R1 and R2 will be explained in 
-the input verification section. R3, R4 and R5 will be
+the input verification section. R3 will be
 explained in the output verification test.
 
 % \wss{Subsets of the tests may be in related, so this section is divided into
@@ -400,7 +435,7 @@ explained in the output verification test.
 \subsubsection{Input Verification} \label{InputVerification}
 
 The inputs will be tested to satisfy R1 and R2 from ANN 
-SRS \cite{SRS}. Specifically,
+SRS \citep{SRS}. Specifically,
 this test will ensure values of the inputs align with the input constraints.
 Table~\ref{TCInput} displays the inputs and outputs of test cases for the input constraints
 tests.
@@ -456,18 +491,17 @@ tests.
 
   Test Case Derivation: Justified by the ANN's training to accurately classify 
   valid input images according to the 
-  SRS \cite{SRS} specifications.
+  SRS \citep{SRS} specifications.
 
-  How test will be performed: An automated script will input valid and invalid images to the ANN, 
-  comparing the output classifications with expected results to verify accuracy.
+  How test will be performed: An automated script will input valid and invalid images to the ANN.
 
 \end{enumerate}
 
 \subsubsection{Output Verification Test} \label{OutputVerificationTest}
-To satisfy R3, R4 and R5 from the 
-SRS \cite{SRS}, any input image 
+To satisfy R3 from the 
+SRS \citep{SRS}, any input image 
 should be properly classified and related to the correct output label
-from the set of 10 classes of CIFAR-10 \cite{CIFAR10}.
+from the set of 10 classes of CIFAR-10 \citep{CIFAR10}.
 
 \begin{enumerate}
 
@@ -487,14 +521,19 @@ from the set of 10 classes of CIFAR-10 \cite{CIFAR10}.
   How test will be performed: This test will be conducted using an automated script that 
   inputs a single, randomly selected test image with one object into the trained ANN. 
   The output will be the classified label provided by 
-   the ANN, which will then be compared to the actual label of the image to verify the accuracy of the classification.
+   the ANN, which will then be compared to the actual label of the image to verify the accuracy of the classification. 
+   This test will be run 10 times and in each time the random image will be chosen from one folders. That said, 
+   after this pocess the software's perforamnec will be tested for 
+   all of the 10 classes of CIFAR-10 dataset \citep{CIFAR10}, including airplane, 
+   automobile, bird, cat, deer, dog, frog, horse, ship, and truck. The purpose of this test is to make sure that 
+   system can print all of the classes' name properly.
 
 \end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
 NonFunctional requirements for ANN are given in 
-SRS \cite{SRS} section 5.2.
+SRS \citep{SRS} section 5.2.
 
 % \wss{The nonfunctional requirements for accuracy will likely just reference the
 %   appropriate functional tests from above.  The test cases should mention
@@ -519,17 +558,19 @@ SRS \cite{SRS} section 5.2.
   
   Initial State: Loading Trained ANN
   
-  Input: Set of test images form the CIFAR-10 dataset \cite{CIFAR10}
+  Input: Set of test images form the CIFAR-10 dataset \citep{CIFAR10}
   
   Output: System accuracy based on prediction of class of the image object
 
   How test will be performed: The test will be executed using an automated 
-  script that feeds a batch of test images from the CIFAR-10 dataset \cite{CIFAR10} 
+  script that feeds a batch of test images from the CIFAR-10 dataset \citep{CIFAR10} 
   into the trained ANN. 
   The script will then compare the ANN's predicted class for each image against 
   the known label, calculating the overall accuracy of the system. This process 
   will quantify the model's performance in terms of correct classifications, 
-  providing a clear measure of its effectiveness in fulfilling the specified requirements.
+  providing a clear measure of its effectiveness in fulfilling the specified requirements. 
+  During this test, we just have the accuracy percentage to find how good is the trained network's performance. 
+  In fact, accuracy is the percentage of correct predictions.
 
 \end{enumerate}
 
@@ -541,13 +582,13 @@ SRS \cite{SRS} section 5.2.
 
   \item{T4: Usability Test\\}
 
-  Control: Manual with group of people
+  Control: Manual with group of Computer Science students at McMaster
   
   Initial State: None
   
   Input: None
   
-  Output: A survey to gather user perspectives on the system's usability
+  Output: None
 
   How test will be performed: A diverse group of users will be asked to install 
   and interact with the software, performing specified tasks. 
@@ -564,7 +605,7 @@ SRS \cite{SRS} section 5.2.
   No. &  Question   & Answer \\
   \hline
   1. & Which operating system are you using?  & \\
-  2. & Was system running smoothly on your computer?  & \\
+  2. & Was system running smoothly on your computer? (Y or N) & \\
   3. & How would you rate the response time of the software for various operations? (On a scale of 1-10) & \\
   4. & How does the software handle errors or unexpected user actions? & \\
   5. & During using the software, were received errors clear to recover them, if you received any? & \\
@@ -611,10 +652,10 @@ SRS \cite{SRS} section 5.2.
   
   Input: None
   
-  Output: Improve code quality with Pylint \cite{pylint}.
+  Output: Improve code quality with Pylint \citep{pylint}.
 
-  How test will be performed: Pylint \cite{pylint} will be used to check the code quality.
-  This library can check the quality of code against different coding styles such as unused libraries
+  How test will be performed: Pylint \citep{pylint} library can check the quality of code 
+  against different coding styles such as unused libraries
   and undefined variable. Which leads to easier maintenance.
 \end{enumerate}
 
@@ -651,19 +692,19 @@ The traceability between test cases and requirements is indicated in \autoref{Tr
 \begin{center}
 \begin{tabular}{ l|c|c|c|c|c|c|c|c|c }
 \hline
- & R1 & R2 & R3 & R4 & R5 & NFR1 & NFR2 & NFR3 & NFR4 \\
+ & R1 & R2 & R3 & NFR1 & NFR2 & NFR3 & NFR4 & NFR5 & NFR6 \\
 \hline
 \ref{InputVerification} & X & X & & & & & & \\
 \hline
-\ref{OutputVerificationTest} & & & X & X & X & & & \\
+\ref{OutputVerificationTest} & & & X & & & & & & \\
 \hline
-\ref{NFAccuracy} & & & & & & X & & \\
+\ref{NFAccuracy} & & & & X & &  & & X &\\
 \hline
-\ref{NFUsability} & & & & & & & X & \\
+\ref{NFUsability} & & & & & X & & &\\
 \hline
-\ref{NFMaintainablity} & & & & & & & & X & \\
+\ref{NFMaintainablity} & & & & & & X & & &\\
 \hline
-\ref{NFPortablity} & & & & & & & & & X \\
+\ref{NFPortablity} & & & & & & & X & & X\\
 \hline
 \end{tabular}
 \caption{Tracebility between test cases and requirements}
