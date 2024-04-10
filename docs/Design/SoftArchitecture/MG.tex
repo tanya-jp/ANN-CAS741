@@ -394,7 +394,7 @@ the end user's feedback.
 \subsubsection{Input Preparing and Preprocessing Module(\mref{In-prep})}
 
 \begin{description}
-  \item[Secrets:]Preparing the input data in a format that can be used by model for classifying.
+  \item[Secrets:]Preparing the suitable input data for classifier model
   \item[Services:]Changes the input image form a 3D matrix to an 1D one by grayscaling it and 
   put all the cells next to each other as a vector.
   \item[Implemented By:] ANN
@@ -404,7 +404,7 @@ the end user's feedback.
 \subsubsection{Data Preparing and Preprocessing Module(\mref{Data})}
 
 \begin{description}
-  \item[Secrets:]Preparing training dataset in a format that can be used by model for training and testing.
+  \item[Secrets:]Preparing the suitable training dataset for model
   \item[Services:]For the better accurate training and testing results, shuffles the training and testing dataset. 
   Changes the traing and test images form 3D matrices to 1D ones by grayscaling them and 
   put all the cells of every image next to each other as vectors.
