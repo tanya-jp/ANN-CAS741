@@ -9,7 +9,7 @@ import os
 import tarfile
 import gdown
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
-import keras
+import keras # pylint: disable=C0413
 
 class Data():
 
@@ -59,7 +59,7 @@ class Data():
 
         # Check if the file was downloaded successfully
         if not os.path.isfile(output):
-            raise Exception("UnableToDownload")
+            raise Exception("UnableToDownload") # pylint: disable=W0719
 
         print("Dataset downloaded")
 
@@ -85,7 +85,7 @@ class Data():
         # Check if the file was downloaded successfully
         if (self.train_images.shape != (50000, 32, 32, 3) or train_y.shape != (50000, 10) or
             self.test_images.shape != (10000, 32, 32, 3) or test_y.shape != (10000, 10)):
-            raise Exception("UnableToDownload")
+            raise Exception("UnableToDownload") # pylint: disable=W0719
         print("Downloaded")
 
     def rgb2gray(self, images, input_image = False):

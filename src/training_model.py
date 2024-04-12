@@ -12,6 +12,7 @@ Classes:
 """
 import numpy as np
 
+# pylint: disable=too-few-public-methods
 class TrainingModel():
     """
     A class representing a neural network training model.

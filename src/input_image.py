@@ -15,6 +15,7 @@ import os
 import matplotlib.pyplot as plt
 
 class Input():
+    # pylint: disable=too-few-public-methods
     """
     A class to handle image input for processing.
 
@@ -61,12 +62,13 @@ class Input():
 
         # Check file format
         if not any(str(file_path).upper().endswith(ext) for ext in self.IMAGE_FORMAT):
-            raise Exception(f"The file format of {file_path} is not valid. Expected formats: {self.IMAGE_FORMAT}")
+            raise Exception(f"The file format of {file_path} is not valid. Expected formats: {self.IMAGE_FORMAT}") # pylint: disable=C0301, W0719
 
         # Check image size
         image_data = plt.imread(file_path)
-        if image_data.shape[:2] != (self.HEIGHT, self.WIDTH) or image_data.shape[:2] != (self.WIDTH, self.HEIGHT):
-            raise Exception(f"The size of the image {file_path} is invalid. Expected size: {self.HEIGHT} in {self.WIDTH}")
+        if (image_data.shape[:2] != (self.HEIGHT, self.WIDTH)
+            or image_data.shape[:2] != (self.WIDTH, self.HEIGHT)):
+            raise Exception(f"The size of the image {file_path} is invalid. Expected size: {self.HEIGHT} in {self.WIDTH}") # pylint: disable=C0301, W0719
 
         return image_data
 
