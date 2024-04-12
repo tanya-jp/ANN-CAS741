@@ -13,7 +13,7 @@ import time
 import numpy as np
 from data import Data
 from training_model import TrainingModel
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 class TrainTest():
     """
@@ -49,7 +49,7 @@ class TrainTest():
 
     BATCH_SIZE = 16
     LEARNING_RATE = 0.1
-    EPOCHS = 40
+    EPOCHS = 2
 
     def __init__(self):
         self.layers = []
@@ -57,7 +57,8 @@ class TrainTest():
         self.training_model = TrainingModel()
         self.gradients = self.training_model.create_gradients_zeros()
 
-        self.train_set, self.test_data = (Data()).get_dataset()
+        self.train_set = None
+        self.test_set = None
         self.set_layers()
 
     def set_layers(self):
@@ -268,6 +269,8 @@ class TrainTest():
         # save start time to caculate training time
         start_time = time.time()
 
+        self.train_set, self.test_set = (Data()).get_dataset()
+
         # initialize W and b
         parameters = self.initialize_parameters()
 
@@ -343,7 +346,7 @@ class TrainTest():
         return parameters, total_costs, start_time, end_time
 
     # calculate accuracy of network's output
-    def calculate_percentage_of_accuracy(self, data, parameters):
+    def calculate_percentage_of_accuracy(self, data, parameters, input_image = False):
         """
         Calculate the accuracy of the neural network model on a given dataset.
 
@@ -360,46 +363,55 @@ class TrainTest():
     """
         correct_perediction = 0
         number_of_data = len(data)
+        predicted_y = None
         for i in range(number_of_data):
-            # data
-            x = data[i][0]
-            # label
-            y = np.argmax(data[i][1])
+            if not input_image:
+                # data
+                x = data[i][0]
+                # label
+                y = np.argmax(data[i][1])
+            else:
+                x=data
 
             output, _ = self.feed_forward(x, parameters)
             predicted_y = np.argmax(output)
             # check if the prediction was correct
-            if y == predicted_y:
+            if not input_image and y == predicted_y:
                 correct_perediction += 1
 
         # calculate acuuracy based on correct predictions
         accuracy = correct_perediction /number_of_data
 
+        if input_image:
+            return predicted_y
+
         return accuracy*100
 
+    def result(self, epochs_costs, trained_params):
+        print("on train data: " + str(self.calculate_percentage_of_accuracy(self.train_set, trained_params)) + " %")
+        print("on test data: " + str(self.calculate_percentage_of_accuracy(self.test_set, trained_params)) + " %")
+        plt.plot(epochs_costs)
+        total_costs_size = len(epochs_costs)
+        plt.xticks(np.arange(total_costs_size), np.arange(1, total_costs_size+1))
+        plt.xlabel("Epoch")
+        plt.ylabel("Cost")
+        plt.show()
 
-# #plot epoch cost
-# def plot_cost_epoch(epochs_costs):
-#   plt.plot(epochs_costs)
-#   total_costs_size = len(epochs_costs)
-#   plt.xticks(np.arange(total_costs_size), np.arange(1, total_costs_size+1))
-#   plt.xlabel("Epoch")
-#   plt.ylabel("Cost")
-#   plt.show()
+
+#plot epoch cost
+
 
 # if __name__ == '__main__':
-#     training = TrainTest()
-#     # training.set_layers()
+    # training = TrainTest()
+    # # training.set_layers()
 
-#     # dataset = Data()
-#     # train_data, test_data = dataset.get_dataset()
-#     trained_params, total_costs_vectorized, start_time, end_time = training.train()
-#     print(f"Training lasted {end_time - start_time} seconds")
+    # # dataset = Data()
+    # # train_data, test_data = dataset.get_dataset()
+    # trained_params, total_costs_vectorized, start_time, end_time = training.train()
+    # print(f"Training lasted {end_time - start_time} seconds")
 
-#     print("Accuracy after training process:")
-#     print("on train data: " +
-# str(training.calculate_percentage_of_accuracy(train_data, trained_params)) + " %")
-#     print("on test data: " +
-# str(training.calculate_percentage_of_accuracy(test_data, trained_params)) + " %")
+    # print("Accuracy after training process:")
+    # print("on train data: " + str(training.calculate_percentage_of_accuracy(train_data, trained_params)) + " %")
+    # print("on test data: " + str(training.calculate_percentage_of_accuracy(test_data, trained_params)) + " %")
 
-#     plot_cost_epoch(total_costs_vectorized)
+    # plot_cost_epoch(total_costs_vectorized)

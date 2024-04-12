@@ -214,7 +214,7 @@ class Data():
         self.train_images = self.flat_data(self.train_images)
         self.test_images = self.flat_data(self.test_images)
         self.train_data = self.shuffle_data(self.train_data, self.train_images)
-        self.test_images = self.shuffle_data(self.test_data, self.test_images)
+        self.test_data = self.shuffle_data(self.test_data, self.test_images)
         return self.train_data, self.test_data
 if __name__ == '__main__':
     d = Data()
