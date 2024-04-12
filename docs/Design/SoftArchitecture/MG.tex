@@ -49,6 +49,7 @@
 Mar. 19, 2024 & 1.0 & Initial Draft\\
 Apr. 10, 2024 & 1.1 & Modification According to Implementation\\
 Apr. 10, 2024 & 1.2 & Modification According to Reviewers' Feedbacks\\
+Apr. 12, 2024 & 1.3 & Modification According to Dr. Smith's Feedbacks\\
 % Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -175,9 +176,8 @@ change.
   neural network training algorithms and parameter adjustments.
 \item[\refstepcounter{acnum} \actheacnum \label{modelTraining}:] Updates in the 
   scheduling and methodology for model training and updating.
-\item[\refstepcounter{acnum} \actheacnum \label{acOutput}:] Evolution in the 
-  format and structure of the output data, including classification results, 
-  by developing GUI.
+\item[\refstepcounter{acnum} \actheacnum \label{acOutput}:] Format and structure of the output data, including classification results, 
+  for instance by developing GUI.
 \item[\refstepcounter{acnum} \actheacnum \label{acControl}:] Changes in software performance.
 \item[\refstepcounter{acnum} \actheacnum \label{acANN}:] Changes in the saved model format.
 \item[\refstepcounter{acnum} \actheacnum \label{acTestData}:] Changes in the test dataset.
@@ -195,7 +195,7 @@ decisions will be changed.
 
 \begin{description}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
+  (Input: File and/or Keyboard, Output: Screen).
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The source of input 
   is always external to the software.
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The classification results
@@ -421,8 +421,8 @@ the end user's feedback.
 
 \begin{description}
   \item[Secrets:]Finding weights and biases of the model.
-  \item[Services:]Applies the training process on prepared trining data from \mref{Data}, using the impelemted model 
-  from \mref{Train-Model} to find the best weights between neurons and each neuron's biase. At the same 
+  \item[Services:]Applies the training process on prepared training data from \mref{Data}, using the impelemted model 
+  from \mref{Train-Model} to find the best weights between neurons and each neuron's bias. At the same 
   time, tests the model to make sure it is being trained.
   \item[Implemented By:] ANN
   % \item[Type of Module:] Abstract Data Type
