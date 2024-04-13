@@ -55,7 +55,8 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-March 19 & 1.0 & Initial Draft\\
+Mar. 19, 2024 & 1.0 & Initial Draft\\
+Apr. 12, 2024 & 1.1 & Modification According to Implementation\\
 % Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -112,6 +113,7 @@ The following table summarizes the primitive data types used by ANN.
 2D matrix & $\mathbf{M}_{ij}$ &  A collection of elements arranged in rows and columns\\
 3D matrix & $\mathbf{M}_{ijk}$ & A structure composed of elements arranged in a grid with three dimensions\\ 
 boolean & $bool$ & True or False\\
+dictionary & $dict$ & A dictionary to store data as keys and values\\
 string & $str$ & A sequence of characters\\
 character & char & a single symbol or digit\\
 integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
@@ -283,12 +285,12 @@ None.
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{3.5cm}}
+\begin{tabular}{p{5cm} p{4cm} p{4cm} p{3.5cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
 \code{save\_model} & - & $bool$ & \code{PermissionError} \\
-\code{load\_model} & - & [$\mathbf{M}_{ijk}$, $\mathbf{M}_{ij}$] & \code{FileNotFoundError} \\
+\code{load\_trained\_classifier} & $\mathbf{A}_{i}$, $str$ & $\mathbf{Z}_{+}$ & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -296,14 +298,16 @@ None.
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-  \item \code{modelData}: Data structure holding the current ANN model's data. 
-This is an array including weights and biases.
-\end{itemize}
+None.
+% \begin{itemize}
+%   \item \code{modelData}: Data structure holding the current ANN model's data. 
+% This is an array including weights and biases.
+% \end{itemize}
 
 \subsubsection{Environment Variables}
-\code{modelFile}: A file on the file system where the ANN model data is saved and 
-from where it is loaded.
+None.
+% \code{modelFile}: A file on the file system where the ANN model data is saved and 
+% from where it is loaded.
 
 \subsubsection{Assumptions}
 None.
@@ -312,28 +316,31 @@ None.
 
 \noindent \code{save\_model}():
 \begin{itemize}
-  \item transition: Writes the current state of the ANN model (weights and biases) to the \code{modelFile}.
+  \item transition: Writes the current state of the ANN model (weights and biases) to a \code{.npy} file 
+  as a $dict$.
   \item output: Returns \code{True} if model is saved successfully.
   \item exception: Raises \code{PermissionError} if the module lacks the necessary permissions to write to \code{modelFile}. 
   It may also raise an IOError if there are issues with the file system, such as insufficient storage space.
 \end{itemize}
 
-\noindent \code{load\_model}():
+\noindent \code{load\_trained\_classifier}(\code{input\_image, model\_name}):
 \begin{itemize}
-  \item transition: Reads the model data from \code{modelFile}. 
-  \item output: Returns the trained model based on weights and biases from \code{modelData}. 
-  The return value is a list. The first argument is a list of weights (each weight matrix is $\mathbf{M}_{ij}$), 
-  so that this argument is a $\mathbf{M}_{ijk}$. The second argument is a list of biases (each bias vector is $\mathbf{A}_{i}$). 
-  This argument is a $\mathbf{M}_{ij}$.
-  \item exception: Raises \code{FileNotFoundError} if \code{modelFile} does not exist or cannot be accessed. 
-  Additionally, an exception may be raised for data corruption or format mismatch, indicating issues 
-  with the integrity or compatibility of the stored model data.
+  \item transition: Loads a trained classifier and uses it to predict a class for the input image. 
+  \item output: The predicted class as $\mathbf{Z}_{+}$, based on the vector of input image and 
+  name of the saved model.
+  \item exception: None.
 \end{itemize}
 
 
 \subsubsection{Local Functions}
-None.
-
+\noindent \code{load\_model}(\code{file\_name}):
+\begin{itemize}
+  \item transition: Load model parameters from a specified code{.npy} file.
+  \item output: The model parameters stored in the file as a $dict$.
+  \item exception: Raises \code{FileNotFoundError} if \code{modelFile} does not exist or cannot be accessed. 
+  Additionally, an exception may be raised for data corruption or format mismatch, indicating issues 
+  with the integrity or compatibility of the stored model data.
+\end{itemize}
 \newpage
 
 \section{MIS of Output Module} \label{Output} 
@@ -356,12 +363,12 @@ None.
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2.5cm} p{4cm} p{4cm} p{3cm}}
+\begin{tabular}{p{3cm} p{4cm} p{4cm} p{3cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{set\_class} & - & - & - \\
-\code{set\_feedback} & $str$ & $bool$ &  \code{PermissionError}\\
+\code{set\_class\_name} & - & $str$ & - \\
+\code{save\_feedback} & - & - &  -\\
 \hline
 \end{tabular}
 \end{center}
@@ -369,7 +376,7 @@ None.
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-None.
+\code{class\_name}: The $str$ as the name of the class to which the image has been classified.
 
 \subsubsection{Environment Variables}
 None.
@@ -379,23 +386,30 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \code{get\_class}():
+\noindent \code{set\_class\_name}():
 \begin{itemize}
-  \item transition: Receives the classification result from the Input Classifier Module (\ref{In-class}).
+  \item transition: Determines the class name of an image using the Input Classifier Module (\ref{In-class}).
+  \item output: he class name determined by the Input Classifier Module (\ref{In-class}).
+  \item exception: None.
+\end{itemize}
+
+\noindent \code{save\_feedback}():
+\begin{itemize}
+  \item transition: ollects and saves user feedback on the classification result to a text file.
   \item output: None.
   \item exception: None.
 \end{itemize}
 
-\noindent \code{set\_feedback}():
-\begin{itemize}
-  \item transition: Sets user feedback on classification result. 
-  \item output: Returns a confirmation message or status after recording the feedback.
-  \item exception: Raises \code{PermissionError} if the module lacks the necessary permissions to record feedback.
-\end{itemize}
-
 
 \subsubsection{Local Functions}
-None.
+\noindent \code{append\_to\_file}(\code{file\_path, sentence}):
+\begin{itemize}
+  \item transition: Appends a given feedback to a file and prints a success message or error message depending on 
+  the outcome of the file operation.
+  \item output: None.
+  \item exception: Raises \code{FileNotFoundError} if the destination \code{.txt} file is not found. 
+  \code{IOError} will be raised, if there is a problem with writing to the file. 
+\end{itemize}
 
 \newpage
 
@@ -424,8 +438,7 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{load\_model} & - & - & - \\
-\code{get\_image\_pixels} & - & - & - \\
+\code{set\_image\_pixel} & - & - & - \\
 \code{get\_class} & - & $str$&  -\\
 \hline
 \end{tabular}
@@ -435,9 +448,8 @@ None.
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item \code{modelData}: Data structure holding the current ANN model's data. 
-  This is an array including weights and biases.
-  \item \code{imagePixels}: An array of input image's pixels after preprocessing.
+  \item \code{input\_image}: An array of input image's pixels after preprocessing.
+  \item \code{class\_name}: The $str$ as the name of the class to which the image has been classified.
 \end{itemize}
 
 \subsubsection{Environment Variables}
@@ -448,25 +460,18 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \code{load\_model}():
-\begin{itemize}
-  \item transition: Receives trained model from the Saved ANN Model Module (\ref{SavedANN}) 
-  and saves it in \code{modelData}.
-  \item output: None.
-  \item exception: None.
-\end{itemize}
-
 \noindent \code{set\_image\_pixels}():
 \begin{itemize}
   \item transition: Receives the array of input image from Input Preparing and Preprocessing Module (\ref{In-prep}) 
-  and saves in \code{imagePixels}.
+  and saves in \code{input\_image}.
   \item output: None.
   \item exception: None.
 \end{itemize}
 
 \noindent \code{get\_class}():
 \begin{itemize}
-  \item transition: Classifies the input image.
+  \item transition: Classifies the preprocessed image using a pretrained model from (\ref{SavedANN}) and 
+                    maps the output to a class name.
   \item output: The class of the input image.
   \item exception: None.
 \end{itemize}
@@ -503,8 +508,7 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{set\_input} & \code{File path} & - & \code{FileNotFoundError, InvalidSize, InvalidFormat} \\
-\code{get\_image\_pixels} & - & $\mathbf{M}_{ijk}$ & - \\
+\code{set\_image} & - & $\mathbf{M}_{ijk}$ & \code{FileNotFoundError, InvalidSize, InvalidFormat} \\
 \hline
 \end{tabular}
 \end{center}
@@ -512,9 +516,7 @@ None.
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-  \item \code{inputImage}: A $\mathbf{M}_{ijk}$ of the RGB input image.
-\end{itemize}
+None.
 
 \subsubsection{Environment Variables}
 None.
@@ -524,23 +526,15 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \code{set\_input}(inputImagePath):
+\noindent \code{set\_image}():
 \begin{itemize}
-  \item transition: Receives the input image from end user and saves its matrix as \code{inputImage}.
+  \item transition: Receives the input image from end user and returns its matrix as \code{inputImage}.
   \item output: None.
   \item exception: Raises \code{FileNotFoundError} if \code{inputImagePath} does not exist or cannot be accessed. 
   Also, \code{InvalidSize} is raised when the size of input image in not compatible with \code{HEIGHT} or 
   \code{WIDTH}. Additionally, \code{InvalidFormat} is thrown if the input image's format is 
   not compatible with \code{IMAGE\_FORMAT}.
 \end{itemize}
-
-\noindent \code{get\_image\_pixels}():
-\begin{itemize}
-  \item transition: Getter of the input image's matrix.
-  \item output: $\mathbf{M}_{ijk}$ of \code{inputImage}.
-  \item exception: None.
-\end{itemize}
-
 
 \subsubsection{Local Functions}
 None.
@@ -610,7 +604,8 @@ None.
 \code{input\_prep} 
 
 \subsection{Uses}
-None.
+Data Preparing and Preprocessing Module (\ref{Data})\\
+Input Image Module (\ref{In-set}) 
 
 \subsection{Syntax}
 \subsubsection{Exported Constants}
@@ -623,7 +618,7 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{input\_prep} & - & $\mathbf{A}_{i}$ & - \\
+\code{get\_input} & - & $\mathbf{A}_{i}$ & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -632,7 +627,7 @@ None.
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item \code{input}: A $\mathbf{M}_{ijk}$ incling input image pixels.
+  \item \code{input\_image}: Incling input image pixels.
 \end{itemize}
 
 \subsubsection{Environment Variables}
@@ -655,28 +650,32 @@ None.
 \begin{itemize}
   \item \code{set\_image\_pixels}():
   \begin{itemize}
-    \item transition: Receives the input image pixels and saves in \code{input}.
+    \item transition: Loads an image using the Input Image Module (\ref{In-set}).
+    and store it in \code{input\_image}.
     \item output: None.
     \item exception: None.
   \end{itemize}
 
   \item \code{rgb2gray}():
   \begin{itemize}
-    \item transition: Converts RGB data (\code{input}) into grayscale in order to reduce complexity. 
-    \item output: Grayscaled input ($\mathbf{M}_{ijk}$).
+    \item transition: Uses Data Preparing and Preprocessing Module (\ref{Data}) to convert 
+    RGB data (\code{input\_image}) into grayscale to reduce the complexity. 
+    \item output: None.
     \item exception: None.
   \end{itemize}
-  \item \code{prep\_pixels}(grayInput):
+  \item \code{prep\_pixels}():
   \begin{itemize}
-    \item transition: Normalizes grayscaled input to change the range of data between 0 and 1.
-    \item output: Normalized input.
+    \item transition: Normalizes grayscaled (\code{input\_image}) to change the range of data between 0 and 1, 
+    using Data Preparing and Preprocessing Module (\ref{Data}).
+    \item output: None.
     \item exception: None.
   \end{itemize}
-  \item \code{flat\_data}(normalInput):
+  \item \code{flat\_data}():
   \begin{itemize}
-    \item transition: Data is flatten since input image should be vectorized with the size of 1024. 
+    \item transition: Data is flatten since (\code{input\_image}) should be vectorized 
+    with the size of 1024. 
     After grayscaling input image is a $\mathbf{M}_{ij}$. this should be an $\mathbf{A}_{i}$ to be used by implemented model.
-    \item output: flatten input.
+    \item output: None.
     \item exception: None.
   \end{itemize}
 
@@ -703,8 +702,9 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{get\_train\_dataset} & - & [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$] & \code{UnableToLoad} \\
-\code{get\_test\_dataset} & - & [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$] & \code{UnableToLoad} \\
+\code{get\_dataset} & - & [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$], [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$] & - \\
+\code{rgb2gray} & [$\mathbf{M}_{ij}$], $bool$ & - & -\\
+\code{prep\_pixels} & [$\mathbf{M}_{ij}$] & - & -\\
 \hline
 \end{tabular}
 \end{center}
@@ -721,8 +721,8 @@ None.
   Since test images after processing are vectors ($\mathbf{A}_{i}$), a list of these images is 
   a matix ($\mathbf{M}_{ij}$). Alos, labels are saving in a vector ($\mathbf{A}_{i}$). 
   Consequently, this data structure is a list in [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$] format.
-  \item \code{train\_label}: An $\mathbf{A}_{i}$ incling traing data labels.
-  \item \code{test\_label}: An $\mathbf{A}_{i}$ incling test data labels.
+  \item \code{train\_images}: A list incling traing data images.
+  \item \code{test\_images}:  Alist incling test data images.
 \end{itemize}
 
 \subsubsection{Environment Variables}
@@ -733,58 +733,71 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \code{get\_train\_dataset}():
+\noindent \code{get\_dataset}():
 \begin{itemize}
-  \item transition: Returns the prepared and processed train data.
-  \item output: \code{train\_data}.
+  \item transition: Processes and retrieve the training and testing datasets.
+  \item output: \code{train\_data}, \code{test\_data}
   \item exception: None.
 \end{itemize}
 
-\noindent \code{get\_test\_dataset}():
+\noindent \code{rgb2gray}(images, input\_image):
 \begin{itemize}
-  \item transition: Returns the prepared and processed test data.
-  \item output: \code{test\_data}.
+  \item transition: Converts RGB data into grayscale in order to reduce complexity. 
+  First input is a numpy array representing one or more images in RGB format. 
+  If a single image, it should be a $\mathbf{M}_{ijk}$ array 
+  (height, width, color\_channels). If multiple images, it should be a 4D array 
+  (number\_images, height, width, color\_channels).
+  Second input as a $bool$. It is a flag to indicate if the provided 'images' 
+  parameter is a single image (True) or a batch of images (False). Default is False.
+  \item output: The transformed grayscale images. If 'images' was a 
+  single image, the return is a $\mathbf{M}_{ij}$ (height, width).
+  If 'images' was a batch of images, the return is a $\mathbf{M}_{ijk}$ 
+  array (number\_images, height, width).
+  \item exception: None.
+\end{itemize}
+
+\noindent \code{prep\_pixels}(images):
+\begin{itemize}
+  \item transition: Normalizes grayscaled images to change the range of data between 0 and 1.
+  \item output: Normalized images.
   \item exception: None.
 \end{itemize}
 
 \subsubsection{Local Functions}
 \begin{itemize}
-  \item \code{load\_data}():
+  \item \code{save\_data}():
   \begin{itemize}
-    \item transition: Downloads and extracts dataset. After extracting data, 
-    this function saves \code{train\_label} and \code{test\_label}.
-    \item output: Unprocessed train and test data, and their labels. 
-    These images are in RGB. 
+    \item transition: Downloads the file from Google Drive and saves it locally.
+    \item output: None.
     \item exception: This function raises \code{UnableToDownload}, when there is 
     a problem with downloading or extracting data.
   \end{itemize}
-  \item \code{rgb2gray}(unprocessedTrainData, unprocessedTestData):
+
+  \item \code{load\_data}():
   \begin{itemize}
-    \item transition: Converts RGB data into grayscale in order to reduce complexity. 
-    \item output: Grayscaled train and test data ($\mathbf{M}_{ijk}$).
-    \item exception: None.
+    \item transition: Loads \code{train\_data} and \code{test\_data}, ecnods the labels. 
+    This function updates \code{train\_images} and \code{test\_images} as well.
+    \item output: None.
+    \item exception: This function raises \code{UnableToDownload}, when there is 
+    a problem with downloading or extracting data.
   \end{itemize}
-  \item \code{prep\_pixels}(grayTrainData, grayTestData):
-  \begin{itemize}
-    \item transition: Normalizes grayscaled images to change the range of data between 0 and 1.
-    \item output: Normalized train and test data.
-    \item exception: None.
-  \end{itemize}
-  \item \code{flat\_data}(normalTrainData, normalTestData):
+
+  \item \code{flat\_data}(images):
   \begin{itemize}
     \item transition: Data is flatten since imagws should be vectorized with the size of 1024. 
     After grayscaling each image is a $\mathbf{M}_{ij}$. These images should be an $\mathbf{A}_{i}$ to be used in 
     training and testing process by implemented model.
-    \item output: flatten train and test data.
+    \item output: Flattened images.
     \item exception: None.
   \end{itemize}
-  \item \code{shuffle\_data}(flatTrainData, flatTestData):
+
+  \item \code{shuffle\_data}(data, images):
   \begin{itemize}
-    \item transition: Attaches traind data and test data to their labels 
-    (\code{train\_label} and \code{test\_label}). Also, shuffle the attached data to improve the 
-    performance.
+    \item transition: Combines images with their corresponding labels, one-hot encodes the labels, 
+    and then shuffles the combined data for randomness.
     \item output: \code{train\_data} and \code{test\_data}.
-    \item exception: None.
+    \item exception: A tuple as [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$], 
+    where each tuple contains a shuffled image and its label.
   \end{itemize}
 
 \end{itemize}
@@ -815,13 +828,14 @@ The details of fucntions using here are described in SRS document \cite{SRS}.
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{3.5cm} p{5.25cm} p{4cm} p{2cm}}
+\begin{tabular}{p{7cm} p{3cm} p{3cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{train\_and\_test} & $\mathbf{A}_{i}$, [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$], 
-[$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$] & [$\mathbf{M}_{ijk}$, $\mathbf{M}_{ij}$]  & -\\
-\code{set\_layers} & - & - & -\\
+\code{train} &- & $dict$, $\mathbf{A}_{i}$, $\mathbf{Z}_{+}$, $\mathbf{Z}_{+}$  & -\\
+\code{result} & $dict$, $\mathbf{A}_{i}$ & - & -\\
+\code{calculate\_percentage\_of\_accuracy} & $\mathbf{M}_{ij}$, $dict$, $bool$ & - & -\\
+                                           & or [$\mathbf{M}_{ijk}$, $\mathbf{M}_{i}$], $dict$, $bool$ & - & -\\
 \hline
 \end{tabular}
 \end{center}
@@ -842,26 +856,53 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \code{train\_and\_test}(gradientsArrays, train\_data, test\_data):
+\noindent \code{train}():
 \begin{itemize}
-  \item transition: Train the model based on constant variables defined in \ref{Train-Model}. 
-  Gradient arrays and train data are needed for training. Input parameters are achieved from 
-  \ref{Train-Model} and \ref{Data}. At the same time, apply changes on \code{test\_data} to make 
-  sure it is working and being trained correctly.
-  \item output: Returns a data structure ([$\mathbf{M}_{ijk}$, $\mathbf{M}_{ij}$])
-  including weights and biases of trained model.
+  \item transition: Trains the model based on constant variables defined in \ref{Train-Model}. 
+  Gradient arrays and train data are needed for training. 
+  The training process involves initializing parameters, performing forward and backward 
+  passes for each batch, and updating the parameters using the computed gradients. The 
+  process is repeated for a specified number of epochs.
+  \item output: The final trained parameters, cost for each epoch, 
+  start time, and end time of training.
   \item exception: None.
 \end{itemize}
 
-\noindent \code{set\_layers}():
+\noindent \code{result}(epochs\_costs, trained\_params):
 \begin{itemize}
-  \item transition: \code{layers} is set based on Train Model Module (\ref{Train-Model}).
-  \item output: None.
+  \item transition: Displays the accuracy percentages for training and testing 
+  datasets and plots the training cost over epochs.
+  This method calculates and prints the accuracy on both the 
+  training and testing datasets using the trained model parameters. 
+  It also generates a plot of the training costs over epochs to 
+  visually assess the model's learning progress.
+  \item output: This method prints the accuracy percentages for 
+  the training and test datasets to the console and
+  displays a line plot of the training costs over 
+  epochs, showing changes in cost with each epoch.
+  \item exception: None.
+\end{itemize}
+
+\noindent \code{calculate\_percentage\_of\_accuracy}(data, parameters, input\_image = False):
+\begin{itemize}
+  \item transition: Calculates the accuracy of the neural network model on a given dataset or 
+  finds the predicted class of an input image.
+  Accuracy is determined by comparing the predicted labels against the actual labels and 
+   calculating the percentage of correct predictions.
+  \item output: Accuracy percentage if input\_image is \code{False}, or class index if \code{True}.
   \item exception: None.
 \end{itemize}
 
 
 \subsubsection{Local Functions}
+\noindent \code{set\_layers}():
+\begin{itemize}
+  \item transition: \code{layers} is set based on Train Model Module (\ref{Train-Model}) 
+  and the gradients.
+  \item output: None.
+  \item exception: None.
+\end{itemize}
+
 \begin{itemize}
   \item \code{sigmoid}(x):
   \begin{itemize}
