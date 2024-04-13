@@ -48,10 +48,15 @@ class Model():
         try:
             np.save('trained_params.npy', trained_params)
             return True
-        except Exception as e:
-            print(f"An error occurred: {e}")
+        except PermissionError as pe:
+            print(f"Permission error: {pe}")
             raise
-
+        except IOError as io:
+            print(f"I/O error: {io}")
+            raise
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+            raise
     def load_model(self, file_name):
         """
         Load model parameters from a specified npy file.
