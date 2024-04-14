@@ -776,7 +776,8 @@ None.
   \item \code{load\_data}():
   \begin{itemize}
     \item transition: Loads \code{train\_data} and \code{test\_data}, ecnods the labels. 
-    This function updates \code{train\_images} and \code{test\_images} as well.
+    The dataset is load using \code{keras.datasets}.
+    This function updates \code{train\_images} and \code{test\_images} as well. 
     \item output: None.
     \item exception: This function raises \code{UnableToDownload}, when there is 
     a problem with downloading or extracting data.
