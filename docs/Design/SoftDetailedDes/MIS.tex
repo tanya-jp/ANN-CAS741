@@ -638,10 +638,11 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \code{input\_prep}():
+\noindent \code{get\_input}():
 \begin{itemize}
-  \item transition: Prepares and preprocess the input image to change it 
-  the way model can use it to predicts the class.
+  \item transition: Execute the preprocessing steps and return the processed image.
+  This method sequentially calls other methods to load, convert to grayscale, 
+  normalize, and flatten the image data.
   \item output: an $\mathbf{A}_{i}$ including prepared and preprocessed input image.
   \item exception: None.
 \end{itemize}
@@ -735,7 +736,11 @@ None.
 
 \noindent \code{get\_dataset}():
 \begin{itemize}
-  \item transition: Processes and retrieve the training and testing datasets.
+  \item transition: Process and retrieve the training and testing datasets.
+  This method orchestrates various data processing steps including loading data, 
+  converting to grayscale, normalizing pixel values, flattening images, and shuffling data.
+  It ensures the dataset is properly formatted and prepared for use in machine learning
+  models.
   \item output: \code{train\_data}, \code{test\_data}
   \item exception: None.
 \end{itemize}
