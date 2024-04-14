@@ -906,7 +906,7 @@ None.
 \begin{itemize}
   \item \code{sigmoid}(x):
   \begin{itemize}
-    \item transition: Claculates sigmoid function for x, as the activation function.
+    \item transition: Calculates sigmoid function for x, as the activation function.
     \item output: Sigmoid value of x. 
     \item exception: None.
   \end{itemize}
@@ -923,7 +923,7 @@ None.
 
   \item \code{compute\_cost}(predicted, actual):
   \begin{itemize}
-    \item transition: Claculates the sum of the squared errors based on the 
+    \item transition: Calculates the sum of the squared errors based on the 
     predicted and actual values.
     \item output: Returns the sum of the squared errors
     \item exception: None.
@@ -931,7 +931,7 @@ None.
 
   \item \code{feed\_forward}(predicted, parameters, layersNumb):
   \begin{itemize}
-    \item transition: Claculates feedforwarding process as described in SRS \cite{SRS}. 
+    \item transition: Calculates feedforwarding process as described in SRS \cite{SRS}. 
     This is done by using the predicted value of previous step, parameters and the number of layers, 
     \code{parameters} dictionary and the number of layers.
     \item output: Returns the new predicted value and a \code{cache} including new and old parameters.
@@ -948,7 +948,7 @@ None.
 
   \item \code{backpropagation}(cache, predicted, actual, layers):
   \begin{itemize}
-    \item transition: Claculates backpropagation process as described in SRS \cite{SRS} 
+    \item transition: Calculates backpropagation process as described in SRS \cite{SRS} 
     to calculate gradients of wights and biases. 
     \item output: A dictionary as gradients that keys are labels of gradients to define weights or biases, 
     and values are gradients.
