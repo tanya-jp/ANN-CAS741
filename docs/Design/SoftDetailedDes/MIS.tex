@@ -58,6 +58,7 @@ urlcolor=cyan          % color of external links
 Mar. 19, 2024 & 1.0 & Initial Draft\\
 Apr. 12, 2024 & 1.1 & Modification According to Implementation\\
 Apr. 13, 2024 & 1.2 & Modification According to Reviewers' Feedbacks\\
+Apr. 14, 2024 & 1.3 & Modification According to Dr. Smith's Feedback\\
 % Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -66,7 +67,8 @@ Apr. 13, 2024 & 1.2 & Modification According to Reviewers' Feedbacks\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation \cite{SRS} at \href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{HERE}.
+See SRS Documentation \cite{SRS} at 
+\href{https://github.com/tanya-jp/ANN-CAS741/blob/main/docs/SRS/SRS.pdf}{HERE}.
 % \wss{Also add any additional symbols, abbreviations or acronyms}
 
 \newpage
@@ -110,9 +112,9 @@ The following table summarizes the primitive data types used by ANN.
 \toprule 
 \textbf{Data Type} & \textbf{Notation} & \textbf{Description}\\ 
 \midrule
-1D array & $\mathbf{A}_{i}$ & A linear sequence of elements\\
-2D matrix & $\mathbf{M}_{ij}$ &  A collection of elements arranged in rows and columns\\
-3D matrix & $\mathbf{M}_{ijk}$ & A structure composed of elements arranged in a grid with three dimensions\\ 
+1D array & ${a}$ & A linear sequence of elements\\
+2D matrix & $\mathbf{M}_{2}$ &  A collection of elements arranged in rows and columns\\
+3D matrix & $\mathbf{M}_{3}$ & A structure composed of elements arranged in a grid with three dimensions\\ 
 boolean & $bool$ & True or False\\
 dictionary & $dict$ & A dictionary to store data as keys and values\\
 string & $str$ & A sequence of characters\\
@@ -224,8 +226,10 @@ None.
 
 \subsubsection{Assumptions}
 \begin{itemize}
-  \item The ANN Control Module assumes that the Hardware-Hiding Module, Saved ANN Model Module, and Output Module are implemented 
-  according to their specifications. However, it does include error handling to manage unexpected behaviors or failures in these modules.
+  \item The ANN Control Module assumes that the Hardware-Hiding Module, Saved ANN Model Module, 
+  and Output Module are implemented 
+  according to their specifications. However, it does include error handling to manage 
+  unexpected behaviors or failures in these modules.
   \item The system environment (operating system, hardware) is assumed to be stable. 
   Also, essential libraries and dependencies are presumed to be correctly installed and configured.
 \end{itemize}
@@ -236,9 +240,13 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent main():
+\noindent \code{main}():
 \begin{itemize}
-  \item transition: Initializes the program.
+  \item Main executable script for training a model or classifying an image.
+  This script provides a command-line interface for the user to 
+  choose between training a model or classifying an image. It utilizes 
+  classes from the Saved ANN Model Module (\ref{SavedANN}) and 
+  Output Module (\ref{Output}) to perform these tasks.
   % \item output: 
   % \item exception: 
 \end{itemize}
@@ -291,7 +299,7 @@ None.
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
 \code{save\_model} & - & $bool$ & \code{PermissionError} \\
-\code{load\_trained\_classifier} & $\mathbf{A}_{i}$, $str$ & $\mathbf{Z}_{+}$ & - \\
+\code{load\_trained\_classifier} & $a$, $str$ & $\mathbf{Z}_{+}$ & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -319,7 +327,7 @@ None.
 \begin{itemize}
   \item transition: Writes the current state of the ANN model (weights and biases) to a \code{.npy} file 
   as a $dict$.
-  \item output: Returns \code{True} if model is saved successfully.
+  \item output: \code{out:=True}
   \item exception: Raises \code{PermissionError} if the module lacks the necessary permissions to write to \code{modelFile}. 
   It may also raise an IOError if there are issues with the file system, such as insufficient storage space.
 \end{itemize}
@@ -396,7 +404,7 @@ None.
 
 \noindent \code{save\_feedback}():
 \begin{itemize}
-  \item transition: ollects and saves user feedback on the classification result to a text file.
+  \item transition: Collects and saves user feedback on the classification result to a text file.
   \item output: None.
   \item exception: None.
 \end{itemize}
@@ -472,7 +480,7 @@ None.
 \noindent \code{get\_class}():
 \begin{itemize}
   \item transition: Classifies the preprocessed image using a pretrained model from (\ref{SavedANN}) and 
-                    maps the output to a class name.
+                    maps the output to a class name and saves in {class\_name}.
   \item output: The class of the input image.
   \item exception: None.
 \end{itemize}
@@ -509,7 +517,7 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{set\_image} & - & $\mathbf{M}_{ijk}$ & \code{FileNotFoundError, InvalidSize, InvalidFormat} \\
+\code{set\_image} & - & $\mathbf{M}_{3}$ & \code{FileNotFoundError, InvalidSize, InvalidFormat} \\
 \hline
 \end{tabular}
 \end{center}
@@ -568,7 +576,7 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{create\_gradients} & - & $\mathbf{A}_{i}$ & - \\
+\code{create\_gradients} & - & $a$ & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -590,7 +598,7 @@ None.
 \begin{itemize}
   \item transition: Creates zero arrays for all needed gradients based on the 
   \code{LAYERS\_NUMBER} and \code{LAYERS\_NEURONS}.
-  \item output: All gradients' zero vector ($\mathbf{A}_{i}$)
+  \item output: All gradients' zero vector ($a$)
   \item exception: None.
 \end{itemize}
 
@@ -619,7 +627,7 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{get\_input} & - & $\mathbf{A}_{i}$ & - \\
+\code{get\_input} & - & $a$ & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -644,7 +652,7 @@ None.
   \item transition: Execute the preprocessing steps and return the processed image.
   This method sequentially calls other methods to load, convert to grayscale, 
   normalize, and flatten the image data.
-  \item output: an $\mathbf{A}_{i}$ including prepared and preprocessed input image.
+  \item output: an $a$ including prepared and preprocessed input image.
   \item exception: None.
 \end{itemize}
 
@@ -676,7 +684,7 @@ None.
   \begin{itemize}
     \item transition: Data is flatten since (\code{input\_image}) should be vectorized 
     with the size of 1024. 
-    After grayscaling input image is a $\mathbf{M}_{ij}$. this should be an $\mathbf{A}_{i}$ to be used by implemented model.
+    After grayscaling input image is a $\mathbf{M}_{2}$. this should be an ${a}$ to be used by implemented model.
     \item output: None.
     \item exception: None.
   \end{itemize}
@@ -704,9 +712,9 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{get\_dataset} & - & [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$], [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$] & - \\
-\code{rgb2gray} & [$\mathbf{M}_{ij}$], $bool$ & - & -\\
-\code{prep\_pixels} & [$\mathbf{M}_{ij}$] & - & -\\
+\code{get\_dataset} & - & [$\mathbf{M}_{2}$, ${a}$], [$\mathbf{M}_{2}$, ${a}$] & - \\
+\code{rgb2gray} & [$\mathbf{M}_{2}$], $bool$ & - & -\\
+\code{prep\_pixels} & [$\mathbf{M}_{2}$] & - & -\\
 \hline
 \end{tabular}
 \end{center}
@@ -716,13 +724,13 @@ None.
 \subsubsection{State Variables}
 \begin{itemize}
   \item \code{train\_data}: Data structure holding train data images and their labels. 
-  Since train images after processing are vectors ($\mathbf{A}_{i}$), a list of these images is 
-  a matix ($\mathbf{M}_{ij}$). Alos, labels are saving in a vector ($\mathbf{A}_{i}$). 
-  Consequently, this data structure is a list in [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$] format.
+  Since train images after processing are vectors (${a}$), a list of these images is 
+  a matix ($\mathbf{M}_{2}$). Alos, labels are saving in a vector (${a}$). 
+  Consequently, this data structure is a list in [$\mathbf{M}_{2}$, ${a}$] format.
   \item \code{test\_data}: Data structure holding test data images and their labels. 
-  Since test images after processing are vectors ($\mathbf{A}_{i}$), a list of these images is 
-  a matix ($\mathbf{M}_{ij}$). Alos, labels are saving in a vector ($\mathbf{A}_{i}$). 
-  Consequently, this data structure is a list in [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$] format.
+  Since test images after processing are vectors (${a}$), a list of these images is 
+  a matix ($\mathbf{M}_{2}$). Alos, labels are saving in a vector (${a}$). 
+  Consequently, this data structure is a list in [$\mathbf{M}_{2}$, ${a}$] format.
   \item \code{train\_images}: A list incling traing data images.
   \item \code{test\_images}:  Alist incling test data images.
 \end{itemize}
@@ -750,14 +758,14 @@ None.
 \begin{itemize}
   \item transition: Converts RGB data into grayscale in order to reduce complexity. 
   First input is a numpy array representing one or more images in RGB format. 
-  If a single image, it should be a $\mathbf{M}_{ijk}$ array 
+  If a single image, it should be a $\mathbf{M}_{3}$ array 
   (height, width, color\_channels). If multiple images, it should be a 4D array 
   (number\_images, height, width, color\_channels).
   Second input as a $bool$. It is a flag to indicate if the provided 'images' 
   parameter is a single image (True) or a batch of images (False). Default is False.
   \item output: The transformed grayscale images. If 'images' was a 
-  single image, the return is a $\mathbf{M}_{ij}$ (height, width).
-  If 'images' was a batch of images, the return is a $\mathbf{M}_{ijk}$ 
+  single image, the return is a $\mathbf{M}_{2}$ (height, width).
+  If 'images' was a batch of images, the return is a $\mathbf{M}_{3}$ 
   array (number\_images, height, width).
   \item exception: None.
 \end{itemize}
@@ -792,7 +800,7 @@ None.
   \item \code{flat\_data}(images):
   \begin{itemize}
     \item transition: Data is flatten since imagws should be vectorized with the size of 1024. 
-    After grayscaling each image is a $\mathbf{M}_{ij}$. These images should be an $\mathbf{A}_{i}$ to be used in 
+    After grayscaling each image is a $\mathbf{M}_{2}$. These images should be an ${a}$ to be used in 
     training and testing process by implemented model.
     \item output: Flattened images.
     \item exception: None.
@@ -803,7 +811,7 @@ None.
     \item transition: Combines images with their corresponding labels, one-hot encodes the labels, 
     and then shuffles the combined data for randomness.
     \item output: \code{train\_data} and \code{test\_data}.
-    \item exception: A tuple as [$\mathbf{M}_{ij}$, $\mathbf{A}_{i}$], 
+    \item exception: A tuple as [$\mathbf{M}_{2}$, ${a}$], 
     where each tuple contains a shuffled image and its label.
   \end{itemize}
 
@@ -839,10 +847,10 @@ The details of fucntions using here are described in SRS document \cite{SRS}.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\code{train} &- & $dict$, $\mathbf{A}_{i}$, $\mathbf{Z}_{+}$, $\mathbf{Z}_{+}$  & -\\
-\code{result} & $dict$, $\mathbf{A}_{i}$ & - & -\\
-\code{calculate\_percentage\_of\_accuracy} & $\mathbf{M}_{ij}$, $dict$, $bool$ & - & -\\
-                                           & or [$\mathbf{M}_{ijk}$, $\mathbf{M}_{i}$], $dict$, $bool$ & - & -\\
+\code{train} &- & $dict$, ${a}$, $\mathbf{Z}_{+}$, $\mathbf{Z}_{+}$  & -\\
+\code{result} & $dict$, ${a}$ & - & -\\
+\code{calculate\_percentage\_of\_accuracy} & $\mathbf{M}_{2}$, $dict$, $bool$ & - & -\\
+                                           & or [$\mathbf{M}_{3}$, $\mathbf{M}_{i}$], $dict$, $bool$ & - & -\\
 \hline
 \end{tabular}
 \end{center}
@@ -852,7 +860,7 @@ The details of fucntions using here are described in SRS document \cite{SRS}.
 \subsubsection{State Variables}
 \begin{itemize}
   \item \code{layers}: Layers dimensions are defined based on the 
-  model architecture and are saved in an $\mathbf{A}_{i}$ named layers.
+  model architecture and are saved in an ${a}$ named layers.
 \end{itemize}
 
 \subsubsection{Environment Variables}
@@ -920,8 +928,8 @@ None.
 
   \item \code{initialize\_parameters}(layers):
   \begin{itemize}
-    \item transition: Allocates random normal weights ($\mathbf{M}_{ij}$) 
-    and zero biases ($\mathbf{A}_{i}$) for each layer.
+    \item transition: Allocates random normal weights ($\mathbf{M}_{2}$) 
+    and zero biases (${a}$) for each layer.
     \item output: Returns a dictionary (named \code{parameters}) 
     that the keys define weights or biases, and the values are allocated random numbers 
     to each of them.
