@@ -35,10 +35,6 @@ class Input():
     WIDTH = 32
     IMAGE_FORMAT = [".PNG", ".JPEG", ".JPG"]
 
-    def __init__(self):
-        return
-
-
     def set_image(self):
         """
         Loads an image from the user-provided path and validates its format and size.
@@ -71,10 +67,3 @@ class Input():
             raise Exception(f"The size of the image {file_path} is invalid. Expected size: {self.HEIGHT} in {self.WIDTH}") # pylint: disable=C0301, W0719
 
         return image_data
-
-
-
-if __name__ == '__main__':
-    inp = Input()
-    inp.set_image()
-    

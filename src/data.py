@@ -45,29 +45,6 @@ class Data():
         self.test_data = []
         self.test_images = []
 
-    def save_data(self):
-        """
-        Download the file from Google Drive and save it locally if it 
-        isn't already saved
-        """
-        url = 'https://drive.google.com/uc?id=1Y1vgzPvMeVcXSxDfOlCVia7wsU7p8M6g'
-        output = 'CIFAR10.tar.gz'
-        unzipped = 'CIFAR10'
-
-        if not os.path.isfile(output):
-            gdown.download(url, output, quiet=False)
-
-        # Check if the file was downloaded successfully
-        if not os.path.isfile(output):
-            raise Exception("UnableToDownload") # pylint: disable=W0719
-
-        print("Dataset downloaded")
-
-        # Extract the downloaded tar.gz file
-        if not os.path.isfile(unzipped):
-            with tarfile.open(output) as file:
-                file.extractall()
-
     def load_data(self):
         """
         Load train and test dataset, ecnod the labels 
@@ -216,6 +193,3 @@ class Data():
         self.train_data = self.shuffle_data(self.train_data, self.train_images)
         self.test_data = self.shuffle_data(self.test_data, self.test_images)
         return self.train_data, self.test_data
-if __name__ == '__main__':
-    d = Data()
-    d.get_dataset()

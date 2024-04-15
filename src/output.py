@@ -58,10 +58,10 @@ class Output():
             with open(file_path, 'a', encoding='utf-8') as file:
                 file.write(sentence + '\n')  # Add a newline after the sentence
             print("Sentence added successfully.")
-        except FileNotFoundError:
-            print("Error: The file was not found.")
-        except IOError:
-            print("Error: An I/O error occurred while writing to the file.")
+        except FileNotFoundError as e:
+            raise FileNotFoundError(f"Error: The file was not found. Original exception: {e}")
+        except IOError as e:
+            raise IOError(f"Error: An I/O error occurred while writing to the file. Original exception: {e}")
         except Exception as e: #pylint: disable=W0718
             print(f"An unexpected error occurred: {e}")
 
@@ -93,7 +93,3 @@ class Output():
                 expected_class = expected_class.lower()
         self.append_to_file("feedback.txt", str(self.class_name) + " " + str(expected_class))
 
-
-if __name__ == '__main__':
-    o = Output()
-    o.save_feedback()

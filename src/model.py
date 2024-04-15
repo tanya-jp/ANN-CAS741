@@ -34,7 +34,7 @@ class Model():
         """
         Save the parameters based on trained model using `TrainTest`.
         Save the model to a file named 'model.npy'. 
-        If an error occurs during file handling, the error is printed and raised.
+        If an error occurs during file handling, the error is raised.
 
         Returns:
         bool: True if the model parameters are successfully saved; False otherwise.
@@ -49,14 +49,12 @@ class Model():
             np.save('trained_params.npy', trained_params)
             return True
         except PermissionError as pe:
-            print(f"Permission error: {pe}")
-            raise
+            raise PermissionError(f"Permission error: {pe}") from pe
         except IOError as io:
-            print(f"I/O error: {io}")
-            raise
+            raise IOError(f"I/O error: {io}") from io
         except Exception as e:
-            print(f"An unexpected error occurred: {e}")
-            raise
+            raise Exception(f"An unexpected error occurred: {e}") from e
+            
     def load_model(self, file_name):
         """
         Load model parameters from a specified npy file.
@@ -97,7 +95,5 @@ class Model():
             The predicted class.
         """
         parameters = self.load_model(model_name)
-        predicted_class = self.training.calculate_percentage_of_accuracy(
-                            input_image, parameters, input_image=True)
         return self.training.calculate_percentage_of_accuracy(
                             input_image, parameters, input_image=True)
