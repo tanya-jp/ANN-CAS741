@@ -1,0 +1,9 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.6, pytest-7.2.2, pluggy-1.0.0
+rootdir: C:\Users\tanya\OneDrive\Documents\McMaster\Courses\Scientific Computing\CAS final\ANN-CAS741\test
+plugins: anyio-4.0.0
+collected 7 items
+
+test_image_properties.py .......                                         [100%]
+
+============================== 7 passed in 0.49s ==============================

@@ -1,0 +1,15 @@
+============================================================================================== test session starts ===============================================================================================
+platform win32 -- Python 3.11.6, pytest-7.2.2, pluggy-1.0.0
+rootdir: C:\Users\tanya\OneDrive\Documents\McMaster\Courses\Scientific Computing\CAS final\ANN-CAS741\test
+plugins: anyio-4.0.0
+collected 2 items
+
+test_classifier.py ..                                                                                                                                                                                       [100%]
+
+================================================================================================ warnings summary ================================================================================================
+..\..\..\..\..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\site-packages\tensorflow\__init__.py:30
+  C:\Users\tanya\AppData\Local\Programs\Python\Python311\Lib\site-packages\tensorflow\__init__.py:30: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+    import distutils as _distutils
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================================================================================== 2 passed, 1 warning in 8.22s ==========================================================================================
