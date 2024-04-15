@@ -1,0 +1,3 @@
+Training lasted 5842.64865231514 seconds
+on train data: 22.234 %
+on test data: 21.959999999999997 %
