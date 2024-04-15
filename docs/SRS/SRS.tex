@@ -151,7 +151,7 @@
 Feb. 2, 2024 & 1.0 & Initial Draft\\
 Feb. 14, 2024 & 1.1 & Modification According to the Feedback\\
 Feb. 16, 2024 & 1.2 & Modification According to the Feedback 2\\
-Apr. 8, 2024 & 1.3 & Modification According to Dr. Smith's Feedback\\
+Apr. 15, 2024 & 1.3 & Modification According to Dr. Smith's Feedback\\
 \bottomrule
 \end{tabularx}
 
@@ -1349,6 +1349,9 @@ Classify the uploaded image from \iref{Feedforward}.
   The system aims for higher classification accuracy than 
   \href{https://github.com/tanya-jp/CIFAR-Classification/tree/main}{previous model}, 
   measurable through defined quantitative methods. 
+  The system will provide its classification results based on the trained model, 
+  acknowledging that accuracy may not be 100\%. 
+  To validate outputs, the system will incorporate a user feedback mechanism.
   % \plt{Characterize the accuracy by giving the context/use for
   %   the software.  Maybe something like, ``The accuracy of the computed
   %   solutions should meet the level needed for $<$engineering or scientific
@@ -1389,19 +1392,19 @@ Also, this will be easy to navigate for users with varying levels of technical e
 
 % \item Other NFRs that might be discussed include verifiability,
 %   understandability and reusability.
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Interaction}:]
-\textbf{User Interaction Efficiency} The system allowws users to easily upload 
-images and view classification results with minimal complexity and effort, ensuring a smooth and user-friendly experience.
+% \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Interaction}:]
+% \textbf{User Interaction Efficiency} The system allowws users to easily upload 
+% images and view classification results with minimal complexity and effort, ensuring a smooth and user-friendly experience.
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_VerifyOutput}:] 
-\textbf{Accuracy and Validation} The system will provide its classification results based on the trained model, 
-acknowledging that accuracy may not be 100\%. 
-To validate outputs, the system will incorporate a user feedback mechanism.
+% \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_VerifyOutput}:] 
+% \textbf{Accuracy and Validation} The system will provide its classification results based on the trained model, 
+% acknowledging that accuracy may not be 100\%. 
+% To validate outputs, the system will incorporate a user feedback mechanism.
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Output}:] 
-\textbf{User-Friendly Output Presentation} The system presents classification results in an 
-understandable format, clearly indicating the 
-identified image categories.
+% \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Output}:] 
+% \textbf{User-Friendly Output Presentation} The system presents classification results in an 
+% understandable format, clearly indicating the 
+% identified image categories.
 
 \end{itemize}
 
