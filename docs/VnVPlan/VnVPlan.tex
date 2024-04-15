@@ -693,21 +693,21 @@ The traceability between test cases and requirements is indicated in \autoref{Tr
 
 \begin{table}[h!]
 \begin{center}
-\begin{tabular}{ l|c|c|c|c|c|c|c|c|c|c}
+\begin{tabular}{ |l|c|c|c|c|c|c|c|c|c|c}
 \hline
- & R1 & R2 & R3 & NFR1 & NFR2 & NFR3 & NFR4 & NFR5 & NFR6 & NRF7\\
+ & R1 & R2 & R3 & NFR1 & NFR2 & NFR3 & NFR4\\
 \hline
-\ref{InputVerification} & X & X & & & & & & & \\
+\ref{InputVerification} & X & X & & & & &\\
 \hline
-\ref{OutputVerificationTest} & & & X & & & & & & \\
+\ref{OutputVerificationTest} & & & X & & & &\\
 \hline
-\ref{NFAccuracy} & & & & X & &  & &  & X &\\
+\ref{NFAccuracy} & & & & X & &  & \\
 \hline
-\ref{NFUsability} & & & & & X & & & X & & X\\
+\ref{NFUsability} & & & & & X & & \\
 \hline
-\ref{NFMaintainablity} & & & & & & X & & &\\
+\ref{NFMaintainablity} & & & & & & X &\\
 \hline
-\ref{NFPortablity} & & & & & & & X & & &\\
+\ref{NFPortablity} & & & & & & & X\\
 \hline
 \end{tabular}
 \caption{Tracebility between test cases and requirements}
@@ -794,7 +794,7 @@ its methods set\_class\_name and save\_feedback are called.
     
 \end{enumerate}
 
-\subsubsection{Data Preparing and Preprocessing Module(M9)}
+\subsubsection{Data Preparing and Preprocessing Module (M9)}
 Data Preparing and Preprocessing Module is for loading and processing data.
 
 \begin{enumerate}
