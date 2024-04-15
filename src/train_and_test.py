@@ -50,8 +50,8 @@ class TrainTest():
     """
 
     BATCH_SIZE = 16
-    LEARNING_RATE = 0.1
-    EPOCHS = 2
+    LEARNING_RATE = 0.05
+    EPOCHS = 40
 
     def __init__(self):
         self.layers = []

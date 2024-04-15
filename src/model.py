@@ -99,4 +99,5 @@ class Model():
         parameters = self.load_model(model_name)
         predicted_class = self.training.calculate_percentage_of_accuracy(
                             input_image, parameters, input_image=True)
-        return predicted_class
+        return self.training.calculate_percentage_of_accuracy(
+                            input_image, parameters, input_image=True)

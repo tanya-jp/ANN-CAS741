@@ -20,7 +20,7 @@ Modules:
 from model import  Model
 from output import Output
 
-if __name__ == "__main__":
+def main():
     task = "0" # pylint: disable=C0103
     print("What do you want to do?")
     print("1. Train the model")
@@ -38,4 +38,7 @@ if __name__ == "__main__":
         class_name = o.set_class_name()
         print(class_name)
         o.save_feedback()
+
+if __name__ == "__main__":
+    main()
     

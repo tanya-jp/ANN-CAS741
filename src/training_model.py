@@ -30,8 +30,8 @@ class TrainingModel():
         create_gradients_zeros: Initializes gradients for backpropagation as zero arrays.
     """
 
-    LAYERS_NUMBER = 4
-    LAYERS_NEURONS = [1024, 16, 16, 10]
+    LAYERS_NUMBER = 5
+    LAYERS_NEURONS = [1024, 256, 128, 32, 10]
 
     def __init__(self):
         return
