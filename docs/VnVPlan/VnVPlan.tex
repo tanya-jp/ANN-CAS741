@@ -14,6 +14,7 @@
 \usepackage{graphicx}
 \usepackage{colortbl}
 \usepackage{paralist}
+\usepackage{amsmath, mathtools}
 
 \input{../Comments}
 \input{../Common}
@@ -37,6 +38,7 @@ Feb. 15, 2024 & 1.0 & Initial Draft\\
 Mar. 04, 2024 & 1.1 & Modification According to the Feedback 1\\
 Apr. 09, 2024 & 1.2 & Modification According to the Feedback 2\\
 Apr. 10, 2024 & 1.3 & Modification According to Dr. Smith's Feedback\\
+Apr. 15, 2024 & 1.4 & Complete Unit Test\\
 \bottomrule
 \end{tabularx}
 
@@ -415,7 +417,7 @@ In this section, we outline the test strategies for validating the ANN system's 
 and nonfunctional requirements. The tests are designed to ensure compliance with the 
 specifications detailed in the SRS, encompassing all aspects of system performance and quality.
 	
-\subsection{Tests for Functional Requirements}
+\subsection{Tests for Functional Requirements} \label{T1T2}
 
 The functional requirements are described in the 
 SRS \citep{SRS} section 5.1. 
@@ -493,7 +495,8 @@ tests.
   valid input images according to the 
   SRS \citep{SRS} specifications.
 
-  How test will be performed: An automated script will input valid and invalid images to the ANN.
+  How test will be performed: An automated script will input valid and invalid images to the ANN. 
+  This automated test works with Pytest \citep{pytest}.
 
 \end{enumerate}
 
@@ -714,130 +717,160 @@ The traceability between test cases and requirements is indicated in \autoref{Tr
 % \wss{Provide a table that shows which test cases are supporting which
 %   requirements.}
 
-% \section{Unit Test Description}\label{UnitTest}
+\section{Unit Test Description}\label{UnitTest}
 
-% \wss{This section should not be filled in until after the MIS (detailed design
-%   document) has been completed.}
+The modules of the ANN software are available in MG \citep{MG} and 
+MIS \citep{MIS} documents.
 
-% \wss{Reference your MIS (detailed design document) and explain your overall
-% philosophy for test case selection.}  
+\subsection{Unit Testing Scope}
 
-% \wss{To save space and time, it may be an option to provide less detail in this section.  
-% For the unit tests you can potentially layout your testing strategy here.  That is, you 
-% can explain how tests will be selected for each module.  For instance, your test building 
-% approach could be test cases for each access program, including one test for normal behaviour 
-% and as many tests as needed for edge cases.  Rather than create the details of the input 
-% and output here, you could point to the unit testing code.  For this to work, you code 
-% needs to be well-documented, with meaningful names for all of the tests.}
+Unit testing is performed on modules with highest priority, including \textbf{ANN Control Module} 
+and \textbf{Data Preparing and Preprocessing Module}. The reason of defining 
+Data Preparing and Preprocessing Module as a module with high priority 
+is the impact and the role of data processing in every machine learining project. 
+Additionally, Control Module includes the main function of running the software, 
+which makes it an important module. Control Module uses Output Module and Saved ANN Module 
+directly, and all other modules indirectly. 
 
-% \subsection{Unit Testing Scope}
+\subsection{Tests for Functional Requirements}
 
-% \wss{What modules are outside of the scope.  If there are modules that are
-%   developed by someone else, then you would say here if you aren't planning on
-%   verifying them.  There may also be modules that are part of your software, but
-%   have a lower priority for verification than others.  If this is the case,
-%   explain your rationale for the ranking of module importance.}
+R1 and R3 are tested with T1 and T2 respectively in \ref{T1T2} using Pytets \citep{pytest}. 
+Functional tests not automated by PyTest \citep{pytest} are described in this section.
 
-% \subsection{Tests for Functional Requirements}
 
-% \wss{Most of the verification will be through automated unit testing.  If
-%   appropriate specific modules can be verified by a non-testing based
-%   technique.  That can also be documented in this section.}
+\subsubsection{ ANN Control Module (M2)}
 
-% \subsubsection{Module 1}
+ANN Control Module is the main executable script for training a model or classifying an image.
 
-% \wss{Include a blurb here to explain why the subsections below cover the module.
-%   References to the MIS would be good.  You will want tests from a black box
-%   perspective and from a white box perspective.  Explain to the reader how the
-%   tests were selected.}
+\begin{enumerate}
 
-% \begin{enumerate}
+\item{train-test-id1\\}
 
-% \item{test-id1\\}
-
-% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-%   be automatic}
+Type: Automatic
 					
-% Initial State: 
+Initial State: N/A
 					
-% Input: 
+Input: 1 to train the model
 					
-% Output: \wss{The expected result for the given inputs}
+Output: Pass if the model is trained correctly, and Fail if it is not.
 
-% Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: The expected value in the Output field is justified by the following reasoning:
+test\_train\_model:
+  \begin{itemize}
+    \item The main function should instantiate a Model object and call its save\_model 
+    method when the user selects option '1' to train the model.
+    \item Therefore, if the main function executes successfully, it indicates that 
+    the model is trained or loaded correctly, and the save\_model method is called, resulting in a Pass.
+  \end{itemize}
 
-% How test will be performed: 
+
+How test will be performed: 
+Run the main function with input '1' to simulate training the model and verify 
+that the model is instantiated and the save\_model method is called.
 					
-% \item{test-id2\\}
+\item{classify-test-id2\\}
 
-% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-%   be automatic}
+Type: Automatic
 					
-% Initial State: 
+Initial State: N/A
 					
-% Input: 
-					
-% Output: \wss{The expected result for the given inputs}
+Input: 2 to classify the image.
 
-% Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Output: Pass if the model classifies input correctly, and Fail if it is not.
 
-% How test will be performed: 
+Test Case Derivation: 
+\begin{itemize}
+  \item The main function should instantiate an Output object, 
+  call its set\_class\_name method, and then call its save\_feedback 
+  method when the user selects option '2' to classify an image and provide feedback.
+  \item Therefore, if the main function executes successfully, it indicates that 
+  the image is classified correctly, and the set\_class\_name and save\_feedback methods 
+  are called, resulting in a Pass.
+\end{itemize}
 
-% \item{...\\}
+How test will be performed: Run the main function with input '2' to simulate classifying an image 
+and providing feedback, and verify that the Output object is instantiated, 
+its methods set\_class\_name and save\_feedback are called.
     
-% \end{enumerate}
+\end{enumerate}
 
-% \subsubsection{Module 2}
+\subsubsection{Data Preparing and Preprocessing Module(M9)}
+Data Preparing and Preprocessing Module is for loading and processing data.
 
-% ...
+\begin{enumerate}
 
-% \subsection{Tests for Nonfunctional Requirements}
+  \item{data-prep-test-id3\\}
+  
+  Type: Automatic
+            
+  Initial State: N/A
+            
+  Input: Random RGB images and labels for training and testing.
+            
+  Output: Pass if the dataset is processed correctly and the preprocessing steps 
+          are applied as expected, Fail otherwise.
+  
+  Test Case Derivation: The expected value in the Output field is justified by 
+  the following reasoning:
+  \begin{itemize}
+    \item The test\_get\_dataset test case verifies the behavior of the 
+    get\_dataset method of the Data class, which processes the dataset 
+    by applying various preprocessing steps.
+    \item The method is patched to mock the preprocessing steps, such as 
+    RGB to grayscale conversion, normalization, flattening, and shuffling.
+    \item After calling the method, the test checks if the images in the 
+    dataset are flattened correctly and if the preprocessing steps are called as expected.
+    \item Therefore, if the method behaves as expected and all assertions 
+    pass, the test case is considered to Pass.
+  \end{itemize}
+  
+  
+  How test will be performed: 
+  \begin{itemize}
+    \item The setUp method sets up the test environment by creating an 
+    instance of the Data class and generating random RGB images and 
+    labels for training and testing.
+    \item The method under test, get\_dataset, is called with the 
+    mocked preprocessing steps.
+    \item The assertions are made to verify that the images in the 
+    dataset are flattened correctly, and the preprocessing steps are 
+    called as expected.
+    \item The test is considered a Pass if all assertions pass, 
+    indicating that the dataset is processed correctly, and a Fail otherwise.
+  \end{itemize}
 
-% \wss{If there is a module that needs to be independently assessed for
-%   performance, those test cases can go here.  In some projects, planning for
-%   nonfunctional tests of units will not be that relevant.}
+\end{enumerate}
 
-% \wss{These tests may involve collecting performance data from previously
-%   mentioned functional tests.}
+\subsection{Tests for Nonfunctional Requirements}
 
-% \subsubsection{Module ?}
-		
-% \begin{enumerate}
+Unit testing the non-functional requirements is beyond the scope.
 
-% \item{test-id1\\}
+\subsection{Traceability Between Test Cases and Modules}
 
-% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-%   be automatic}
-					
-% Initial State: 
-					
-% Input/Condition: 
-					
-% Output/Result: 
-					
-% How test will be performed: 
-					
-% \item{test-id2\\}
+A traceability between test cases and modules is shown in \autoref{tab:tc-traceability-module}.
 
-% Type: Functional, Dynamic, Manual, Static etc.
-					
-% Initial State: 
-					
-% Input: 
-					
-% Output: 
-					
-% How test will be performed: 
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{ l|c|c|c|c|c|c|c|c|c }
+\hline
+ & M2 & M3 & M4 & M5 & M6 & M7 & M8 & M9 & M10\\
+\hline
+T1 & & & & & X & & & &\\
+\hline
+T2 & & X & X & X & & & & &\\
+\hline
+train-test-id1 & X & X & X & & & & X & X &\\
+\hline
+classify-test-id2 & X & X & & X & & X & & & X\\
+\hline
+data-prep-test-id3 & & & & & & X & X & &\\
 
-% \end{enumerate}
-
-% \subsubsection{Module ?}
-
-% ...
-
-% \subsection{Traceability Between Test Cases and Modules}
-
-% \wss{Provide evidence that all of the modules have been considered.}
+\hline
+\end{tabular}
+\caption{Tracebility between test cases and module}
+\label{tab:tc-traceability-module}
+\end{center}
+\end{table}
 				
 \bibliographystyle{plainnat}
 
