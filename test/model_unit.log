@@ -1,0 +1,16 @@
+File not found. Please check the file path.
+.An error occurred while loading the array:
+Could not read file
+...<class 'numpy.ndarray'>
+Training lasted 1 seconds
+.<class 'numpy.ndarray'>
+Training lasted 1 seconds
+.<class 'numpy.ndarray'>
+Training lasted 1 seconds
+.<class 'numpy.ndarray'>
+Training lasted 1 seconds
+.
+----------------------------------------------------------------------
+Ran 8 tests in 0.017s
+
+OK

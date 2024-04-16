@@ -1,0 +1,12 @@
+..Sentence added successfully.
+....supported classes:
+['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+supported classes:
+['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+.supported classes:
+['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+.
+----------------------------------------------------------------------
+Ran 8 tests in 0.022s
+
+OK
