@@ -1,12 +1,13 @@
 What do you want to do?
 1. Train the model
 2. Classify an image
-<MagicMock name='Output().set_class_name()' id='2125235445328'>
+<MagicMock name='Output().set_class_name()' id='2572767335568'>
+Sentence added successfully.
 .What do you want to do?
 1. Train the model
 2. Classify an image
 .
 ----------------------------------------------------------------------
-Ran 2 tests in 0.016s
+Ran 2 tests in 0.011s
 
 OK

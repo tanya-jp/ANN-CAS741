@@ -719,18 +719,21 @@ The traceability between test cases and requirements is indicated in \autoref{Tr
 
 \section{Unit Test Description}\label{UnitTest}
 
-The modules of the ANN software are available in MG \citep{MG} and 
+This section includes unit testing for ANN modules. 
+These modules are available in MG \citep{MG} and 
 MIS \citep{MIS} documents.
 
 \subsection{Unit Testing Scope}
 
-Unit testing is performed on modules with highest priority, including \textbf{ANN Control Module} 
-and \textbf{Data Preparing and Preprocessing Module}. The reason of defining 
-Data Preparing and Preprocessing Module as a module with high priority 
-is the impact and the role of data processing in every machine learining project. 
-Additionally, Control Module includes the main function of running the software, 
-which makes it an important module. Control Module uses Output Module and Saved ANN Module 
-directly, and all other modules indirectly. 
+The unit tests cover all of the modules. 
+These unit tests are directly applied to:
+
+\begin{itemize}
+  \item ANN Control Module (M2)
+  \item Saved ANN Model Module (M3)
+  \item Output Module (M4)
+  \item Data Preparing and Preprocessing Module (M9)
+\end{itemize}
 
 \subsection{Tests for Functional Requirements}
 
@@ -739,107 +742,499 @@ Functional tests not automated by PyTest \citep{pytest} are described in this se
 
 
 \subsubsection{ ANN Control Module (M2)}
-
 ANN Control Module is the main executable script for training a model or classifying an image.
 
 \begin{enumerate}
-
-\item{train-test-id1\\}
-
-Type: Automatic
-					
-Initial State: N/A
-					
-Input: 1 to train the model
-					
-Output: Pass if the model is trained correctly, and Fail if it is not.
-
-Test Case Derivation: The expected value in the Output field is justified by the following reasoning:
-test\_train\_model:
+  \item{test-id1\\}
+  \textbf{Type:} Automatic \\
+  \textbf{Initial State:} N/A \\
+  \textbf{Input:} 1 to train the model \\
+  \textbf{Output:} Pass if the model is trained correctly, and Fail if it is not. \\
+  \textbf{Test Case Derivation:} 
+  The expected value in the Output field is justified by the following reasoning:
   \begin{itemize}
-    \item The main function should instantiate a Model object and call its save\_model 
-    method when the user selects option '1' to train the model.
-    \item Therefore, if the main function executes successfully, it indicates that 
-    the model is trained or loaded correctly, and the save\_model method is called, resulting in a Pass.
+      \item The main function should instantiate a Model object and call its save\_model 
+      method when the user selects option '1' to train the model.
+      \item Therefore, if the main function executes successfully, it indicates that the 
+      model is trained or loaded correctly, and the save\_model method is called, resulting in a Pass.
   \end{itemize}
+  \textbf{How test will be performed:} 
+  Run the main function with input '1' to simulate training the model and verify that the 
+  model is instantiated and the save\_model method is called.
 
-
-How test will be performed: 
-Run the main function with input '1' to simulate training the model and verify 
-that the model is instantiated and the save\_model method is called.
-					
-\item{classify-test-id2\\}
-
-Type: Automatic
-					
-Initial State: N/A
-					
-Input: 2 to classify the image.
-
-Output: Pass if the model classifies input correctly, and Fail if it is not.
-
-Test Case Derivation: 
-\begin{itemize}
-  \item The main function should instantiate an Output object, 
-  call its set\_class\_name method, and then call its save\_feedback 
-  method when the user selects option '2' to classify an image and provide feedback.
-  \item Therefore, if the main function executes successfully, it indicates that 
-  the image is classified correctly, and the set\_class\_name and save\_feedback methods 
-  are called, resulting in a Pass.
-\end{itemize}
-
-How test will be performed: Run the main function with input '2' to simulate classifying an image 
-and providing feedback, and verify that the Output object is instantiated, 
-its methods set\_class\_name and save\_feedback are called.
-    
+  \item{test-id2\\}
+  \textbf{Type:} Automatic \\
+  \textbf{Initial State:} N/A \\
+  \textbf{Input:} 2 to classify the image. \\
+  \textbf{Output:} Pass if the model classifies input correctly, and Fail if it is not. \\
+  \textbf{Test Case Derivation:} 
+  \begin{itemize}
+      \item The main function should instantiate an Output object, call its set\_class\_name 
+      method, and then call its save\_feedback method when the user selects option '2' to 
+      classify an image and provide feedback.
+      \item Therefore, if the main function executes successfully, it indicates that the 
+      image is classified correctly, and the set\_class\_name and save\_feedback methods are called, resulting in a Pass.
+  \end{itemize}
+  \textbf{How test will be performed:} 
+  Run the main function with input '2' to simulate classifying an image and providing 
+  feedback, and verify that the Output object is instantiated, its methods set\_class\_name and save\_feedback are called.
 \end{enumerate}
 
-\subsubsection{Data Preparing and Preprocessing Module (M9)}
-Data Preparing and Preprocessing Module is for loading and processing data.
+\subsubsection{ Saved ANN Model Module (M3)}
+This document outlines the unit tests for the `Model` class which handles the 
+saving, loading, and processing of machine learning model parameters.
 
 \begin{enumerate}
 
-  \item{data-prep-test-id3\\}
+  \item{test-id3\\}
   
-  Type: Automatic
-            
-  Initial State: N/A
-            
-  Input: Random RGB images and labels for training and testing.
-            
-  Output: Pass if the dataset is processed correctly and the preprocessing steps 
-          are applied as expected, Fail otherwise.
+  \textbf{Type:} Automatic
   
-  Test Case Derivation: The expected value in the Output field is justified by 
-  the following reasoning:
+  \textbf{Initial State:} N/A
+  
+  \textbf{Input:} Call to `load\_model` method with a non-existent file name.
+  
+  \textbf{Output:} Pass if a FileNotFoundError is raised, indicating correct 
+  error handling; Fail otherwise.
+  
+  \textbf{Test Case Derivation:}
   \begin{itemize}
-    \item The test\_get\_dataset test case verifies the behavior of the 
-    get\_dataset method of the Data class, which processes the dataset 
-    by applying various preprocessing steps.
-    \item The method is patched to mock the preprocessing steps, such as 
-    RGB to grayscale conversion, normalization, flattening, and shuffling.
-    \item After calling the method, the test checks if the images in the 
-    dataset are flattened correctly and if the preprocessing steps are called as expected.
-    \item Therefore, if the method behaves as expected and all assertions 
-    pass, the test case is considered to Pass.
+    \item The `load\_model` method is expected to raise a FileNotFoundError when it 
+    fails to find the specified file, demonstrating the method's robustness in handling file read errors.
   \end{itemize}
   
+  \textbf{How test will be performed:} 
+  The test will attempt to load a non-existent file by calling the `load\_model` 
+  method and check for a FileNotFoundError to confirm proper error handling.
   
-  How test will be performed: 
+  \item{test-id4\\}
+  
+  \textbf{Type:} Automatic
+  
+  \textbf{Initial State:} N/A
+  
+  \textbf{Input:} Successful data loading using the `load\_model` method.
+  
+  \textbf{Output:} Pass if the loaded data matches expected parameters; Fail otherwise.
+  
+  \textbf{Test Case Derivation:}
   \begin{itemize}
-    \item The setUp method sets up the test environment by creating an 
-    instance of the Data class and generating random RGB images and 
-    labels for training and testing.
-    \item The method under test, get\_dataset, is called with the 
-    mocked preprocessing steps.
-    \item The assertions are made to verify that the images in the 
-    dataset are flattened correctly, and the preprocessing steps are 
-    called as expected.
-    \item The test is considered a Pass if all assertions pass, 
-    indicating that the dataset is processed correctly, and a Fail otherwise.
+    \item This test checks if the `load\_model` method can correctly load data 
+    from a file and return the appropriate data structure. A match with expected 
+    parameters indicates correct functionality.
   \end{itemize}
+  
+  \textbf{How test will be performed:} 
+  The test will load data using the `load\_model` method and verify that the 
+  returned data matches predefined expected values.
+  
+  \item{test-id5\\}
+  
+  \textbf{Type:} Automatic
+  
+  \textbf{Initial State:} N/A
+  
+  \textbf{Input:} Invocation of the `save\_model` method under normal conditions.
+  
+  \textbf{Output:} Pass if the method successfully saves data and returns True; Fail otherwise.
+  
+  \textbf{Test Case Derivation:}
+  \begin{itemize}
+    \item The `save\_model` method should save the model parameters to a file and 
+    return True upon successful completion. This test verifies that the method 
+    performs as expected when no errors occur.
+  \end{itemize}
+  
+  \textbf{How test will be performed:} 
+  Run the `save\_model` method with typical parameters and check that it returns 
+  True, indicating successful data saving.
+  
+  \item{test-id6\\}
+  
+  \textbf{Type:} Automatic
+  
+  \textbf{Initial State:} N/A
+  
+  \textbf{Input:} Attempt to save data using the `save\_model` method 
+  when a PermissionError is expected.
+  
+  \textbf{Output:} Pass if a PermissionError is raised, confirming that the 
+  method correctly handles permission issues; Fail otherwise.
+  
+  \textbf{Test Case Derivation:}
+  \begin{itemize}
+    \item The test aims to confirm that the `save\_model` method can 
+    appropriately handle a PermissionError by raising the expected 
+    exception when file writing permissions are restricted.
+  \end{itemize}
+  
+  \textbf{How test will be performed:} 
+  The test will simulate a permission error during the file-saving 
+  process and verify that a PermissionError is raised.
+  
+  \item{test-id7\\}
+  \textbf{Type:} Automatic\\
+  \textbf{Initial State:} N/A\\
+  \textbf{Input:} Parameters provided to `load\_trained\_classifier` to
+   simulate classification.\\
+  \textbf{Output:} Pass if the classifier correctly predicts using provided 
+  parameters; Fail otherwise.\\
+  \textbf{Test Case Derivation:}
+  \begin{itemize}
+      \item This test verifies that the `load\_trained\_classifier` method correctly 
+      utilizes loaded model weights to predict and return the classification.
+      \item The method should return 'TestClass' as the prediction output when 
+      using predefined weights and input data.
+  \end{itemize}
+  \textbf{How test will be performed:}
+  \begin{itemize}
+      \item Run the method with mocked `load\_model` to return specific weights and 
+      check if the predicted class matches 'TestClass'.
+  \end{itemize}
+  
+  \item{test-id8\\}
+  \textbf{Type:} Automatic\\
+  \textbf{Initial State:} N/A\\
+  \textbf{Input:} Simulated scenario where `load\_model` cannot read the file 
+  (IOError).\\
+  \textbf{Output:} Pass if IOError is raised correctly indicating file read 
+  issues; Fail otherwise.\\
+  \textbf{Test Case Derivation:}
+  \begin{itemize}
+      \item The `load\_model` method is expected to handle read errors gracefully by 
+      raising an IOError if the file is not accessible or corrupt.
+  \end{itemize}
+  \textbf{How test will be performed:}
+  \begin{itemize}
+      \item Attempt to load a file with a mocked `numpy.load` setup to raise an 
+      IOError and verify that the error is correctly raised and identified.
+  \end{itemize}
+  
+  \item{test-id9\\}
+  \textbf{Type:} Automatic\\
+  \textbf{Initial State:} N/A\\
+  \textbf{Input:} Testing `load\_model` method under conditions that trigger an 
+  IOError (disk write failure).\\
+  \textbf{Output:} Pass if IOError is correctly identified and reported; 
+  Fail otherwise.\\
+  \textbf{Test Case Derivation:}
+  \begin{itemize}
+      \item This test ensures that the `load\_model` method can appropriately 
+      handle and report disk write errors through proper error messaging.
+  \end{itemize}
+  \textbf{How test will be performed:}
+  \begin{itemize}
+      \item Simulate a disk write error using a mocked `numpy.save` function 
+      that raises an IOError and check for the correct error handling.
+  \end{itemize}
+  
+  \item{test-id10\\}
+  \textbf{Type:} Automatic\\
+  \textbf{Initial State:} N/A\\
+  \textbf{Input:} Scenario where `load\_model` faces an unexpected error 
+  type (generic Exception).\\
+  \textbf{Output:} Pass if the generic Exception is handled and re-reported 
+  correctly; Fail otherwise.\\
+  \textbf{Test Case Derivation:}
+  \begin{itemize}
+      \item To validate that `load\_model` properly re-raises exceptions
+       with a custom message, ensuring that all potential errors are accounted for and clearly communicated.
+  \end{itemize}
+  \textbf{How test will be performed:}
+  \begin{itemize}
+      \item Induce a generic error in the `load\_model` method using a 
+      mocked `numpy.save` and verify the exception handling by checking the re-raised error message.
+  \end{itemize}
+  
+  \end{enumerate}
+  
+\subsection{ Output Module (M4)} 
+This document details the unit tests for the `Output` class, which manages file operations 
+sand user interactions for classifying images.
+
+\begin{enumerate}
+
+\item{test-id11\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} Text "Test sentence" to be appended to "feedback.txt".\\
+\textbf{Output:} Pass if the text is appended correctly; Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+    \item This test verifies that the `append\_to\_file` method correctly 
+    opens a file in append mode and writes the specified text followed by a newline.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+    \item The method is called with the specified inputs, and the mock 
+    verifies that the file operations are performed correctly.
+\end{itemize}
+
+\item{test-id12\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} Attempt to append text to a non-existent file.\\
+\textbf{Output:} Pass if a FileNotFoundError is raised; Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+    \item The method should raise a FileNotFoundError if it attempts to 
+    open a non-existent file, indicating robust error handling.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+    \item The method is called, and the FileNotFoundError is expected to 
+    be raised due to the mocked file operation.
+\end{itemize}
+
+\item{test-id13\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} Simulate an IOError during file writing.\\
+\textbf{Output:} Pass if an IOError is correctly raised; Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+    \item The test checks for proper exception handling when an IOError 
+    occurs due to file writing issues.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+    \item An IOError is simulated through mocking, and the method is 
+    expected to raise this error appropriately.
+\end{itemize}
+
+\item{test-id14\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} Simulate an unexpected exception during file operation.\\
+\textbf{Output:} Pass if the unexpected exception is handled and logged 
+correctly; Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+    \item The method should log and handle any unexpected exceptions that 
+    are not explicitly caught by earlier error handling code.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+    \item An unexpected exception (generic Exception) is simulated to test 
+    the robustness of the method's error handling.
+\end{itemize}
+\item{test-id15\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} User inputs 'y' indicating agreement with the classification.\\
+\textbf{Output:} Pass if feedback is saved correctly as "dog dog"; Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+    \item This test checks whether the `save\_feedback` method correctly handles 
+    user agreement by appending the correct feedback to the file.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+    \item The test simulates user input of 'y' for agreement and verifies that 
+    the feedback "dog dog" is correctly appended to the feedback file.
+\end{itemize}
+
+\item{test-id16\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} User inputs 'n' followed by 'cat', indicating disagreement and 
+providing an alternative classification.\\
+\textbf{Output:} Pass if feedback is saved correctly as "dog cat"; Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+    \item This test verifies that the `save\_feedback` method properly records a 
+    user's disagreement and alternative class name by appending the correct feedback to the file.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+    \item The test simulates user inputs of 'n' and 'cat', and checks that the 
+    feedback "dog cat" is appended to the feedback file.
+\end{itemize}
+
+\item{test-id17\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} User inputs 'n', followed by an invalid class name 'xyz', and then 'cat'.\\
+\textbf{Output:} Pass if feedback is saved correctly as "dog cat" after user 
+corrects the class name; Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+    \item This test assesses the `save\_feedback` method's ability to handle 
+    multiple user inputs where the first provided class name is invalid, 
+    ensuring that only valid feedback is recorded.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+    \item The test simulates initial disagreement with the classification, 
+    an invalid class name input followed by a valid name, and checks the final written feedback.
+\end{itemize}
+
+\item{test-id18\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} Simulate user input that categorizes an image as 'cat'.\\
+\textbf{Output:} Pass if the set\_class\_name method returns 'cat'; Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+    \item This test verifies the functionality of the `set\_class\_name` 
+    method to correctly classify an image based on simulated input.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+    \item Mock methods are used to simulate processing an image and setting its 
+    classification as 'cat'. The test checks that the method returns the correct classification.
+\end{itemize}
 
 \end{enumerate}
+
+\subsubsection{Data Preparing and Preprocessing Module (M9)}
+This document outlines the unit tests for the `Data` class, which is responsible 
+for loading, processing, and preparing datasets for machine learning tasks.
+
+\begin{enumerate}
+
+\item{test-id19\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} Simulated CIFAR-10 dataset load operation.\\
+\textbf{Output:} Pass if the dataset is loaded correctly with proper shapes; 
+Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+    \item This test verifies that the `load\_data` method can load data correctly and 
+    validate its shape to ensure it meets expected dimensions.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+    \item Mocking is used to simulate the loading operation and shape checking is 
+    performed to confirm data integrity.
+\end{itemize}
+
+\item{test-id20\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} Attempt to load CIFAR-10 data with incorrect shapes to simulate a 
+failed operation.\\
+\textbf{Output:} Pass if an appropriate exception is raised due to incorrect data 
+shapes; Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+    \item This test aims to ensure that the `load\_data` method raises an 
+    exception when data does not meet required specifications, maintaining robustness in data handling.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+    \item The loading function is mocked to return data with incorrect 
+    shapes, and the method's error handling is tested.
+\end{itemize}
+
+\item{test-id21\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} RGB images are processed to convert them into grayscale 
+using the method under test.\\
+\textbf{Output:} Pass if all images are correctly converted to grayscale; Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+    \item The `rgb2gray` method should accurately convert RGB images to grayscale 
+    by applying the correct formula. This test checks the method's effectiveness across multiple images.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+    \item A batch of RGB images is processed, and the output is verified 
+    against expected grayscale values.
+\end{itemize}
+
+\item{test-id22\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} Normalization of pixel values in images from 0-255 to 0-1 range.\\
+\textbf{Output:} Pass if pixel values are correctly normalized; Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+    \item The `prep\_pixels` method is tested to ensure it can normalize image data 
+    correctly, crucial for machine learning model input preparation.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+    \item The normalization process is applied to a set of images, and the results 
+    are checked to confirm they fall within the expected range.
+\end{itemize}
+
+\item{test-id23\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} Flattening 2D image data into 1D vectors.\\
+\textbf{Output:} Pass if images are correctly flattened without 
+data loss; Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+    \item Ensuring that the `flat\_data` method effectively reshapes 
+    2D images into 1D format without altering the data integrity is crucial 
+    for input to certain types of neural networks.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+  \item Images are converted from 2D to 1D using the flattening process, 
+  and the output dimensions are checked to verify correctness.
+\end{itemize}
+
+\item{test-id24\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} Shuffling of labeled image data to ensure randomness in data order.\\
+\textbf{Output:} Pass if data is correctly shuffled and labels are maintained; Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+  \item The `shuffle\_data` method is essential for randomizing the order of image 
+  data to prevent model bias during training. This test checks that the shuffling maintains correct 
+  label associations and achieves randomness.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+  \item The dataset is shuffled using the method, and checks are made to ensure 
+  that no data is lost or mismatched during the process, verifying that the order of data is altered.
+\end{itemize}
+
+\item{test-id25\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} Grayscale conversion for a single RGB image to validate the 
+method's precision on individual images.\\
+\textbf{Output:} Pass if the single image is converted accurately to grayscale; 
+Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+  \item Single image testing isolates the performance of the `rgb2gray` method to ensure 
+  it can accurately apply the grayscale formula on an individual basis.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+  \item A single RGB image is processed, and the resulting grayscale image is compared 
+  against expected values calculated using the standard luminosity formula.
+\end{itemize}
+
+\item{test-id26\\}
+\textbf{Type:} Automatic\\
+\textbf{Initial State:} N/A\\
+\textbf{Input:} Conversion of a batch of RGB images to grayscale to check consistent 
+application across multiple instances.\\
+\textbf{Output:} Pass if all images in the batch are consistently converted to grayscale; 
+Fail otherwise.\\
+\textbf{Test Case Derivation:}
+\begin{itemize}
+  \item This test evaluates the consistency and reliability of the `rgb2gray` method when 
+  applied to multiple images, ensuring that the conversion formula is uniformly applied.
+\end{itemize}
+\textbf{How test will be performed:}
+\begin{itemize}
+  \item A batch of images is processed, and each converted image is checked against 
+  expected grayscale values to confirm uniform application of the conversion formula.
+\end{itemize}
+
+\end{enumerate}
+
+
 
 \subsection{Tests for Nonfunctional Requirements}
 
@@ -857,13 +1252,15 @@ A traceability between test cases and modules is shown in \autoref{tab:tc-tracea
 \hline
 T1 & & & & & X & & & &\\
 \hline
-T2 & & X & X & X & & & & &\\
+T2 & & X & X & X & & & & & X\\
 \hline
-train-test-id1 & X & X & X & & & & X & X &\\
+test-id1 - test-id2 & X & & & & & & & &\\
 \hline
-classify-test-id2 & X & X & & X & & X & & & X\\
+test-id3 - test-id10 & & X & & & & X & & & X\\
 \hline
-data-prep-test-id3 & & & & & & X & X & &\\
+test-id11 - test-id18 & & & X & X & & X & & &\\
+\hline
+test-id19 - test-id26 & & & & & & & X & X &\\
 
 \hline
 \end{tabular}

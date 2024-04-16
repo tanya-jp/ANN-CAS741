@@ -1,9 +1,16 @@
-============================= test session starts =============================
+ or check PEP 632 for potential alternatives
+    import distutils as _distutils
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================================================================================== 1 passed, 1 warning in 5.04s ==========================================================================================
+
+C:\Users\tanya\OneDrive\Documents\McMaster\Courses\Scientific Computing\CAS final\ANN-CAS741\test>coverage run -m pytest test_image_properties.py
+============================================================================================== test session starts ===============================================================================================
 platform win32 -- Python 3.11.6, pytest-7.2.2, pluggy-1.0.0
 rootdir: C:\Users\tanya\OneDrive\Documents\McMaster\Courses\Scientific Computing\CAS final\ANN-CAS741\test
 plugins: anyio-4.0.0
 collected 7 items
 
-test_image_properties.py .......                                         [100%]
+test_image_properties.py .......                                                                                                                                                                            [100%]
 
-============================== 7 passed in 0.49s ==============================
+=============================================================================================== 7 passed in 0.77s ================================================================================================
