@@ -72,7 +72,7 @@ class Model():
         FileReadError: If the file does not exist or an error occurs during file reading.
         """
         try:
-            trained_params = np.load("src\\"+file_name, allow_pickle=True)
+            trained_params = np.load(file_name, allow_pickle=True)
             trained_params_dict = trained_params.item()
             return trained_params_dict
         except FileNotFoundError:
