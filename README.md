@@ -4,7 +4,7 @@ Developer Names: Tanya Djavaherpour
 
 Date of project start: January 17, 2024
 
-This project is an image classification project using a fully connected Artificial Neural Network trained on [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) dataset. It serves as an extension of the [previous project](https://github.com/tanya-jp/CIFAR-Classification)
+This project is an image classification project using a fully connected Artificial Neural Network trained on [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) dataset. It serves as an extension of the [previous project](https://github.com/tanya-jp/CIFAR-Classification).
 
 The folders and files for this project are as follows:
 
